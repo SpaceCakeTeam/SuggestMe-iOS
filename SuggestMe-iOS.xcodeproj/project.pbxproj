@@ -18,6 +18,7 @@
 		495A24621AFE497A003731E9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24611AFE497A003731E9 /* Category.swift */; };
 		495A24641AFE54D9003731E9 /* CommunicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24631AFE54D9003731E9 /* CommunicationHandler.swift */; };
 		498A39671AFE90FD00726542 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39661AFE90FD00726542 /* Utility.swift */; };
+		498A39691AFF84D100726542 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39681AFF84D100726542 /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		495A24611AFE497A003731E9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		495A24631AFE54D9003731E9 /* CommunicationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationHandler.swift; sourceTree = "<group>"; };
 		498A39661AFE90FD00726542 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		498A39681AFF84D100726542 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				495A24351AFE0CE4003731E9 /* AppDelegate.swift */,
 				495A24371AFE0CE4003731E9 /* FirstViewController.swift */,
 				495A24391AFE0CE4003731E9 /* SecondViewController.swift */,
+				498A39681AFF84D100726542 /* ThirdViewController.swift */,
 				495A24581AFE10E9003731E9 /* Controller */,
 				495A24571AFE10E0003731E9 /* Model */,
 				495A243B1AFE0CE4003731E9 /* Main.storyboard */,
@@ -177,6 +180,7 @@
 			files = (
 				495A245C1AFE271D003731E9 /* UserSocial.swift in Sources */,
 				495A24641AFE54D9003731E9 /* CommunicationHandler.swift in Sources */,
+				498A39691AFF84D100726542 /* ThirdViewController.swift in Sources */,
 				498A39671AFE90FD00726542 /* Utility.swift in Sources */,
 				495A245A1AFE11FD003731E9 /* User.swift in Sources */,
 				495A24621AFE497A003731E9 /* Category.swift in Sources */,
