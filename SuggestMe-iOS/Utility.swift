@@ -22,6 +22,8 @@ class Utility {
         return Static.instance!
     }
     
+    var communicationHandler = CommunicationHandler()
+    
     func isConnectedToNetwork() -> Bool {
         var Status: Bool = false
         let url = NSURL(string: "http://google.com/")
