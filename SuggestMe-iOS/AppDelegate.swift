@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        if Utility.sharedInstance.communicationHandler.registrationRequest(true, userInfo: User(id: -1)) {
-            println("FINISH WITH SUCCESS!")
-        }
+        
+        Utility.sharedInstance.registrationRequestTest()
+        
         return true
     }
 
@@ -34,5 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
     }
+    
 }
 

@@ -14,20 +14,17 @@ class Utility {
             static var instance: Utility?
             static var token: dispatch_once_t = 0
         }
-        
         dispatch_once(&Static.token) {
             Static.instance = Utility()
         }
-        
         return Static.instance!
     }
     
     var communicationHandler = CommunicationHandler()
     
     func isConnectedToNetwork() -> Bool {
-        var Status: Bool = false
-        let url = NSURL(string: "http://google.com/")
-        let request = NSMutableURLRequest(URL: url!)
+        var status = false
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://google.com/")!)
         request.HTTPMethod = "HEAD"
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData
         request.timeoutInterval = 10.0
@@ -37,9 +34,23 @@ class Utility {
         
         if let httpResponse = response as? NSHTTPURLResponse {
             if httpResponse.statusCode == 200 {
-                Status = true
+                status = true
             }
         }
-        return Status
+        return status
+    }
+    
+    func registrationRequestTest() {
+        //NSUserDefaults.standardUserDefaults().setObject(User(id: nil), forKey: "userInfo")
+        //var userInfo =  NSUserDefaults.standardUserDefaults().objectForKey("userId") as! User
+        
+        var userSocial = UserSocial(id: -1, tokenId: "blabla", email: "dio@dio.dio", name: "Dio", surname: "Dio", birthDate: 0, gender: Gender.u)
+        var userSocialEncoded = NSKeyedArchiver.archivedDataWithRootObject(userSocial)
+        NSUserDefaults.standardUserDefaults().setObject(userSocialEncoded, forKey: "userInfo")
+        //var userInfo =  NSUserDefaults.standardUserDefaults().objectForKey("userId") as! UserSocial
+
+        Utility.sharedInstance.communicationHandler.registrationRequest(false, userNotRegistered: userSocial.castToDictionary()) { (response) -> () in
+            println("Registration Request response: \(response)")
+        }
     }
 }
