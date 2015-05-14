@@ -9,7 +9,7 @@
 import Foundation
 
 class User: NSObject, NSCoding {
-    var id: Int = -1
+    var id = -1
 
     init(id: Int) {
         self.id = id

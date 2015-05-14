@@ -46,11 +46,30 @@ class Utility {
         
         var userSocial = UserSocial(id: -1, tokenId: "blabla", email: "dio@dio.dio", name: "Dio", surname: "Dio", birthDate: 0, gender: Gender.u)
         var userSocialEncoded = NSKeyedArchiver.archivedDataWithRootObject(userSocial)
-        NSUserDefaults.standardUserDefaults().setObject(userSocialEncoded, forKey: "userInfo")
+        NSUserDefaults.standardUserDefaults().setObject(userSocialEncoded, forKey: "userinfo")
         //var userInfo =  NSUserDefaults.standardUserDefaults().objectForKey("userId") as! UserSocial
 
         Utility.sharedInstance.communicationHandler.registrationRequest(false, userNotRegistered: userSocial.castToDictionary()) { (response) -> () in
             println("Registration Request response: \(response)")
+        }
+    }
+    
+    func getCategoriesRequestTest() {
+        Utility.sharedInstance.communicationHandler.getCategoriesRequest() { (response) -> () in
+            println("Categories Request response: \(response)")
+        }
+    }
+    
+    func askSuggestionRequestTest() {
+        var question = Question(id: -1, anonflag: true, text: "ciao?", category: 1, subcategory: 1, date: -1)
+        Utility.sharedInstance.communicationHandler.askSuggestionRequest(question.convertToDictionary()) { (response) -> () in
+            println("Ask Suggestion Request response: \(response)")
+        }
+    }
+    
+    func getSuggestsRequestTest() {
+        Utility.sharedInstance.communicationHandler.getSuggestsRequest([1,2,3]) { (response) -> () in
+            println("Get Suggests Request response: \(response)")
         }
     }
 }

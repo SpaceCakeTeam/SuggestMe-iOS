@@ -8,23 +8,43 @@
 
 import Foundation
 
-class Question {
-    var id: Int?
-    var anonymous: Bool
-    var title: Int
-    var content: String
-    var category: Int
-    var date: Int?
-    var suggest: Suggest?
+class Question: NSObject, NSCoding {
+    var id = -1
+    var anonflag = true
+    var text = ""
+    var category = -1
+    var subcategory = -1
+    var date = 0
     
-    init(id: Int?, anonymous: Bool, title: Int, content: String, category: Int, date: Int, suggest: Suggest?) {
+    init(id: Int, anonflag: Bool, text: String, category: Int, subcategory: Int, date: Int) {
         self.id = id
-        self.anonymous = anonymous
-        self.title = title
-        self.content = content
+        self.anonflag = anonflag
+        self.text = text
         self.category = category
+        self.subcategory = subcategory
         self.date = date
-        self.suggest = suggest
+    }
+    
+    func convertToDictionary() -> [String: AnyObject] {
+        return ["id": self.id, "anonfalg": self.anonflag, "text": self.text, "categoryid": self.category, "subcategoryid": self.subcategory, "date": self.date]
+    }
+    
+    required init(coder decoder: NSCoder) {
+        decoder.decodeObjectForKey("id")
+        decoder.decodeObjectForKey("anonflag")
+        decoder.decodeObjectForKey("text")
+        decoder.decodeObjectForKey("category")
+        decoder.decodeObjectForKey("subcategory")
+        decoder.decodeObjectForKey("date")
+    }
+    
+    func encodeWithCoder(encoder: NSCoder) {
+        encoder.encodeObject(self.id, forKey: "id")
+        encoder.encodeObject(self.anonflag, forKey: "anonflag")
+        encoder.encodeObject(self.text, forKey: "text")
+        encoder.encodeObject(self.category, forKey: "category")
+        encoder.encodeObject(self.subcategory, forKey: "subcategory")
+        encoder.encodeObject(self.date, forKey: "date")
     }
 }
 

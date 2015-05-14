@@ -9,11 +9,11 @@
 import Foundation
 
 class UserSocial: User {
-    var tokenId: String = ""  //verificare se dopo un logout quello nuovo generato è diverso, in caso negativo scrivere let
-    var email: String = ""
-    var name: String = ""
-    var surname: String = ""
-    var birthDate: Int = -1
+    var tokenId = ""  //verificare se dopo un logout quello nuovo generato è diverso, in caso negativo definire let
+    var email = ""
+    var name = ""
+    var surname = ""
+    var birthDate = 0
     var gender = Gender.u
     
     init(id: Int, tokenId: String, email: String, name: String, surname: String, birthDate: Int, gender: Gender) {
@@ -27,12 +27,12 @@ class UserSocial: User {
     }
     
     override func castToDictionary() -> [String: AnyObject] {
-        return ["userid": self.id, "tokenId": self.tokenId, "email": self.email, "name": self.name, "surname": self.surname, "birth_date": self.birthDate, "gender": self.gender.rawValue]
+        return ["userid": self.id, "tokenid": self.tokenId, "email": self.email, "name": self.name, "surname": self.surname, "birth_date": self.birthDate, "gender": self.gender.rawValue]
     }
     
     required init(coder decoder: NSCoder) {
         super.init(coder: decoder)
-        decoder.decodeObjectForKey("tokenId")
+        decoder.decodeObjectForKey("tokenid")
         decoder.decodeObjectForKey("email")
         decoder.decodeObjectForKey("name")
         decoder.decodeObjectForKey("surname")
@@ -41,7 +41,7 @@ class UserSocial: User {
     }
     
     override func encodeWithCoder(encoder: NSCoder) {
-        encoder.encodeObject(self.tokenId, forKey: "tokenId")
+        encoder.encodeObject(self.tokenId, forKey: "tokenid")
         encoder.encodeObject(self.email, forKey: "email")
         encoder.encodeObject(self.name, forKey: "name")
         encoder.encodeObject(self.surname, forKey: "surname")

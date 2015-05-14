@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		495572DA1B05310600EAD377 /* SubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495572D91B05310600EAD377 /* SubCategory.swift */; };
 		495A24361AFE0CE4003731E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24351AFE0CE4003731E9 /* AppDelegate.swift */; };
 		495A24381AFE0CE4003731E9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24371AFE0CE4003731E9 /* FirstViewController.swift */; };
 		495A243A1AFE0CE4003731E9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24391AFE0CE4003731E9 /* SecondViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		495572D91B05310600EAD377 /* SubCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategory.swift; sourceTree = "<group>"; };
 		495A24301AFE0CE4003731E9 /* SuggestMe-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SuggestMe-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		495A24341AFE0CE4003731E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		495A24351AFE0CE4003731E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				495A245B1AFE271D003731E9 /* UserSocial.swift */,
 				495A245D1AFE3CF6003731E9 /* Question.swift */,
 				495A24611AFE497A003731E9 /* Category.swift */,
+				495572D91B05310600EAD377 /* SubCategory.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				495A245A1AFE11FD003731E9 /* User.swift in Sources */,
 				495A24621AFE497A003731E9 /* Category.swift in Sources */,
 				495A243A1AFE0CE4003731E9 /* SecondViewController.swift in Sources */,
+				495572DA1B05310600EAD377 /* SubCategory.swift in Sources */,
 				495A24361AFE0CE4003731E9 /* AppDelegate.swift in Sources */,
 				495A24381AFE0CE4003731E9 /* FirstViewController.swift in Sources */,
 				495A245E1AFE3CF6003731E9 /* Question.swift in Sources */,
