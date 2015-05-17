@@ -9,14 +9,14 @@
 import Foundation
 
 class Category: NSObject, NSCoding {
-    var id = -1
-    var name = ""
-    var subCategories = [SubCategory]()
+    var id: Int!
+    var name: String!
+    var subcategories: [SubCategory!]!
     
-    init(id: Int, name: String, subCategories: [SubCategory]) {
+    init(id: Int!, name: String!, subcategories: [SubCategory!]!) {
         self.id = id
         self.name = name
-        self.subCategories = subCategories
+        self.subcategories = subcategories
     }
     
     required init(coder decoder: NSCoder) {
@@ -28,6 +28,6 @@ class Category: NSObject, NSCoding {
     func encodeWithCoder(encoder: NSCoder) {
         encoder.encodeObject(self.id, forKey: "id")
         encoder.encodeObject(self.name, forKey: "name")
-        encoder.encodeObject(self.subCategories, forKey: "subcategories")
+        encoder.encodeObject(self.subcategories, forKey: "subcategories")
     }
 }

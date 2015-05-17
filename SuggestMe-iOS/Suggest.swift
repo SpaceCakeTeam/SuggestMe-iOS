@@ -1,29 +1,29 @@
 //
-//  SubCategory.swift
+//  Suggest.swift
 //  SuggestMe-iOS
 //
-//  Created by Mattia Uggè on 14/05/15.
+//  Created by Mattia Uggè on 17/05/15.
 //  Copyright (c) 2015 Mattia. All rights reserved.
 //
 
 import Foundation
 
-class SubCategory: NSObject, NSCoding {
+class Suggest: NSObject, NSCoding {
     var id: Int!
-    var name: String!
+    var text: String!
     
-    init(id: Int!, name: String!) {
+    init(id: Int!, text: String!) {
         self.id = id
-        self.name = name
+        self.text = text
     }
     
     required init(coder decoder: NSCoder) {
         decoder.decodeObjectForKey("id")
-        decoder.decodeObjectForKey("name")
+        decoder.decodeObjectForKey("text")
     }
     
     func encodeWithCoder(encoder: NSCoder) {
         encoder.encodeObject(self.id, forKey: "id")
-        encoder.encodeObject(self.name, forKey: "name")
+        encoder.encodeObject(self.text, forKey: "text")
     }
 }

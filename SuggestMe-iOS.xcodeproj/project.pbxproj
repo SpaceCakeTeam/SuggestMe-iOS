@@ -14,12 +14,14 @@
 		495A243D1AFE0CE4003731E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495A243B1AFE0CE4003731E9 /* Main.storyboard */; };
 		495A243F1AFE0CE4003731E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495A243E1AFE0CE4003731E9 /* Images.xcassets */; };
 		495A245A1AFE11FD003731E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24591AFE11FD003731E9 /* User.swift */; };
-		495A245C1AFE271D003731E9 /* UserSocial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A245B1AFE271D003731E9 /* UserSocial.swift */; };
+		495A245C1AFE271D003731E9 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A245B1AFE271D003731E9 /* UserData.swift */; };
 		495A245E1AFE3CF6003731E9 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A245D1AFE3CF6003731E9 /* Question.swift */; };
 		495A24621AFE497A003731E9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24611AFE497A003731E9 /* Category.swift */; };
 		495A24641AFE54D9003731E9 /* CommunicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24631AFE54D9003731E9 /* CommunicationHandler.swift */; };
 		498A39671AFE90FD00726542 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39661AFE90FD00726542 /* Utility.swift */; };
 		498A39691AFF84D100726542 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39681AFF84D100726542 /* ThirdViewController.swift */; };
+		49C92EBB1B08A0F600213623 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C92EBA1B08A0F600213623 /* QuestionData.swift */; };
+		49C92EBD1B08B23E00213623 /* Suggest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C92EBC1B08B23E00213623 /* Suggest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,12 +34,14 @@
 		495A243C1AFE0CE4003731E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		495A243E1AFE0CE4003731E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		495A24591AFE11FD003731E9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		495A245B1AFE271D003731E9 /* UserSocial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSocial.swift; sourceTree = "<group>"; };
+		495A245B1AFE271D003731E9 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		495A245D1AFE3CF6003731E9 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		495A24611AFE497A003731E9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		495A24631AFE54D9003731E9 /* CommunicationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationHandler.swift; sourceTree = "<group>"; };
 		498A39661AFE90FD00726542 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		498A39681AFF84D100726542 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		49C92EBA1B08A0F600213623 /* QuestionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
+		49C92EBC1B08B23E00213623 /* Suggest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +99,12 @@
 			isa = PBXGroup;
 			children = (
 				495A24591AFE11FD003731E9 /* User.swift */,
-				495A245B1AFE271D003731E9 /* UserSocial.swift */,
-				495A245D1AFE3CF6003731E9 /* Question.swift */,
+				495A245B1AFE271D003731E9 /* UserData.swift */,
 				495A24611AFE497A003731E9 /* Category.swift */,
 				495572D91B05310600EAD377 /* SubCategory.swift */,
+				495A245D1AFE3CF6003731E9 /* Question.swift */,
+				49C92EBA1B08A0F600213623 /* QuestionData.swift */,
+				49C92EBC1B08B23E00213623 /* Suggest.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -181,9 +187,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				495A245C1AFE271D003731E9 /* UserSocial.swift in Sources */,
+				495A245C1AFE271D003731E9 /* UserData.swift in Sources */,
 				495A24641AFE54D9003731E9 /* CommunicationHandler.swift in Sources */,
 				498A39691AFF84D100726542 /* ThirdViewController.swift in Sources */,
+				49C92EBD1B08B23E00213623 /* Suggest.swift in Sources */,
+				49C92EBB1B08A0F600213623 /* QuestionData.swift in Sources */,
 				498A39671AFE90FD00726542 /* Utility.swift in Sources */,
 				495A245A1AFE11FD003731E9 /* User.swift in Sources */,
 				495A24621AFE497A003731E9 /* Category.swift in Sources */,

@@ -40,16 +40,16 @@ class Utility {
         return status
     }
     
+    func setUser() {
+        var user = User(id: -1, anon: true, userdata: nil)
+        var userEncoded = NSKeyedArchiver.archivedDataWithRootObject(user)
+        NSUserDefaults.standardUserDefaults().setObject(userEncoded, forKey: "user")
+    }
+    
     func registrationRequestTest() {
-        //NSUserDefaults.standardUserDefaults().setObject(User(id: nil), forKey: "userInfo")
-        //var userInfo =  NSUserDefaults.standardUserDefaults().objectForKey("userId") as! User
-        
-        var userSocial = UserSocial(id: -1, tokenId: "blabla", email: "dio@dio.dio", name: "Dio", surname: "Dio", birthDate: 0, gender: Gender.u)
-        var userSocialEncoded = NSKeyedArchiver.archivedDataWithRootObject(userSocial)
-        NSUserDefaults.standardUserDefaults().setObject(userSocialEncoded, forKey: "userinfo")
-        //var userInfo =  NSUserDefaults.standardUserDefaults().objectForKey("userId") as! UserSocial
+        var userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")        
 
-        Utility.sharedInstance.communicationHandler.registrationRequest(false, userNotRegistered: userSocial.castToDictionary()) { (response) -> () in
+        Utility.sharedInstance.communicationHandler.registrationRequest(userdata) { (response) -> () in
             println("Registration Request response: \(response)")
         }
     }
@@ -61,14 +61,15 @@ class Utility {
     }
     
     func askSuggestionRequestTest() {
-        var question = Question(id: -1, anonflag: true, text: "ciao?", category: 1, subcategory: 1, date: -1)
-        Utility.sharedInstance.communicationHandler.askSuggestionRequest(question.convertToDictionary()) { (response) -> () in
+        var questiondata = QuestionData(catid: 1, subcatid: 1, text: "ciaone cosa vuol dire?", anon: false)
+        
+        Utility.sharedInstance.communicationHandler.askSuggestionRequest(questiondata) { (response) -> () in
             println("Ask Suggestion Request response: \(response)")
         }
     }
     
     func getSuggestsRequestTest() {
-        Utility.sharedInstance.communicationHandler.getSuggestsRequest([1,2,3]) { (response) -> () in
+        Utility.sharedInstance.communicationHandler.getSuggestsRequest([1]) { (response) -> () in
             println("Get Suggests Request response: \(response)")
         }
     }

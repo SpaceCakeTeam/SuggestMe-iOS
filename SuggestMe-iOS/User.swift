@@ -9,21 +9,25 @@
 import Foundation
 
 class User: NSObject, NSCoding {
-    var id = -1
+    var id: Int!
+    var anon: Bool!
+    var userdata: UserData?
 
-    init(id: Int) {
+    init(id: Int!, anon: Bool!, userdata: UserData?) {
         self.id = id
-    }
-    
-    func castToDictionary() -> [String: AnyObject] {
-        return ["userid": self.id]
+        self.anon = anon
+        self.userdata = userdata
     }
     
     required init(coder decoder: NSCoder) {
-        decoder.decodeObjectForKey("id") 
+        decoder.decodeObjectForKey("id")
+        decoder.decodeObjectForKey("anon")
+        decoder.decodeObjectForKey("userdata")
     }
     
     func encodeWithCoder(encoder: NSCoder) {
         encoder.encodeObject(self.id, forKey: "id")
+        encoder.encodeObject(self.anon, forKey: "anon")
+        encoder.encodeObject(self.userdata, forKey: "userdata")
     }
 }

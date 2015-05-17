@@ -15,10 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        //Utility.sharedInstance.registrationRequestTest()
+        Utility.sharedInstance.setUser()
+        Utility.sharedInstance.registrationRequestTest()
         //Utility.sharedInstance.getCategoriesRequestTest()
         //Utility.sharedInstance.askSuggestionRequestTest()
-        Utility.sharedInstance.getSuggestsRequestTest()
+        //Utility.sharedInstance.getSuggestsRequestTest()
         
         return true
     }
