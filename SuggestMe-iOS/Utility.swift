@@ -61,7 +61,7 @@ class Utility {
     }
     
     func askSuggestionRequestTest() {
-        var questiondata = QuestionData(catid: 1, subcatid: 1, text: "ciaone cosa vuol dire?", anon: false)
+        var questiondata = QuestionData(catid: 1, subcatid: 1, text: "ciaone cosa vuol dire?", anon: true)
         
         Utility.sharedInstance.communicationHandler.askSuggestionRequest(questiondata) { (response) -> () in
             println("Ask Suggestion Request response: \(response)")
@@ -69,7 +69,7 @@ class Utility {
     }
     
     func getSuggestsRequestTest() {
-        Utility.sharedInstance.communicationHandler.getSuggestsRequest([1]) { (response) -> () in
+        Utility.sharedInstance.communicationHandler.getSuggestsRequest([3,4]) { (response) -> () in
             println("Get Suggests Request response: \(response)")
         }
     }

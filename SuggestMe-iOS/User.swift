@@ -20,7 +20,7 @@ class User: NSObject, NSCoding {
     }
     
     required init(coder decoder: NSCoder) {
-        decoder.decodeObjectForKey("id")
+        decoder.decodeObjectForKey("id") 
         decoder.decodeObjectForKey("anon")
         decoder.decodeObjectForKey("userdata")
     }
