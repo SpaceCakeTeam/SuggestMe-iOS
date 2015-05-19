@@ -28,11 +28,11 @@ class UserData: NSObject, NSCoding {
     }
     
     required init(coder decoder: NSCoder) {
-        decoder.decodeObjectForKey("name")
-        decoder.decodeObjectForKey("surname")
-        decoder.decodeObjectForKey("birthdate")
-        decoder.decodeObjectForKey("gender")
-        decoder.decodeObjectForKey("email")
+        self.name = decoder.decodeObjectForKey("name") as! String
+        self.surname = decoder.decodeObjectForKey("surname") as! String
+        self.birthdate = decoder.decodeObjectForKey("birthdate") as! Int
+        self.gender = decoder.decodeObjectForKey("gender") as! Gender
+        self.email = decoder.decodeObjectForKey("email") as! String
     }
     
     func encodeWithCoder(encoder: NSCoder) {

@@ -41,7 +41,7 @@ class Utility {
     }
     
     func setUser() {
-        var user = User(id: -1, anon: true, userdata: nil)
+        var user = User(id: -1, anon: false, userdata: nil)
         var userEncoded = NSKeyedArchiver.archivedDataWithRootObject(user)
         NSUserDefaults.standardUserDefaults().setObject(userEncoded, forKey: "user")
     }
@@ -69,7 +69,7 @@ class Utility {
     }
     
     func getSuggestsRequestTest() {
-        Utility.sharedInstance.communicationHandler.getSuggestsRequest([3,4]) { (response) -> () in
+        Utility.sharedInstance.communicationHandler.getSuggestsRequest([84]) { (response) -> () in
             println("Get Suggests Request response: \(response)")
         }
     }

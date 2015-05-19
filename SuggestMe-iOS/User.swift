@@ -20,9 +20,9 @@ class User: NSObject, NSCoding {
     }
     
     required init(coder decoder: NSCoder) {
-        decoder.decodeObjectForKey("id") 
-        decoder.decodeObjectForKey("anon")
-        decoder.decodeObjectForKey("userdata")
+        self.id = decoder.decodeObjectForKey("id") as! Int
+        self.anon = decoder.decodeObjectForKey("anon") as! Bool
+        self.userdata = decoder.decodeObjectForKey("userdata") as? UserData
     }
     
     func encodeWithCoder(encoder: NSCoder) {

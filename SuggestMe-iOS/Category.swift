@@ -20,9 +20,9 @@ class Category: NSObject, NSCoding {
     }
     
     required init(coder decoder: NSCoder) {
-        decoder.decodeObjectForKey("id")
-        decoder.decodeObjectForKey("name")
-        decoder.decodeObjectForKey("subcategories")
+        self.id = decoder.decodeObjectForKey("id") as! Int
+        self.name = decoder.decodeObjectForKey("name") as! String
+        self.subcategories = decoder.decodeObjectForKey("subcategories") as! [SubCategory]
     }
     
     func encodeWithCoder(encoder: NSCoder) {

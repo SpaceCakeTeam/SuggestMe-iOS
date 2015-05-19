@@ -18,8 +18,8 @@ class SubCategory: NSObject, NSCoding {
     }
     
     required init(coder decoder: NSCoder) {
-        decoder.decodeObjectForKey("id")
-        decoder.decodeObjectForKey("name")
+        self.id = decoder.decodeObjectForKey("id") as! Int
+        self.name = decoder.decodeObjectForKey("name") as! String
     }
     
     func encodeWithCoder(encoder: NSCoder) {

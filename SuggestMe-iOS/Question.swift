@@ -22,10 +22,10 @@ class Question: NSObject, NSCoding {
     }
     
     required init(coder decoder: NSCoder) {
-        decoder.decodeObjectForKey("id")
-        decoder.decodeObjectForKey("questiondata")
-        decoder.decodeObjectForKey("date")
-        decoder.decodeObjectForKey("suggest")
+        self.id = decoder.decodeObjectForKey("id") as! Int
+        self.questiondata = decoder.decodeObjectForKey("questiondata") as! QuestionData
+        self.date = decoder.decodeObjectForKey("date") as! Int
+        self.suggest = decoder.decodeObjectForKey("suggest") as? Suggest
     }
     
     func encodeWithCoder(encoder: NSCoder) {

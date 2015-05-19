@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        Utility.sharedInstance.setUser()
+        //Utility.sharedInstance.setUser()
         //Utility.sharedInstance.registrationRequestTest()
         //Utility.sharedInstance.getCategoriesRequestTest()
         //Utility.sharedInstance.askSuggestionRequestTest()

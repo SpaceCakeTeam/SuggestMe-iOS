@@ -18,8 +18,8 @@ class Suggest: NSObject, NSCoding {
     }
     
     required init(coder decoder: NSCoder) {
-        decoder.decodeObjectForKey("id")
-        decoder.decodeObjectForKey("text")
+        self.id = decoder.decodeObjectForKey("id") as! Int
+        self.text = decoder.decodeObjectForKey("text") as! String
     }
     
     func encodeWithCoder(encoder: NSCoder) {

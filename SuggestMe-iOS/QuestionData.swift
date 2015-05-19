@@ -26,10 +26,10 @@ class QuestionData: NSObject, NSCoding {
     }
     
     required init(coder decoder: NSCoder) {
-        decoder.decodeObjectForKey("catid")
-        decoder.decodeObjectForKey("subcatid")
-        decoder.decodeObjectForKey("text")
-        decoder.decodeObjectForKey("anon")
+        self.catid = decoder.decodeObjectForKey("catid") as! Int
+        self.subcatid = decoder.decodeObjectForKey("subcatid") as! Int
+        self.text = decoder.decodeObjectForKey("text") as! String
+        self.anon = decoder.decodeObjectForKey("anon") as! Bool
     }
     
     func encodeWithCoder(encoder: NSCoder) {
