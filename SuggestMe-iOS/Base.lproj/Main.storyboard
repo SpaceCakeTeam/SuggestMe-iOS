@@ -48,9 +48,8 @@
             <objects>
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="W28-zg-YXA">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -88,9 +87,9 @@
         <scene sceneID="lCr-vI-zY1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LII-ew-B3Q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="About" id="By1-IR-aMN" userLabel="Third"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="About" image="AboutTabBarItem" id="By1-IR-aMN" userLabel="Third"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="t0o-uq-hAv">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" shadowImage="TitleNavigationBar" backIndicatorTransitionMaskImage="TitleNavigationBar" id="t0o-uq-hAv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -107,7 +106,7 @@
         <scene sceneID="nKR-hz-s8n">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BpM-DX-CIs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Questions" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Questions" image="QuestionsTabBarItem" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="c02-QZ-Zre">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -126,7 +125,7 @@
         <scene sceneID="4OK-xh-AXK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UAk-VD-WRl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Categories" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Categories" image="CategoriesTabBarItem" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9XK-GD-iHQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -143,7 +142,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="AboutTabBarItem" width="32" height="32"/>
+        <image name="CategoriesTabBarItem" width="32" height="32"/>
+        <image name="QuestionsTabBarItem" width="14" height="32"/>
+        <image name="TitleNavigationBar" width="179" height="32"/>
     </resources>
 </document>

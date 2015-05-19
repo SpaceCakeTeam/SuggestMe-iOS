@@ -12,6 +12,7 @@ class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
     }
 
     override func didReceiveMemoryWarning() {

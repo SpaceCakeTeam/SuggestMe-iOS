@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Utility.sharedInstance.registrationRequestTest()
         //Utility.sharedInstance.getCategoriesRequestTest()
         //Utility.sharedInstance.askSuggestionRequestTest()
-        Utility.sharedInstance.getSuggestsRequestTest()
+        //Utility.sharedInstance.getSuggestsRequestTest()
         
         return true
     }
