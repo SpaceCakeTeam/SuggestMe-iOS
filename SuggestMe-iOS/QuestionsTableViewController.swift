@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  QuestionsTableViewController.swift
 //  SuggestMe-iOS
 //
 //  Created by Mattia Uggè on 09/05/15.
@@ -8,16 +8,11 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class QuestionsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
 }
 

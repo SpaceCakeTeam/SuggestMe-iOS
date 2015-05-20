@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491094CF1B0D19C100B07016 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094CE1B0D19C100B07016 /* LoginViewController.swift */; };
+		491094D11B0D1BA300B07016 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094D01B0D1BA300B07016 /* QuestionViewController.swift */; };
+		491094D31B0D1DDC00B07016 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094D21B0D1DDC00B07016 /* TutorialViewController.swift */; };
+		491094D51B0D1E0000B07016 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094D41B0D1E0000B07016 /* TutorialPageViewController.swift */; };
 		495572DA1B05310600EAD377 /* SubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495572D91B05310600EAD377 /* SubCategory.swift */; };
 		495A24361AFE0CE4003731E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24351AFE0CE4003731E9 /* AppDelegate.swift */; };
-		495A24381AFE0CE4003731E9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24371AFE0CE4003731E9 /* FirstViewController.swift */; };
-		495A243A1AFE0CE4003731E9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24391AFE0CE4003731E9 /* SecondViewController.swift */; };
+		495A24381AFE0CE4003731E9 /* QuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24371AFE0CE4003731E9 /* QuestionsTableViewController.swift */; };
+		495A243A1AFE0CE4003731E9 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24391AFE0CE4003731E9 /* CategoriesViewController.swift */; };
 		495A243D1AFE0CE4003731E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495A243B1AFE0CE4003731E9 /* Main.storyboard */; };
 		495A243F1AFE0CE4003731E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495A243E1AFE0CE4003731E9 /* Images.xcassets */; };
 		495A245A1AFE11FD003731E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24591AFE11FD003731E9 /* User.swift */; };
@@ -19,18 +23,22 @@
 		495A24621AFE497A003731E9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24611AFE497A003731E9 /* Category.swift */; };
 		495A24641AFE54D9003731E9 /* CommunicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24631AFE54D9003731E9 /* CommunicationHandler.swift */; };
 		498A39671AFE90FD00726542 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39661AFE90FD00726542 /* Utility.swift */; };
-		498A39691AFF84D100726542 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39681AFF84D100726542 /* ThirdViewController.swift */; };
+		498A39691AFF84D100726542 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39681AFF84D100726542 /* AboutViewController.swift */; };
 		49C92EBB1B08A0F600213623 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C92EBA1B08A0F600213623 /* QuestionData.swift */; };
 		49C92EBD1B08B23E00213623 /* Suggest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C92EBC1B08B23E00213623 /* Suggest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		491094CE1B0D19C100B07016 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		491094D01B0D1BA300B07016 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		491094D21B0D1DDC00B07016 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		491094D41B0D1E0000B07016 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		495572D91B05310600EAD377 /* SubCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategory.swift; sourceTree = "<group>"; };
 		495A24301AFE0CE4003731E9 /* SuggestMe-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SuggestMe-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		495A24341AFE0CE4003731E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		495A24351AFE0CE4003731E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		495A24371AFE0CE4003731E9 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		495A24391AFE0CE4003731E9 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		495A24371AFE0CE4003731E9 /* QuestionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsTableViewController.swift; sourceTree = "<group>"; };
+		495A24391AFE0CE4003731E9 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		495A243C1AFE0CE4003731E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		495A243E1AFE0CE4003731E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		495A24591AFE11FD003731E9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -39,7 +47,7 @@
 		495A24611AFE497A003731E9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		495A24631AFE54D9003731E9 /* CommunicationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationHandler.swift; sourceTree = "<group>"; };
 		498A39661AFE90FD00726542 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		498A39681AFF84D100726542 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		498A39681AFF84D100726542 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		49C92EBA1B08A0F600213623 /* QuestionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
 		49C92EBC1B08B23E00213623 /* Suggest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,9 +83,13 @@
 			isa = PBXGroup;
 			children = (
 				495A24351AFE0CE4003731E9 /* AppDelegate.swift */,
-				495A24371AFE0CE4003731E9 /* FirstViewController.swift */,
-				495A24391AFE0CE4003731E9 /* SecondViewController.swift */,
-				498A39681AFF84D100726542 /* ThirdViewController.swift */,
+				491094D21B0D1DDC00B07016 /* TutorialViewController.swift */,
+				491094D41B0D1E0000B07016 /* TutorialPageViewController.swift */,
+				491094CE1B0D19C100B07016 /* LoginViewController.swift */,
+				495A24371AFE0CE4003731E9 /* QuestionsTableViewController.swift */,
+				495A24391AFE0CE4003731E9 /* CategoriesViewController.swift */,
+				491094D01B0D1BA300B07016 /* QuestionViewController.swift */,
+				498A39681AFF84D100726542 /* AboutViewController.swift */,
 				495A24581AFE10E9003731E9 /* Controller */,
 				495A24571AFE10E0003731E9 /* Model */,
 				495A243B1AFE0CE4003731E9 /* Main.storyboard */,
@@ -187,18 +199,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				491094CF1B0D19C100B07016 /* LoginViewController.swift in Sources */,
 				495A245C1AFE271D003731E9 /* UserData.swift in Sources */,
+				491094D51B0D1E0000B07016 /* TutorialPageViewController.swift in Sources */,
 				495A24641AFE54D9003731E9 /* CommunicationHandler.swift in Sources */,
-				498A39691AFF84D100726542 /* ThirdViewController.swift in Sources */,
+				498A39691AFF84D100726542 /* AboutViewController.swift in Sources */,
 				49C92EBD1B08B23E00213623 /* Suggest.swift in Sources */,
 				49C92EBB1B08A0F600213623 /* QuestionData.swift in Sources */,
 				498A39671AFE90FD00726542 /* Utility.swift in Sources */,
 				495A245A1AFE11FD003731E9 /* User.swift in Sources */,
 				495A24621AFE497A003731E9 /* Category.swift in Sources */,
-				495A243A1AFE0CE4003731E9 /* SecondViewController.swift in Sources */,
+				495A243A1AFE0CE4003731E9 /* CategoriesViewController.swift in Sources */,
+				491094D31B0D1DDC00B07016 /* TutorialViewController.swift in Sources */,
 				495572DA1B05310600EAD377 /* SubCategory.swift in Sources */,
+				491094D11B0D1BA300B07016 /* QuestionViewController.swift in Sources */,
 				495A24361AFE0CE4003731E9 /* AppDelegate.swift in Sources */,
-				495A24381AFE0CE4003731E9 /* FirstViewController.swift in Sources */,
+				495A24381AFE0CE4003731E9 /* QuestionsTableViewController.swift in Sources */,
 				495A245E1AFE3CF6003731E9 /* Question.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

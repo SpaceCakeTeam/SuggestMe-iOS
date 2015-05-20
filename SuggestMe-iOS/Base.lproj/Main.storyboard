@@ -5,29 +5,28 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
-        <!--First View Controller-->
-        <scene sceneID="hNz-n2-bh7">
+        <!--LoginViewController-->
+        <scene sceneID="MN5-zK-dN7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f1O-jX-4Ui" userLabel="LoginViewController" customClass="LoginViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
-                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
+                        <viewControllerLayoutGuide type="top" id="eHc-98-GLK"/>
+                        <viewControllerLayoutGuide type="bottom" id="csd-Vl-wrb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="PEu-yn-yaD">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Quz-ZZ-jHd"/>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x4l-uY-rnQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2586" y="-320.25"/>
+            <point key="canvasLocation" x="-679.5" y="1769.25"/>
         </scene>
-        <!--Second View Controller-->
+        <!--CategoriesViewController-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoriesViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8rJ-Kc-sve" userLabel="CategoriesViewController" customClass="CategoriesViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -35,20 +34,65 @@
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfU-pl-JzL">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="177" y="110" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="6I0-zw-tQH" kind="show" id="5uc-vB-aL8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHI-Sl-JtJ">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="177" y="478" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="6I0-zw-tQH" kind="show" id="CDe-nY-5Ki"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="YfU-pl-JzL"/>
+                                <exclude reference="ZHI-Sl-JtJ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="YfU-pl-JzL"/>
+                                <include reference="ZHI-Sl-JtJ"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="zMF-MK-TYd"/>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="zMF-MK-TYd">
+                        <barButtonItem key="rightBarButtonItem" title="Log In" style="plain" id="EKh-1S-zBn">
+                            <connections>
+                                <segue destination="f1O-jX-4Ui" kind="show" id="Dof-cm-wvJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="360"/>
+            <point key="canvasLocation" x="-180" y="156.75"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--HomeTabBarController-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeTabBarController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" userLabel="HomeTabBarController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -62,12 +106,36 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-901.5" y="0.0"/>
+            <point key="canvasLocation" x="-1099.5" y="-1593"/>
         </scene>
-        <!--Third-->
+        <!--QuestionViewController-->
+        <scene sceneID="jbz-Ei-1Oa">
+            <objects>
+                <viewController storyboardIdentifier="QuestionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6I0-zw-tQH" userLabel="QuestionViewController" customClass="QuestionViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vsA-Ul-3is"/>
+                        <viewControllerLayoutGuide type="bottom" id="06u-F1-I3W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LVn-Nb-Ua6">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Wvy-dK-DsK">
+                        <barButtonItem key="rightBarButtonItem" title="Log In" style="plain" id="hml-Ba-9rY">
+                            <connections>
+                                <segue destination="f1O-jX-4Ui" kind="show" id="rLn-ZI-zEb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FBh-8a-1FW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334.5" y="1058.25"/>
+        </scene>
+        <!--AboutViewController-->
         <scene sceneID="Awf-vm-fIJ">
             <objects>
-                <viewController id="IjO-zb-nMf" userLabel="Third" customClass="ThirdViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IjO-zb-nMf" userLabel="AboutViewController" customClass="AboutViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MCS-KY-u8O"/>
                         <viewControllerLayoutGuide type="bottom" id="NmS-Gj-dDe"/>
@@ -77,16 +145,63 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="e1R-bR-ZVr"/>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="e1R-bR-ZVr">
+                        <barButtonItem key="rightBarButtonItem" title="Log In" style="plain" id="iPc-Ya-dXn">
+                            <connections>
+                                <segue destination="f1O-jX-4Ui" kind="show" id="1hB-fB-S4g"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bGw-p6-eXu" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918" y="-701.25"/>
+            <point key="canvasLocation" x="828" y="156.75"/>
         </scene>
-        <!--About-->
+        <!--Questions Table View Controller-->
+        <scene sceneID="jBV-ae-sVV">
+            <objects>
+                <tableViewController storyboardIdentifier="QuestionsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iGl-ni-Lhv" customClass="QuestionsTableViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qna-tU-8nI">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="yv6-UT-EUT">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="dAK-wi-Hvr">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dAK-wi-Hvr" id="RMf-50-gOf">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="6I0-zw-tQH" kind="show" id="OXm-Po-EHS"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="iGl-ni-Lhv" id="o6J-IR-v4c"/>
+                            <outlet property="delegate" destination="iGl-ni-Lhv" id="P5J-Ph-hMi"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="RVP-Gs-1Hh">
+                        <barButtonItem key="rightBarButtonItem" title="Log In" style="plain" id="a7p-E3-q9u">
+                            <connections>
+                                <segue destination="f1O-jX-4Ui" kind="show" id="bmV-MH-vWc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QSv-pI-Twq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1099.5" y="156.75"/>
+        </scene>
+        <!--AboutNavigationController-->
         <scene sceneID="lCr-vI-zY1">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LII-ew-B3Q" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AboutNavigationController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LII-ew-B3Q" userLabel="AboutNavigationController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" tag="2" title="About" image="AboutTabBarItem" id="By1-IR-aMN" userLabel="Third"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" shadowImage="TitleNavigationBar" backIndicatorTransitionMaskImage="TitleNavigationBar" id="t0o-uq-hAv">
@@ -100,12 +215,38 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WrO-rS-irI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="-701.25"/>
+            <point key="canvasLocation" x="828" y="-665.25"/>
         </scene>
-        <!--Questions-->
+        <!--TutorialViewController-->
+        <scene sceneID="sdC-uR-i2k">
+            <objects>
+                <viewController storyboardIdentifier="TutorialViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gF6-Qu-uSV" userLabel="TutorialViewController" customClass="TutorialViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C2W-jU-5xF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ioh-Nd-IGC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9zU-RQ-Thw">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="94F-rt-rZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2860.5" y="-893.25"/>
+        </scene>
+        <!--TutorialPageViewController-->
+        <scene sceneID="hBV-SQ-q9x">
+            <objects>
+                <pageViewController storyboardIdentifier="TutorialPageViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="wDK-a9-2BQ" userLabel="TutorialPageViewController" customClass="TutorialPageViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oCI-Y5-xKH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2860.5" y="-1593"/>
+        </scene>
+        <!--QuestionsNavigationController-->
         <scene sceneID="nKR-hz-s8n">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BpM-DX-CIs" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="QuestionNavigationController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BpM-DX-CIs" userLabel="QuestionsNavigationController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="Questions" image="QuestionsTabBarItem" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="c02-QZ-Zre">
@@ -114,17 +255,18 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="egb-f2-q7g"/>
+                        <segue destination="iGl-ni-Lhv" kind="relationship" relationship="rootViewController" id="KWO-UP-YiQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="94C-l6-aNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="-320.25"/>
+            <point key="canvasLocation" x="-1099.5" y="-665.25"/>
         </scene>
-        <!--Categories-->
+        <!--CategoriesNavigationController-->
         <scene sceneID="4OK-xh-AXK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UAk-VD-WRl" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CategoriesNavigationController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UAk-VD-WRl" userLabel="CategoriesNavigationController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" tag="1" title="Categories" image="CategoriesTabBarItem" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9XK-GD-iHQ">
@@ -138,7 +280,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hgt-EK-Jw8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="-180" y="-665.25"/>
         </scene>
     </scenes>
     <resources>
@@ -147,4 +289,8 @@
         <image name="QuestionsTabBarItem" width="14" height="32"/>
         <image name="TitleNavigationBar" width="179" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="5uc-vB-aL8"/>
+        <segue reference="Dof-cm-wvJ"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -6,11 +6,13 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "CategorySocialButton@2x.png"
     },
     {
       "idiom" : "iphone",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "CategorySocialButton@3x.png"
     }
   ],
   "info" : {
