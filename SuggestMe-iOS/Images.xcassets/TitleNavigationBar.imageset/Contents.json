@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "TitleNavigationBar@1x.png"
     },
     {
       "idiom" : "iphone",

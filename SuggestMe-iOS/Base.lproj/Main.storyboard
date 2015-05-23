@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--LoginViewController-->
@@ -14,6 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="csd-Vl-wrb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PEu-yn-yaD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -32,45 +34,88 @@
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfU-pl-JzL">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="177" y="110" width="46" height="30"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="6I0-zw-tQH" kind="show" id="5uc-vB-aL8"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHI-Sl-JtJ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.60039833929999997" green="1" blue="0.4787808106" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZHI-Sl-JtJ" secondAttribute="height" multiplier="200:167" id="18Q-ht-uoP"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="177" y="478" width="46" height="30"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="18Q-ht-uoP"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="18Q-ht-uoP"/>
+                                    </mask>
                                 </variation>
                                 <connections>
                                     <segue destination="6I0-zw-tQH" kind="show" id="CDe-nY-5Ki"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfU-pl-JzL">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YfU-pl-JzL" secondAttribute="height" multiplier="200:167" id="Pue-Cm-rXy"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.60039833929999997" green="1" blue="0.4787808106" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Pue-Cm-rXy"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Pue-Cm-rXy"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="6I0-zw-tQH" kind="show" id="5uc-vB-aL8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YfU-pl-JzL" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="ZES-tg-N1C"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="ZHI-Sl-JtJ" secondAttribute="bottom" id="csa-wd-emK"/>
+                            <constraint firstItem="YfU-pl-JzL" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="gZ3-S9-R9h"/>
+                            <constraint firstItem="ZHI-Sl-JtJ" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="h9Q-c6-ndY"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="YfU-pl-JzL"/>
                                 <exclude reference="ZHI-Sl-JtJ"/>
+                                <exclude reference="YfU-pl-JzL"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="ZES-tg-N1C"/>
+                                <exclude reference="gZ3-S9-R9h"/>
+                                <exclude reference="h9Q-c6-ndY"/>
+                                <exclude reference="csa-wd-emK"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="YfU-pl-JzL"/>
                                 <include reference="ZHI-Sl-JtJ"/>
+                                <include reference="YfU-pl-JzL"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="ZES-tg-N1C"/>
+                                <include reference="gZ3-S9-R9h"/>
+                                <include reference="h9Q-c6-ndY"/>
+                                <include reference="csa-wd-emK"/>
                             </mask>
                         </variation>
                     </view>
@@ -92,8 +137,9 @@
             <objects>
                 <tabBarController storyboardIdentifier="HomeTabBarController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" userLabel="HomeTabBarController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -111,15 +157,17 @@
         <!--QuestionViewController-->
         <scene sceneID="jbz-Ei-1Oa">
             <objects>
-                <viewController storyboardIdentifier="QuestionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6I0-zw-tQH" userLabel="QuestionViewController" customClass="QuestionViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuestionViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6I0-zw-tQH" userLabel="QuestionViewController" customClass="QuestionViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vsA-Ul-3is"/>
                         <viewControllerLayoutGuide type="bottom" id="06u-F1-I3W"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LVn-Nb-Ua6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="Wvy-dK-DsK">
                         <barButtonItem key="rightBarButtonItem" title="Log In" style="plain" id="hml-Ba-9rY">
                             <connections>
@@ -141,7 +189,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NmS-Gj-dDe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6tF-uj-njU">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -161,8 +209,9 @@
         <!--Questions Table View Controller-->
         <scene sceneID="jBV-ae-sVV">
             <objects>
-                <tableViewController storyboardIdentifier="QuestionsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iGl-ni-Lhv" customClass="QuestionsTableViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="QuestionsTableViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iGl-ni-Lhv" customClass="QuestionsTableViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qna-tU-8nI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -185,6 +234,7 @@
                             <outlet property="delegate" destination="iGl-ni-Lhv" id="P5J-Ph-hMi"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="RVP-Gs-1Hh">
                         <barButtonItem key="rightBarButtonItem" title="Log In" style="plain" id="a7p-E3-q9u">
                             <connections>
@@ -220,15 +270,17 @@
         <!--TutorialViewController-->
         <scene sceneID="sdC-uR-i2k">
             <objects>
-                <viewController storyboardIdentifier="TutorialViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gF6-Qu-uSV" userLabel="TutorialViewController" customClass="TutorialViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gF6-Qu-uSV" userLabel="TutorialViewController" customClass="TutorialViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C2W-jU-5xF"/>
                         <viewControllerLayoutGuide type="bottom" id="Ioh-Nd-IGC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9zU-RQ-Thw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="94F-rt-rZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -237,7 +289,9 @@
         <!--TutorialPageViewController-->
         <scene sceneID="hBV-SQ-q9x">
             <objects>
-                <pageViewController storyboardIdentifier="TutorialPageViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="wDK-a9-2BQ" userLabel="TutorialPageViewController" customClass="TutorialPageViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="TutorialPageViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="wDK-a9-2BQ" userLabel="TutorialPageViewController" customClass="TutorialPageViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCI-Y5-xKH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2860.5" y="-1593"/>
@@ -287,7 +341,7 @@
         <image name="AboutTabBarItem" width="32" height="32"/>
         <image name="CategoriesTabBarItem" width="32" height="32"/>
         <image name="QuestionsTabBarItem" width="14" height="32"/>
-        <image name="TitleNavigationBar" width="179" height="32"/>
+        <image name="TitleNavigationBar" width="247" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5uc-vB-aL8"/>
