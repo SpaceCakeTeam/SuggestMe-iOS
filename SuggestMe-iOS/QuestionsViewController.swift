@@ -19,6 +19,8 @@ class QuestionsViewController: UIViewController {
         backgroundView.frame = self.view.frame
         self.view.addSubview(backgroundView)
         
+        var suggestsTableView = UITableView(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height))
+        
         self.tabBarController?.selectedIndex = 2
         self.tabBarController?.selectedIndex = 1
         self.tabBarController?.selectedIndex = 0
