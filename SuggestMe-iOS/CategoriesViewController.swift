@@ -14,8 +14,6 @@ class CategoriesViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
-
         var categorySocialButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height/2))
         categorySocialButton.setImage(UIImage(named: "CategorySocialButton"), forState: UIControlState.Normal)
         self.view.addSubview(categorySocialButton)
@@ -25,6 +23,15 @@ class CategoriesViewController: UIViewController {
         self.view.addSubview(categoryGoodsButton)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if Utility.sharedInstance.user.anon == true {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+        } else {
+            self.navigationItem.rightBarButtonItem = nil
+        }
+    }
     
     func login(sender: AnyObject) {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)

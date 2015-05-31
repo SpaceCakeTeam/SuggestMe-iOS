@@ -23,6 +23,7 @@ class Utility {
     var communicationHandler = CommunicationHandler()
     
     var user: User!
+    var categories: [Category]!
     
     func isConnectedToNetwork() -> Bool {
         var status = false
@@ -46,6 +47,7 @@ class Utility {
         var userStored: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("user")
         if userStored != nil {
             user = NSKeyedUnarchiver.unarchiveObjectWithData(NSUserDefaults.standardUserDefaults().objectForKey("user") as! NSData) as! User
+            setCategories()
             return true
         }
         else {
@@ -54,12 +56,7 @@ class Utility {
         }
     }
     
-    
-    
-    
-    
-    
-    func getCategoriesRequestTest() {
+    func setCategories() {
         Utility.sharedInstance.communicationHandler.getCategoriesRequest() { (response) -> () in
             println("Categories Request response: \(response)")
         }
