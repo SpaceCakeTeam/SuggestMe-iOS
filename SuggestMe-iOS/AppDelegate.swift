@@ -12,14 +12,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var storyboard: UIStoryboard!
+    var myRootViewController: UITabBarController!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        storyboard = UIStoryboard(name: "Main", bundle: nil)
+        myRootViewController = storyboard.instantiateViewControllerWithIdentifier("HomeTabBarController") as! UITabBarController
         
-        //Utility.sharedInstance.setUser()
-        //Utility.sharedInstance.registrationRequestTest()
-        //Utility.sharedInstance.getCategoriesRequestTest()
-        //Utility.sharedInstance.askSuggestionRequestTest()
-        //Utility.sharedInstance.getSuggestsRequestTest()
+        if Utility.sharedInstance.setUser() {
+            self.window?.rootViewController = myRootViewController
+        }
         
         return true
     }

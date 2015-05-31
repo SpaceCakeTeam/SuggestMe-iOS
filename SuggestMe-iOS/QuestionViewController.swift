@@ -13,5 +13,11 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
+   
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+    }
+    
+    func login(sender: AnyObject) {
+        self.performSegueWithIdentifier("presentLoginViewController", sender: self)
     }
 }

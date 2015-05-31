@@ -15,7 +15,8 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "questionsBackground@3x.png"
     }
   ],
   "info" : {

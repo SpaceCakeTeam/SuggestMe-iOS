@@ -22,6 +22,8 @@ class Utility {
     
     var communicationHandler = CommunicationHandler()
     
+    var user: User!
+    
     func isConnectedToNetwork() -> Bool {
         var status = false
         let request = NSMutableURLRequest(URL: NSURL(string: "http://google.com/")!)
@@ -40,19 +42,22 @@ class Utility {
         return status
     }
     
-    func setUser() {
-        var user = User(id: -1, anon: false, userdata: nil)
-        var userEncoded = NSKeyedArchiver.archivedDataWithRootObject(user)
-        NSUserDefaults.standardUserDefaults().setObject(userEncoded, forKey: "user")
-    }
-    
-    func registrationRequestTest() {
-        var userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")        
-
-        Utility.sharedInstance.communicationHandler.registrationRequest(userdata) { (response) -> () in
-            println("Registration Request response: \(response)")
+    func setUser() -> Bool {
+        var userStored: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("user")
+        if userStored != nil {
+            user = NSKeyedUnarchiver.unarchiveObjectWithData(NSUserDefaults.standardUserDefaults().objectForKey("user") as! NSData) as! User
+            return true
+        }
+        else {
+            user = User(id: -1, anon: true, userdata: UserData(name: "", surname: "", birthdate: 0, gender: Gender.u, email: ""))
+            return false
         }
     }
+    
+    
+    
+    
+    
     
     func getCategoriesRequestTest() {
         Utility.sharedInstance.communicationHandler.getCategoriesRequest() { (response) -> () in

@@ -31,7 +31,7 @@ class UserData: NSObject, NSCoding {
         self.name = decoder.decodeObjectForKey("name") as! String
         self.surname = decoder.decodeObjectForKey("surname") as! String
         self.birthdate = decoder.decodeObjectForKey("birthdate") as! Int
-        self.gender = decoder.decodeObjectForKey("gender") as! Gender
+        self.gender = Gender(rawValue: decoder.decodeObjectForKey("gender") as! String)
         self.email = decoder.decodeObjectForKey("email") as! String
     }
     

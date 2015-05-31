@@ -11,9 +11,9 @@ import Foundation
 class User: NSObject, NSCoding {
     var id: Int!
     var anon: Bool!
-    var userdata: UserData?
+    var userdata: UserData!
 
-    init(id: Int!, anon: Bool!, userdata: UserData?) {
+    init(id: Int!, anon: Bool!, userdata: UserData!) {
         self.id = id
         self.anon = anon
         self.userdata = userdata
