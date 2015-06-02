@@ -20,8 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         storyboard = UIStoryboard(name: "Main", bundle: nil)
         myRootViewController = storyboard.instantiateViewControllerWithIdentifier("HomeTabBarController") as! UITabBarController
         
+        
+        //MARK: Setting user
+
         if Utility.sharedInstance.setUser() {
-            self.window?.rootViewController = myRootViewController
+            self.window?.rootViewController = myRootViewController //settare nuovo view initial view controller per eseguire questo metodo nel dispatcher
         }
         
         return true

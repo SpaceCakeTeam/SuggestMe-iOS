@@ -10,13 +10,17 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    var backgroundView: UIImageView!
+
+    //MARK: UI methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
         
-        var backgroundView = UIImageView(image: UIImage(named: "LoginBackground"))
+        backgroundView = UIImageView(image: UIImage(named: "LoginBackground"))
         backgroundView.frame = self.view.frame
         self.view.addSubview(backgroundView)
         
@@ -36,7 +40,18 @@ class LoginViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in })
     }
     
+    func setActivityIndicator() {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.view.addSubview(Utility.sharedInstance.setActivityIndicator(self.backgroundView.frame, text: "logging in..."))
+        }
+    }
+    
+    
+    //MARK: Login methods
+    
     func loginWithFacebook(sender: AnyObject) {
+        setActivityIndicator()
+        
         Utility.sharedInstance.user.anon = false
         Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
         
@@ -45,10 +60,13 @@ class LoginViewController: UIViewController {
             if response {
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in })
             }
+            Utility.sharedInstance.activityIndicatorView.removeFromSuperview()
         }
     }
     
     func loginWithTwitter(sender: AnyObject) {
+        setActivityIndicator()
+        
         Utility.sharedInstance.user.anon = false
         Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
         
@@ -57,6 +75,7 @@ class LoginViewController: UIViewController {
             if response {
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in })
             }
+            Utility.sharedInstance.activityIndicatorView.removeFromSuperview()
         }
     }
 }

@@ -22,6 +22,9 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     var fourthTutorialView = UIImageView(image: UIImage(named: "TutorialBackgroundPage4"))
     var fiveTutorialView = UIImageView(image: UIImage(named: "TutorialBackgroundPage5"))
     
+    
+    //MARK: UI methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,7 +80,18 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
         pageControl.currentPage = Int(pageNumber)
     }
     
+    func setActivityIndicator() {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.view.addSubview(Utility.sharedInstance.setActivityIndicator(self.view.frame, text: "logging in..."))
+        }
+    }
+    
+
+    //MARK: Login methods
+    
     func loginWithFacebook(sender: AnyObject) {
+        setActivityIndicator()
+        
         Utility.sharedInstance.user.anon = false
         Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
         
@@ -86,10 +100,13 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
             if response {
                 self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
             }
+            Utility.sharedInstance.activityIndicatorView.removeFromSuperview()
         }
     }
     
     func loginWithTwitter(sender: AnyObject) {
+        setActivityIndicator()
+
         Utility.sharedInstance.user.anon = false
         Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
         
@@ -98,15 +115,19 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
             if response {
                 self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
             }
+            Utility.sharedInstance.activityIndicatorView.removeFromSuperview()
         }
     }
     
-    func loginAsAnonymous(sender: AnyObject) {        
+    func loginAsAnonymous(sender: AnyObject) {
+        setActivityIndicator()
+
         Utility.sharedInstance.communicationHandler.registrationRequest() { (response) -> () in
             println("Anonymous Registration Request response: \(response)")
             if response {
                 self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
             }
+            Utility.sharedInstance.activityIndicatorView.removeFromSuperview()
         }
     }
 }

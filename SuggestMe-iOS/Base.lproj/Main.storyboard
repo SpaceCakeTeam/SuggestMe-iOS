@@ -8,7 +8,6 @@
         <!--LoginViewController-->
         <scene sceneID="MN5-zK-dN7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x4l-uY-rnQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LoginViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f1O-jX-4Ui" userLabel="LoginViewController" customClass="LoginViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gGy-vX-ALT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
@@ -19,6 +18,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="nPR-lz-bPt"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x4l-uY-rnQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="935" y="1453"/>
         </scene>
@@ -45,7 +45,6 @@
         <!--CategoriesViewController-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="CategoriesViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8rJ-Kc-sve" userLabel="CategoriesViewController" customClass="CategoriesViewController" customModule="SuggestMe_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ehs-Da-Thv">
                         <rect key="frame" x="0.0" y="64" width="414" height="623"/>
@@ -59,6 +58,7 @@
                         <segue destination="aa8-b0-T6h" kind="modal" identifier="presentLoginViewController" modalTransitionStyle="flipHorizontal" id="jLP-8Q-5Oi"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-238" y="454"/>
         </scene>
@@ -69,7 +69,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="2dl-vX-PmV"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
