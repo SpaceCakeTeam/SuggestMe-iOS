@@ -10,6 +10,8 @@ import UIKit
 
 class TutorialViewController: UIViewController, UIScrollViewDelegate {
     
+    var isUserSetted = false
+    
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
     
@@ -28,46 +30,61 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView = UIScrollView(frame: self.view.frame)
-        scrollView.delegate = self
-        scrollView.pagingEnabled = true
-        scrollView.showsHorizontalScrollIndicator = false
         
-        pageControl = UIPageControl(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.height-30, width: self.view.frame.width, height: 30))
-        pageControl.numberOfPages = 5
-        pageControl.addTarget(self, action: Selector("changePage:"), forControlEvents: UIControlEvents.ValueChanged)
-        
-        tutorialViews = [firstTutorialView, secondTutorialView, thirdTutorialView, fourthTutorialView, fiveTutorialView]
-        for index in 0..<tutorialViews.count {
-            currentFrame.origin.x = scrollView.frame.width * CGFloat(index)
-            currentFrame.size = scrollView.frame.size
-            
-            var currentView = tutorialViews[index]
-            currentView.frame = currentFrame
-            scrollView.addSubview(currentView)
+        //MARK: Setting user
 
-            if index == tutorialViews.count-1 {
-                var loginFacebookButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height/2-self.view.frame.width/4, width: self.view.frame.width, height: self.view.frame.width/2))
-                loginFacebookButton.setImage(UIImage(named: "LoginFacebookButton"), forState: UIControlState.Normal)
-                loginFacebookButton.addTarget(self, action: Selector("loginWithFacebook:"), forControlEvents: UIControlEvents.TouchUpInside)
-                
-                var loginTwitterButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height/2-self.view.frame.width/4+5, width: self.view.frame.width, height: self.view.frame.width/2))
-                loginTwitterButton.setImage(UIImage(named: "LoginTwitterButton"), forState: UIControlState.Normal)
-                loginTwitterButton.addTarget(self, action: Selector("loginWithTwitter:"), forControlEvents: UIControlEvents.TouchUpInside)
-                
-                var loginAnonButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height-200, width: self.view.frame.width, height: 100))
-                loginAnonButton.setTitle("Non ora", forState: UIControlState.Normal)
-                loginAnonButton.addTarget(self, action: Selector("loginAsAnonymous:"), forControlEvents: UIControlEvents.TouchUpInside)
-                
-                scrollView.addSubview(loginFacebookButton)
-                scrollView.addSubview(loginTwitterButton)
-                scrollView.addSubview(loginAnonButton)
-            }
-        }
+        if Utility.sharedInstance.setUser() {
+            isUserSetted = true
+        } else {
+            scrollView = UIScrollView(frame: self.view.frame)
+            scrollView.delegate = self
+            scrollView.pagingEnabled = true
+            scrollView.showsHorizontalScrollIndicator = false
         
-        scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * CGFloat(tutorialViews.count), scrollView.frame.size.height)
-        self.view.addSubview(scrollView)
-        self.view.addSubview(pageControl)
+            pageControl = UIPageControl(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.height-30, width: self.view.frame.width, height: 30))
+            pageControl.numberOfPages = 5
+            pageControl.addTarget(self, action: Selector("changePage:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+            tutorialViews = [firstTutorialView, secondTutorialView, thirdTutorialView, fourthTutorialView, fiveTutorialView]
+            for index in 0..<tutorialViews.count {
+                currentFrame.origin.x = scrollView.frame.width * CGFloat(index)
+                currentFrame.size = scrollView.frame.size
+            
+                var currentView = tutorialViews[index]
+                currentView.frame = currentFrame
+                scrollView.addSubview(currentView)
+
+                if index == tutorialViews.count-1 {
+                    var loginFacebookButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height/2-self.view.frame.width/4, width: self.view.frame.width, height: self.view.frame.width/2))
+                    loginFacebookButton.setImage(UIImage(named: "LoginFacebookButton"), forState: UIControlState.Normal)
+                    loginFacebookButton.addTarget(self, action: Selector("loginWithFacebook:"), forControlEvents: UIControlEvents.TouchUpInside)
+                
+                    var loginTwitterButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height/2-self.view.frame.width/4+5, width: self.view.frame.width, height: self.view.frame.width/2))
+                    loginTwitterButton.setImage(UIImage(named: "LoginTwitterButton"), forState: UIControlState.Normal)
+                    loginTwitterButton.addTarget(self, action: Selector("loginWithTwitter:"), forControlEvents: UIControlEvents.TouchUpInside)
+                    
+                    var loginAnonButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height-200, width: self.view.frame.width, height: 100))
+                    loginAnonButton.setTitle("Non ora", forState: UIControlState.Normal)
+                    loginAnonButton.addTarget(self, action: Selector("loginAsAnonymous:"), forControlEvents: UIControlEvents.TouchUpInside)
+                
+                    scrollView.addSubview(loginFacebookButton)
+                    scrollView.addSubview(loginTwitterButton)
+                    scrollView.addSubview(loginAnonButton)
+                }
+            }
+        
+            scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * CGFloat(tutorialViews.count), scrollView.frame.size.height)
+            self.view.addSubview(scrollView)
+            self.view.addSubview(pageControl)
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if isUserSetted {
+            self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
+        }
     }
     
     func changePage(sender: AnyObject) {

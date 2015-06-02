@@ -57,6 +57,17 @@ class Utility {
     
     //MARK: Social methods
     
+    func getFacebookAccount() {
+        var accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
+        var permissionsDict = ["451805654875339": ACFacebookAppIdKey, "email": ACFacebookPermissionsKey]
+        requestAccessToAccount(accountType, permissionDict: permissionsDict, url: "https://graph.facebook.com/me", serviceType: SLServiceTypeFacebook, serviceParams: [String: AnyObject]())
+    }
+    
+    func getTwitterAccount() {
+        var accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+        requestAccessToAccount(accountType, permissionDict: [String: AnyObject](), url: "https://api.twitter.com/1.1/account/verify_credentials.json", serviceType: SLServiceTypeTwitter, serviceParams: [String: AnyObject]())
+    }
+    
     func requestAccessToAccount(accountType: ACAccountType, permissionDict: [String: AnyObject], url: String, serviceType: String, serviceParams: [String: AnyObject]) {
         accountStore.requestAccessToAccountsWithType(accountType, options: permissionDict) { (granted: Bool, error: NSError!) -> Void in
             if granted {
@@ -134,21 +145,6 @@ class Utility {
             user = User(id: -1, anon: true, userdata: UserData(name: "", surname: "", birthdate: 0, gender: Gender.u, email: ""))
             return false
         }
-    }
-    
-    
-    //MARK: Get Facebook user
-    func getFacebookAccount() {
-        var accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
-        var permissionsDict = ["451805654875339": ACFacebookAppIdKey, "email": ACFacebookPermissionsKey]
-        requestAccessToAccount(accountType, permissionDict: permissionsDict, url: "https://graph.facebook.com/me", serviceType: SLServiceTypeFacebook, serviceParams: [String: AnyObject]())
-    }
-    
-    
-    //MARK: Get Twitter user
-    func getTwitterAccount() {
-        var accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-        requestAccessToAccount(accountType, permissionDict: [String: AnyObject](), url: "https://api.twitter.com/1.1/account/verify_credentials.json", serviceType: SLServiceTypeTwitter, serviceParams: [String: AnyObject]())
     }
     
     
