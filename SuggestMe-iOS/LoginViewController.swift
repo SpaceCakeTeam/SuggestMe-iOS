@@ -11,6 +11,10 @@ import UIKit
 class LoginViewController: UIViewController {
     
     var backgroundView: UIImageView!
+    
+    var loginFacebookButton: UIButton!
+    var loginTwitterButton: UIButton!
+    
 
     //MARK: UI methods
     
@@ -24,13 +28,13 @@ class LoginViewController: UIViewController {
         backgroundView.frame = self.view.frame
         self.view.addSubview(backgroundView)
         
-        var loginFacebookButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.size.height/2-self.view.frame.width/3, width: self.view.frame.width, height: self.view.frame.width/2))
+        loginFacebookButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.size.height/2-self.view.frame.width/3, width: self.view.frame.width, height: self.view.frame.width/2))
         loginFacebookButton.setImage(UIImage(named: "LoginFacebookButton"), forState: UIControlState.Normal)
-        loginFacebookButton.addTarget(self, action: Selector("loginWithFacebook:"), forControlEvents: UIControlEvents.TouchUpInside)
+        loginFacebookButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
         
-        var loginTwitterButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.size.height/2-self.view.frame.width/3+5, width: self.view.frame.width, height: self.view.frame.width/2))
+        loginTwitterButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.size.height/2-self.view.frame.width/3+5, width: self.view.frame.width, height: self.view.frame.width/2))
         loginTwitterButton.setImage(UIImage(named: "LoginTwitterButton"), forState: UIControlState.Normal)
-        loginTwitterButton.addTarget(self, action: Selector("loginWithTwitter:"), forControlEvents: UIControlEvents.TouchUpInside)
+        loginTwitterButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(loginFacebookButton)
         self.view.addSubview(loginTwitterButton)
@@ -47,31 +51,23 @@ class LoginViewController: UIViewController {
     }
     
     
-    //MARK: Login methods
+    //MARK: Login method
     
-    func loginWithFacebook(sender: AnyObject) {
+    func login(sender: AnyObject) {
         setActivityIndicator()
         
-        Utility.sharedInstance.user.anon = false
-        Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
-        
-        Utility.sharedInstance.communicationHandler.registrationRequest() { (response) -> () in
-            println("Faceboom Registration Request response: \(response)")
-            if response {
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in })
-            }
-            Utility.sharedInstance.activityIndicatorView.removeFromSuperview()
+        if sender as! UIButton == loginFacebookButton {
+            Utility.sharedInstance.user.anon = false
+            //social methods
+            Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
+        } else if sender as! UIButton == loginTwitterButton {
+            Utility.sharedInstance.user.anon = false
+            //social methods
+            Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
         }
-    }
-    
-    func loginWithTwitter(sender: AnyObject) {
-        setActivityIndicator()
-        
-        Utility.sharedInstance.user.anon = false
-        Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
         
         Utility.sharedInstance.communicationHandler.registrationRequest() { (response) -> () in
-            println("Twitter Registration Request response: \(response)")
+            println("Registration Request response: \(response)")
             if response {
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in })
             }

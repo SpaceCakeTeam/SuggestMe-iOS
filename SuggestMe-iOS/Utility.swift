@@ -13,6 +13,14 @@ import Social
 
 class Utility {
     
+    var communicationHandler = CommunicationHandler()
+    var activityIndicatorView: UIView!
+    var user: User!
+    var accountStore = ACAccountStore()
+    var categories: [Category]!
+    var questions = [Question]()
+    var currentQuestion: Question?
+    
     
     //MARK: Shared instance
     
@@ -26,12 +34,6 @@ class Utility {
         }
         return Static.instance!
     }
-    
-    var communicationHandler = CommunicationHandler()
-    var activityIndicatorView: UIView!
-    var user: User!
-    var accountStore = ACAccountStore()
-    var categories: [Category]!
     
     
     //MARK: Check internet connection
@@ -138,7 +140,9 @@ class Utility {
         var userStored: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("user")
         if userStored != nil {
             user = NSKeyedUnarchiver.unarchiveObjectWithData(NSUserDefaults.standardUserDefaults().objectForKey("user") as! NSData) as! User
+            questions = NSKeyedUnarchiver.unarchiveObjectWithData(NSUserDefaults.standardUserDefaults().objectForKey("questions") as! NSData) as! [Question]
             setCategories()
+            getSuggests()
             return true
         }
         else {
@@ -157,17 +161,16 @@ class Utility {
     }
     
     
-    /////////EXAMPLE
-    func askSuggestionRequestTest() {
-        var questiondata = QuestionData(catid: 1, subcatid: 1, text: "ciaone cosa vuol dire?", anon: true)
-        
-        Utility.sharedInstance.communicationHandler.askSuggestionRequest(questiondata) { (response) -> () in
-            println("Ask Suggestion Request response: \(response)")
-        }
-    }
+    //MARK: Getting suggests
     
-    func getSuggestsRequestTest() {
-        Utility.sharedInstance.communicationHandler.getSuggestsRequest([84]) { (response) -> () in
+    func getSuggests() {
+        var suggestsRequest = [Int]()
+        for question in questions {
+            if question.suggest == nil {
+                suggestsRequest.append(question.id)
+            }
+        }
+        Utility.sharedInstance.communicationHandler.getSuggestsRequest(suggestsRequest) { (response) -> () in
             println("Get Suggests Request response: \(response)")
         }
     }

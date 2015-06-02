@@ -24,6 +24,10 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     var fourthTutorialView = UIImageView(image: UIImage(named: "TutorialBackgroundPage4"))
     var fiveTutorialView = UIImageView(image: UIImage(named: "TutorialBackgroundPage5"))
     
+    var loginFacebookButton: UIButton!
+    var loginTwitterButton: UIButton!
+    var loginAnonButton: UIButton!
+    
     
     //MARK: UI methods
     
@@ -32,10 +36,10 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
         
         
         //MARK: Setting user
+        
+        isUserSetted = Utility.sharedInstance.setUser()
 
-        if Utility.sharedInstance.setUser() {
-            isUserSetted = true
-        } else {
+        if !isUserSetted {
             scrollView = UIScrollView(frame: self.view.frame)
             scrollView.delegate = self
             scrollView.pagingEnabled = true
@@ -55,17 +59,17 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
                 scrollView.addSubview(currentView)
 
                 if index == tutorialViews.count-1 {
-                    var loginFacebookButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height/2-self.view.frame.width/4, width: self.view.frame.width, height: self.view.frame.width/2))
+                    loginFacebookButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height/2-self.view.frame.width/4, width: self.view.frame.width, height: self.view.frame.width/2))
                     loginFacebookButton.setImage(UIImage(named: "LoginFacebookButton"), forState: UIControlState.Normal)
-                    loginFacebookButton.addTarget(self, action: Selector("loginWithFacebook:"), forControlEvents: UIControlEvents.TouchUpInside)
+                    loginFacebookButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
                 
-                    var loginTwitterButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height/2-self.view.frame.width/4+5, width: self.view.frame.width, height: self.view.frame.width/2))
+                    loginTwitterButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height/2-self.view.frame.width/4+5, width: self.view.frame.width, height: self.view.frame.width/2))
                     loginTwitterButton.setImage(UIImage(named: "LoginTwitterButton"), forState: UIControlState.Normal)
-                    loginTwitterButton.addTarget(self, action: Selector("loginWithTwitter:"), forControlEvents: UIControlEvents.TouchUpInside)
+                    loginTwitterButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
                     
-                    var loginAnonButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height-200, width: self.view.frame.width, height: 100))
+                    loginAnonButton = UIButton(frame: CGRect(x: currentFrame.origin.x, y: currentFrame.size.height-200, width: self.view.frame.width, height: 100))
                     loginAnonButton.setTitle("Non ora", forState: UIControlState.Normal)
-                    loginAnonButton.addTarget(self, action: Selector("loginAsAnonymous:"), forControlEvents: UIControlEvents.TouchUpInside)
+                    loginAnonButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
                 
                     scrollView.addSubview(loginFacebookButton)
                     scrollView.addSubview(loginTwitterButton)
@@ -104,43 +108,25 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     }
     
 
-    //MARK: Login methods
+    //MARK: Login method
     
-    func loginWithFacebook(sender: AnyObject) {
+    func login(sender: AnyObject) {
         setActivityIndicator()
         
-        Utility.sharedInstance.user.anon = false
-        Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
-        
-        Utility.sharedInstance.communicationHandler.registrationRequest() { (response) -> () in
-            println("Faceboom Registration Request response: \(response)")
-            if response {
-                self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
-            }
-            Utility.sharedInstance.activityIndicatorView.removeFromSuperview()
+        if sender as! UIButton == loginFacebookButton {
+            Utility.sharedInstance.user.anon = false
+            //social methods
+            Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
+        } else if sender as! UIButton == loginTwitterButton {
+            Utility.sharedInstance.user.anon = false
+            //social methods
+            Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
+        } else if sender as! UIButton == loginAnonButton {
+            Utility.sharedInstance.user.anon = true
         }
-    }
-    
-    func loginWithTwitter(sender: AnyObject) {
-        setActivityIndicator()
-
-        Utility.sharedInstance.user.anon = false
-        Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
         
         Utility.sharedInstance.communicationHandler.registrationRequest() { (response) -> () in
-            println("Twitter Registration Request response: \(response)")
-            if response {
-                self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
-            }
-            Utility.sharedInstance.activityIndicatorView.removeFromSuperview()
-        }
-    }
-    
-    func loginAsAnonymous(sender: AnyObject) {
-        setActivityIndicator()
-
-        Utility.sharedInstance.communicationHandler.registrationRequest() { (response) -> () in
-            println("Anonymous Registration Request response: \(response)")
+            println("Registration Request response: \(response)")
             if response {
                 self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
             }

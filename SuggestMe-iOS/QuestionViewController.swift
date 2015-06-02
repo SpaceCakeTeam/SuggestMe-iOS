@@ -12,11 +12,26 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
+        
+        var backgroundView: UIImageView!
+        switch (Utility.sharedInstance.currentQuestion!.questiondata.catid) {
+            case 0:
+                backgroundView = UIImageView(image: UIImage(named: "SocialBackground"))
+                break
+            case 1:
+                backgroundView = UIImageView(image: UIImage(named: "GoodsBackground"))
+                break
+            default:
+                break
+        }
+        backgroundView.frame = self.view.frame
+        self.view.addSubview(backgroundView)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         if Utility.sharedInstance.user.anon == true {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))

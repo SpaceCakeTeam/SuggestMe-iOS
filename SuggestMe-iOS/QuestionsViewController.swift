@@ -8,8 +8,10 @@
 
 import UIKit
 
-class QuestionsViewController: UIViewController {
-
+class QuestionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var suggestsTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,7 +21,10 @@ class QuestionsViewController: UIViewController {
         backgroundView.frame = self.view.frame
         self.view.addSubview(backgroundView)
         
-        var suggestsTableView = UITableView(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height))
+        suggestsTableView = UITableView(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height))
+        suggestsTableView.delegate = self
+        suggestsTableView.backgroundColor = UIColor.clearColor()
+        self.view.addSubview(suggestsTableView)
         
         self.tabBarController?.selectedIndex = 2
         self.tabBarController?.selectedIndex = 1
@@ -30,14 +35,26 @@ class QuestionsViewController: UIViewController {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         if Utility.sharedInstance.user.anon == true {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
         } else {
             self.navigationItem.rightBarButtonItem = nil
         }
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Utility.sharedInstance.questions.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("pushToQuestionViewController", sender: self)
     }
 }
 
