@@ -28,16 +28,29 @@ class QuestionViewController: UIViewController {
         }
         backgroundView.frame = self.view.frame
         self.view.addSubview(backgroundView)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
+        var subcategoryView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
+        subcategoryView.backgroundColor = UIColor.whiteColor()
+        subcategoryView.alpha = 0.8
+        self.view.addSubview(subcategoryView)
+
+        var leftImage = UIImageView(image: UIImage(named: "Hashtag"))
+        leftImage.frame = CGRect(x: 10, y: 10, width: 40, height: 40)
+        self.view.addSubview(leftImage)
+        
+        var anonButton = UIButton(frame: CGRect(x: 50, y: 10, width: 70, height: 70))
         if Utility.sharedInstance.user.anon == true {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+            anonButton.setImage(UIImage(named: "AnonQuestionButton"), forState: UIControlState.Normal)
         } else {
             self.navigationItem.rightBarButtonItem = nil
+            anonButton.setImage(UIImage(named: "RegisteredQuestionButton"), forState: UIControlState.Normal)
         }
+        self.view.addSubview(anonButton)
+        
+        var subcategoryButton = UIButton(frame: CGRect(x: 60, y: 10, width: self.view.frame.width-200, height: 40))
+        anonButton.setImage(UIImage(named: "WhiteBackgroundButton"), forState: UIControlState.Normal)
+        //subcategoryView.addSubview(subcategoryButton)
     }
     
     func login(sender: AnyObject) {

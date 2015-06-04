@@ -23,7 +23,11 @@ class QuestionsViewController: UIViewController, UITableViewDataSource, UITableV
         
         suggestsTableView = UITableView(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height))
         suggestsTableView.delegate = self
+        suggestsTableView.dataSource = self
         suggestsTableView.backgroundColor = UIColor.clearColor()
+        suggestsTableView.rowHeight = 60
+        suggestsTableView.sectionFooterHeight = 0
+        suggestsTableView.sectionHeaderHeight = 0
         self.view.addSubview(suggestsTableView)
         
         self.tabBarController?.selectedIndex = 2
@@ -50,7 +54,24 @@ class QuestionsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        var cell = suggestsTableView.dequeueReusableCellWithIdentifier("questionCell") as! QuestionCell
+        var question = Utility.sharedInstance.questions[indexPath.row]
+        
+        if question.questiondata.catid == 0 {
+            cell.category = UIImageView(image: UIImage(named: "QuestionSocialCategory"))
+        } else if question.questiondata.catid == 1 {
+            cell.category = UIImageView(image: UIImage(named: "QuestionGoodsCategory"))
+        }
+        
+        if question.suggest == nil {
+            cell.status = UIImageView(image: UIImage(named: "QuestionPending"))
+        } else {
+            cell.status = UIImageView(image: UIImage(named: "QuestionChecked"))
+        }
+        
+        cell.textSuggest.text = ""
+        
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
