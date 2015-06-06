@@ -17,7 +17,8 @@ class CategoriesViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
-        
+        UIApplication.sharedApplication().statusBarStyle = .Default
+
         categorySocialButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height/2))
         categorySocialButton.setImage(UIImage(named: "CategorySocialButton"), forState: UIControlState.Normal)
         categorySocialButton.addTarget(self, action: Selector("askSuggestion:"), forControlEvents: UIControlEvents.TouchUpInside)

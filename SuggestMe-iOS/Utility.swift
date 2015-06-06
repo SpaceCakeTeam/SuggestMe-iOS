@@ -110,26 +110,17 @@ class Utility {
     
     //MARK: Activity indicator!
     
-    func setActivityIndicator(frame: CGRect, text: String) -> UIView {
-        activityIndicatorView = UIView(frame: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height))
-        
-        var textView = UIView(frame: CGRect(x: frame.width/2-125, y: frame.height/2-25, width: 250, height: 50))
-        textView.layer.cornerRadius = 15
-        textView.backgroundColor = UIColor.whiteColor()
+    func setActivityIndicator(frame: CGRect) -> UIView {
+        activityIndicatorView = UIView(frame: CGRect(x: frame.width/2-frame.width/8, y: frame.height/2-frame.width/8, width: frame.width/4, height: frame.width/4))
+        activityIndicatorView.layer.cornerRadius = 15
+        activityIndicatorView.backgroundColor = UIColor.whiteColor()
        
-        var activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 5, y: 0, width: 50, height: 50))
+        var activityIndicator = UIActivityIndicatorView(frame: CGRect(x: activityIndicatorView.frame.width/2-activityIndicatorView.frame.width/4, y: activityIndicatorView.frame.height/2-activityIndicatorView.frame.height/4, width: activityIndicatorView.frame.width/2, height: activityIndicatorView.frame.height/2))
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.color = UIColor.blackColor()
         activityIndicator.startAnimating()
-        textView.addSubview(activityIndicator)
+        activityIndicatorView.addSubview(activityIndicator)
 
-        var textLabel = UILabel(frame: CGRect(x: 70, y: 0, width: textView.frame.width-70, height: textView.frame.height))
-        textLabel.text = text
-        textLabel.textColor = UIColor.blackColor()
-        textLabel.textAlignment = NSTextAlignment.Left
-        textView.addSubview(textLabel)
-        
-        activityIndicatorView.addSubview(textView)
         return activityIndicatorView
     }
     

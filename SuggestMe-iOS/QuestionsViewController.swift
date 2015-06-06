@@ -31,8 +31,10 @@ class QuestionsViewController: UIViewController, UITableViewDataSource, UITableV
         self.view.addSubview(suggestsTableView)
         
         self.tabBarController?.selectedIndex = 2
-        self.tabBarController?.selectedIndex = 1
         self.tabBarController?.selectedIndex = 0
+        self.tabBarController?.selectedIndex = 1
+        
+        UIApplication.sharedApplication().statusBarStyle = .Default
     }
     
     func login(sender: AnyObject) {

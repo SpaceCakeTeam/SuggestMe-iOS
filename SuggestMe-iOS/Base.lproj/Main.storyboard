@@ -173,7 +173,7 @@
             <objects>
                 <navigationController storyboardIdentifier="QuestionNavigationController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BpM-DX-CIs" userLabel="QuestionsNavigationController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Questions" image="QuestionsTabBarItem" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Le mie domande" image="QuestionsTabBarItem" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="c02-QZ-Zre">
@@ -194,7 +194,7 @@
             <objects>
                 <navigationController storyboardIdentifier="CategoriesNavigationController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UAk-VD-WRl" userLabel="CategoriesNavigationController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" tag="1" title="Categories" image="CategoriesTabBarItem" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Fai la tua domanda" image="CategoriesTabBarItem" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="9XK-GD-iHQ">

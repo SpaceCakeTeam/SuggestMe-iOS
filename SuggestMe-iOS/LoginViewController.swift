@@ -21,18 +21,20 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
-        
+        UIApplication.sharedApplication().statusBarStyle = .Default
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
         
         backgroundView = UIImageView(image: UIImage(named: "LoginBackground"))
         backgroundView.frame = self.view.frame
         self.view.addSubview(backgroundView)
         
-        loginFacebookButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.size.height/2-self.view.frame.width/3, width: self.view.frame.width, height: self.view.frame.width/2))
+        var loginFacebookImageView = UIImageView(image: UIImage(named: "LoginFacebookButton"))
+        loginFacebookButton = UIButton(frame: CGRect(x: self.view.frame.width/2-loginFacebookImageView.frame.width/2, y: self.view.frame.height/2-loginFacebookImageView.frame.height/2-3, width: loginFacebookImageView.frame.width, height: loginFacebookImageView.frame.height))
         loginFacebookButton.setImage(UIImage(named: "LoginFacebookButton"), forState: UIControlState.Normal)
         loginFacebookButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
         
-        loginTwitterButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.size.height/2-self.view.frame.width/3+5, width: self.view.frame.width, height: self.view.frame.width/2))
+        var loginTwitterImageView = UIImageView(image: UIImage(named: "LoginTwitterButton"))
+        loginTwitterButton = UIButton(frame: CGRect(x: self.view.frame.width/2-loginTwitterImageView.frame.width/2, y: self.view.frame.height/2-loginTwitterImageView.frame.height/2+3, width: loginTwitterImageView.frame.width, height: loginTwitterImageView.frame.height))
         loginTwitterButton.setImage(UIImage(named: "LoginTwitterButton"), forState: UIControlState.Normal)
         loginTwitterButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -46,7 +48,7 @@ class LoginViewController: UIViewController {
     
     func setActivityIndicator() {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.view.addSubview(Utility.sharedInstance.setActivityIndicator(self.backgroundView.frame, text: "logging in..."))
+            self.view.addSubview(Utility.sharedInstance.setActivityIndicator(self.backgroundView.frame))
         }
     }
     
@@ -58,11 +60,11 @@ class LoginViewController: UIViewController {
         
         if sender as! UIButton == loginFacebookButton {
             Utility.sharedInstance.user.anon = false
-            //social methods
+            //Utility.sharedInstance.getFacebookAccount()
             Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
         } else if sender as! UIButton == loginTwitterButton {
             Utility.sharedInstance.user.anon = false
-            //social methods
+            //Utility.sharedInstance.getTwitterAccount()
             Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
         }
         

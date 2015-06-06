@@ -14,7 +14,8 @@ class AboutViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
-        
+        UIApplication.sharedApplication().statusBarStyle = .Default
+
         var backgroundView = UIImageView(image: UIImage(named: "AboutBackground"))
         backgroundView.frame = self.view.frame
         self.view.addSubview(backgroundView)
