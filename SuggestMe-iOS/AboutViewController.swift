@@ -10,11 +10,15 @@ import UIKit
 
 class AboutViewController: UIViewController {
     
+    var loginButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
+
+        loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
         var backgroundView = UIImageView(image: UIImage(named: "AboutBackground"))
         backgroundView.frame = self.view.frame
@@ -25,11 +29,14 @@ class AboutViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if Utility.sharedInstance.user.anon == true {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+            self.navigationItem.rightBarButtonItem = loginButton
         } else {
             self.navigationItem.rightBarButtonItem = nil
         }
     }
+    
+    
+    //MARK: UIButton Actions
 
     func login(sender: AnyObject) {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)

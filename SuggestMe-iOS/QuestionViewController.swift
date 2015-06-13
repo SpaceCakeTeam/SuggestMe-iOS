@@ -10,16 +10,33 @@ import UIKit
 
 class QuestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var question: Question!
+    var category: Category!
+    
+    var loginButton: UIBarButtonItem!
+    var visibilityButton: UIButton!
+    var anonButton: UIButton!
+    var registeredButton: UIButton!
+    var subcategoryButton: UIButton!
+    
+    var questionText: UITextField!
+    
     var subcategoryTableView: UITableView!
+    var arrowImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
+                
+        loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+        
+        question = Utility.sharedInstance.currentQuestion
+        category = Utility.sharedInstance.categories[question.questiondata.catid]
 
         var backgroundView: UIImageView!
-        switch (Utility.sharedInstance.currentQuestion!.questiondata.catid) {
+        switch (question.questiondata.catid) {
             case 0:
                 backgroundView = UIImageView(image: UIImage(named: "SocialBackground"))
                 break
@@ -32,72 +49,167 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         backgroundView.frame = self.view.frame
         self.view.addSubview(backgroundView)
         
-        var subcategoryView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
-        subcategoryView.backgroundColor = UIColor.whiteColor()
-        subcategoryView.alpha = 0.6
-        self.view.addSubview(subcategoryView)
+        var infoBarView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
+        infoBarView.backgroundColor = UIColor.whiteColor()
+        infoBarView.alpha = 0.6
+        self.view.addSubview(infoBarView)
 
-        var leftImage = UIImageView(image: UIImage(named: "Hashtag"))
-        leftImage.frame = CGRect(x: 10, y: 10, width: 40, height: 40)
-        self.view.addSubview(leftImage)
+        var hashtagImageView = UIImageView(image: UIImage(named: "Hashtag"))
+        hashtagImageView.frame = CGRect(x: 10, y: 5, width: hashtagImageView.frame.width, height: hashtagImageView.frame.height)
+        self.view.addSubview(hashtagImageView)
         
-        var anonButton = UIButton(frame: CGRect(x: self.view.frame.width-60, y: 5, width: 50, height: 50))
+        var anonButtonImage = UIImage(named: "AnonButton")
+        var anonButtonImageView = UIImageView(image: anonButtonImage)
+        anonButton = UIButton(frame: CGRect(x: self.view.frame.width - 60, y: 5, width: anonButtonImageView.frame.width, height: anonButtonImageView.frame.height))
+        anonButton.setImage(anonButtonImage, forState: UIControlState.Normal)
+        anonButton.addTarget(self, action: Selector("setVisibilityQuestion:"), forControlEvents: UIControlEvents.TouchUpInside)
+
+        var registeredButtonImage = UIImage(named: "RegisteredButton")
+        var registeredButtonImageView = UIImageView(image: registeredButtonImage)
+        registeredButton = UIButton(frame: CGRect(x: self.view.frame.width - 60, y: 5, width: registeredButtonImageView.frame.width, height: registeredButtonImageView.frame.height))
+        registeredButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
+        registeredButton.addTarget(self, action: Selector("setVisibilityQuestion:"), forControlEvents: UIControlEvents.TouchUpInside)
+        
         if Utility.sharedInstance.user.anon == true {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
-            anonButton.setImage(UIImage(named: "AnonQuestionButton"), forState: UIControlState.Normal)
+            visibilityButton = anonButton
         } else {
-            self.navigationItem.rightBarButtonItem = nil
-            anonButton.setImage(UIImage(named: "RegisteredQuestionButton"), forState: UIControlState.Normal)
+            visibilityButton = registeredButton
         }
-        self.view.addSubview(anonButton)
+        self.view.addSubview(visibilityButton)
         
-        var subcategoryButton = UIButton(frame: CGRect(x: leftImage.frame.width+30, y: 10, width: self.view.frame.width-(leftImage.frame.width+30 + anonButton.frame.width+30), height: 40))
-        subcategoryButton.backgroundColor = UIColor.whiteColor()
-        subcategoryButton.layer.cornerRadius = 5
-        subcategoryButton.addTarget(self, action: Selector("showSubcategoryTableView:"), forControlEvents: UIControlEvents.TouchUpInside)
+        var subcategoryButtonImage = UIImage(named: "SubcategoryButton")
+        var subcategoryButtonImageView = UIImageView(image: subcategoryButtonImage)
+        subcategoryButton = UIButton(frame: CGRect(x: hashtagImageView.frame.width + 30, y: 10, width: subcategoryButtonImageView.frame.width, height: subcategoryButtonImageView.frame.height))
+        subcategoryButton.setBackgroundImage(subcategoryButtonImage, forState: UIControlState.Normal)
+        subcategoryButton.setTitle("Seleziona la sottocategoria", forState: UIControlState.Normal)
+        subcategoryButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        subcategoryButton.addTarget(self, action: Selector("showSubcategories:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(subcategoryButton)
         
-        subcategoryTableView = UITableView(frame: CGRect(x: self.view.frame.width/3, y: subcategoryView.frame.height/2, width: self.view.frame.width/3, height: 200))
+        subcategoryTableView = UITableView(frame: CGRect(x: hashtagImageView.frame.width + 30, y: infoBarView.frame.height, width: self.view.frame.width - (hashtagImageView.frame.width + visibilityButton.frame.width + 60), height: 200))
         subcategoryTableView.layer.cornerRadius = 10
         subcategoryTableView.backgroundColor = UIColor.whiteColor()
         subcategoryTableView.delegate = self
         subcategoryTableView.dataSource = self
-        subcategoryTableView.backgroundColor = UIColor.clearColor()
         subcategoryTableView.rowHeight = 60
         subcategoryTableView.sectionFooterHeight = 0
         subcategoryTableView.sectionHeaderHeight = 0
+        subcategoryTableView.registerClass(SubcategoryCell().classForCoder, forCellReuseIdentifier: "subcategoryCellId")
+        
+        arrowImageView = UIImageView(image: UIImage(named: "ArrowSubcategory"))
+        arrowImageView.frame = CGRect(x: self.view.frame.width/2 - arrowImageView.frame.width/2, y: infoBarView.frame.height-10, width: arrowImageView.frame.width, height: arrowImageView.frame.height)
+        arrowImageView.hidden = true
+        self.view.addSubview(arrowImageView)
+        
+        var textFieldView = UIView(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50))
+        textFieldView.backgroundColor = UIColor.whiteColor()
+        textFieldView.clipsToBounds = true
+        var bottomBorder = CALayer()
+        bottomBorder.borderWidth = 0.5
+        bottomBorder.backgroundColor = UIColor.blackColor().CGColor
+        bottomBorder.frame = CGRectMake(0, textFieldView.frame.height - bottomBorder.borderWidth, textFieldView.frame.width, bottomBorder.borderWidth);
+        textFieldView.layer.addSublayer(bottomBorder)
+        self.view.addSubview(textFieldView)
+        
+        var sendButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: 0, width: 80, height: textFieldView.frame.height))
+        sendButton.setTitle("Invia", forState: UIControlState.Normal)
+        sendButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        sendButton.addTarget(self, action: Selector("askSuggestionRequest:"), forControlEvents: UIControlEvents.TouchUpInside)
+        textFieldView.addSubview(sendButton)
+
+        questionText = UITextField(frame: CGRect(x: 10, y: textFieldView.frame.height - 40, width: self.view.frame.width - sendButton.frame.width - 10, height: 30))
+        questionText.layer.borderColor = UIColor.grayColor().CGColor
+        questionText.layer.borderWidth = 1
+        questionText.backgroundColor = UIColor.whiteColor()
+        questionText.text = "  Fai la tua domanda"
+        questionText.layer.cornerRadius = 10
+        textFieldView.addSubview(questionText)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        visibilityButton.removeFromSuperview()
+        if Utility.sharedInstance.user.anon == true {
+            self.navigationItem.rightBarButtonItem = loginButton
+            visibilityButton = anonButton
+        } else {
+            self.navigationItem.rightBarButtonItem = nil
+            visibilityButton = registeredButton
+        }
+        self.view.addSubview(visibilityButton)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        Utility.sharedInstance.currentQuestion = nil
+    }
+    
+    
+    //MARK: UIButton Actions
     
     func login(sender: AnyObject) {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)
     }
     
-    func askSuggestionRequest() {
-        var questiondata = QuestionData(catid: 1, subcatid: 1, text: "ciaone cosa vuol dire?", anon: true)
+    func setVisibilityQuestion(sender: AnyObject) {
+        visibilityButton.removeFromSuperview()
+        if sender as! UIButton == anonButton && Utility.sharedInstance.user.anon == false {
+            visibilityButton = registeredButton
+            question.questiondata.anon = false
+        }
+        if sender as! UIButton == registeredButton {
+            visibilityButton = anonButton
+            question.questiondata.anon = true
+        }
+        self.view.addSubview(visibilityButton)
+    }
+
+    func showSubcategories(sender: AnyObject) {
+        if arrowImageView.hidden {
+            arrowImageView.hidden = false
+            self.view.addSubview(subcategoryTableView)
+        } else {
+            subcategoryTableView.removeFromSuperview()
+            arrowImageView.hidden = true
+        }
+    }
+    
+    func askSuggestionRequest(sender: AnyObject) {
+        question.questiondata.text = questionText.text
         
-        Utility.sharedInstance.communicationHandler.askSuggestionRequest(questiondata) { (response) -> () in
+        Utility.sharedInstance.communicationHandler.askSuggestionRequest(question.questiondata) { (response) -> () in
             println("Ask Suggestion Request response: \(response)")
         }
     }
     
-    func showSubcategoryTableView(sender: AnyObject) {
-        self.view.addSubview(subcategoryTableView)
-    }
+    
+    //MARK: UITableView Delegates
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Utility.sharedInstance.questions.count
+        return category.subcategories.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = subcategoryTableView.dequeueReusableCellWithIdentifier("subcategoryCell") as! QuestionCell
-        //var subcategories = Utility.sharedInstance.categories[][indexPath.row]
+        var cell = subcategoryTableView.dequeueReusableCellWithIdentifier("subcategoryCellId") as! SubcategoryCell
         
-        //cell.textSuggest.text = ""
+        cell.textCell.text = category.subcategories[indexPath.row].name
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("pushToQuestionViewController", sender: self)
+        subcategoryTableView.removeFromSuperview()
+        arrowImageView.hidden = true
+        question.questiondata.subcatid = category.subcategories[indexPath.row].id
+        subcategoryButton.setTitle(category.subcategories[indexPath.row].name, forState: UIControlState.Normal)
+    }
+    
+    
+    //MARK: Touches methods
+    
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
 }

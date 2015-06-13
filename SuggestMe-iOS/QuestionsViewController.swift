@@ -8,7 +8,9 @@
 
 import UIKit
 
-class QuestionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+    
+    var loginButton: UIBarButtonItem!
     
     var suggestsTableView: UITableView!
     
@@ -16,6 +18,10 @@ class QuestionsViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
+        UIApplication.sharedApplication().statusBarStyle = .Default
+        self.tabBarController?.delegate = self
+
+        loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
         var backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground"))
         backgroundView.frame = self.view.frame
@@ -28,35 +34,41 @@ class QuestionsViewController: UIViewController, UITableViewDataSource, UITableV
         suggestsTableView.rowHeight = 60
         suggestsTableView.sectionFooterHeight = 0
         suggestsTableView.sectionHeaderHeight = 0
+        suggestsTableView.registerClass(QuestionCell().classForCoder, forCellReuseIdentifier: "questionCellId")
         self.view.addSubview(suggestsTableView)
-        
+
         self.tabBarController?.selectedIndex = 2
         self.tabBarController?.selectedIndex = 0
         self.tabBarController?.selectedIndex = 1
-        
-        UIApplication.sharedApplication().statusBarStyle = .Default
-    }
-    
-    func login(sender: AnyObject) {
-        self.performSegueWithIdentifier("presentLoginViewController", sender: self)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         if Utility.sharedInstance.user.anon == true {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+            self.navigationItem.rightBarButtonItem = loginButton
         } else {
             self.navigationItem.rightBarButtonItem = nil
         }
     }
+    
+    
+    //MARK: UIButton Actions
+    
+    func login(sender: AnyObject) {
+        self.performSegueWithIdentifier("presentLoginViewController", sender: self)
+    }
+    
+    
+    //MARK: UITableView Delegates
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Utility.sharedInstance.questions.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = suggestsTableView.dequeueReusableCellWithIdentifier("questionCell") as! QuestionCell
+        var cell = suggestsTableView.dequeueReusableCellWithIdentifier("subcategoryCellId") as! QuestionCell
+        
         var question = Utility.sharedInstance.questions[indexPath.row]
         
         if question.questiondata.catid == 0 {
@@ -71,13 +83,22 @@ class QuestionsViewController: UIViewController, UITableViewDataSource, UITableV
             cell.status = UIImageView(image: UIImage(named: "QuestionChecked"))
         }
         
-        cell.textSuggest.text = ""
+        cell.textSuggest.text = Utility.sharedInstance.categories[question.questiondata.catid].subcategories[question.questiondata.subcatid].name
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //set current question
         self.performSegueWithIdentifier("pushToQuestionViewController", sender: self)
+    }
+    
+    
+    //MARK: UITabBarController Delegates
+    
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        var selectedNavigationController = viewController as! UINavigationController
+        selectedNavigationController.popToRootViewControllerAnimated(false)
     }
 }
 

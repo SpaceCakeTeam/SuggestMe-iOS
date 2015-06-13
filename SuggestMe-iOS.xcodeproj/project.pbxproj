@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490F6F241B2C303E004A7E41 /* SubcategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F6F231B2C303E004A7E41 /* SubcategoryCell.swift */; };
 		491094CF1B0D19C100B07016 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094CE1B0D19C100B07016 /* LoginViewController.swift */; };
 		491094D11B0D1BA300B07016 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094D01B0D1BA300B07016 /* QuestionViewController.swift */; };
 		491094D31B0D1DDC00B07016 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094D21B0D1DDC00B07016 /* TutorialViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		490F6F231B2C303E004A7E41 /* SubcategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcategoryCell.swift; sourceTree = "<group>"; };
 		491094CE1B0D19C100B07016 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		491094D01B0D1BA300B07016 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		491094D21B0D1DDC00B07016 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				499EC5BA1B1EC62900DA6B5C /* QuestionCell.swift */,
 				495A24391AFE0CE4003731E9 /* CategoriesViewController.swift */,
 				491094D01B0D1BA300B07016 /* QuestionViewController.swift */,
+				490F6F231B2C303E004A7E41 /* SubcategoryCell.swift */,
 				498A39681AFF84D100726542 /* AboutViewController.swift */,
 				495A24581AFE10E9003731E9 /* Controller */,
 				495A24571AFE10E0003731E9 /* Model */,
@@ -215,6 +218,7 @@
 				495572DA1B05310600EAD377 /* SubCategory.swift in Sources */,
 				491094D11B0D1BA300B07016 /* QuestionViewController.swift in Sources */,
 				495A24361AFE0CE4003731E9 /* AppDelegate.swift in Sources */,
+				490F6F241B2C303E004A7E41 /* SubcategoryCell.swift in Sources */,
 				495A245E1AFE3CF6003731E9 /* Question.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

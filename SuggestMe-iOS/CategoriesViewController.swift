@@ -10,46 +10,62 @@ import UIKit
 
 class CategoriesViewController: UIViewController {
 
-    var categorySocialButton: UIButton!
-    var categoryGoodsButton: UIButton!
+    var loginButton: UIBarButtonItem!
+    var socialButton: UIButton!
+    var goodsButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
+                
+        loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
-        categorySocialButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height/2))
-        categorySocialButton.setImage(UIImage(named: "CategorySocialButton"), forState: UIControlState.Normal)
-        categorySocialButton.addTarget(self, action: Selector("askSuggestion:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(categorySocialButton)
+        var socialButtonImage = UIImage(named: "SocialButton")
+        var socialButtonImageView = UIImageView(image: socialButtonImage)
+        socialButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: socialButtonImageView.frame.width, height: socialButtonImageView.frame.height))
+        socialButton.setImage(socialButtonImage, forState: UIControlState.Normal)
+        socialButton.addTarget(self, action: Selector("askSuggestion:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(socialButton)
         
-        categoryGoodsButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.height/2, width: self.view.frame.width, height: self.view.frame.height/2))
-        categoryGoodsButton.setImage(UIImage(named: "CategoryGoodsButton"), forState: UIControlState.Normal)
-        categoryGoodsButton.addTarget(self, action: Selector("askSuggestion:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(categoryGoodsButton)
+        var goodsButtonImage = UIImage(named: "GoodsButton")
+        var goodsButtonImageView = UIImageView(image: goodsButtonImage)
+        goodsButton = UIButton(frame: CGRect(x: self.view.frame.origin.x, y: socialButtonImageView.frame.height+5, width: socialButtonImageView.frame.width, height: socialButtonImageView.frame.height))
+        goodsButton.setImage(goodsButtonImage, forState: UIControlState.Normal)
+        goodsButton.addTarget(self, action: Selector("askSuggestion:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(goodsButton)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         if Utility.sharedInstance.user.anon == true {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+            self.navigationItem.rightBarButtonItem = loginButton
         } else {
             self.navigationItem.rightBarButtonItem = nil
         }
     }
+    
+    
+    //MARK: UIButton Actions
     
     func login(sender: AnyObject) {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)
     }
     
     func askSuggestion(sender: AnyObject) {
-        if sender as! UIButton == categorySocialButton {
-            Utility.sharedInstance.currentQuestion = Question(id: -1, questiondata: QuestionData(catid: 0, subcatid: -1, text: "", anon: true), date: 0, suggest: nil)
-        } else if sender as! UIButton == categoryGoodsButton {
-            Utility.sharedInstance.currentQuestion = Question(id: -1, questiondata: QuestionData(catid: 1, subcatid: -1, text: "", anon: true), date: 0, suggest: nil)
+        var catid: Int!
+        var question: Question!
+        if sender as! UIButton == socialButton {
+            catid = 0
+        } else if sender as! UIButton == goodsButton {
+            catid = 1
         }
+        
+        question = Question(id: -1, questiondata: QuestionData(catid: catid, subcatid: -1, text: "", anon: Utility.sharedInstance.user.anon), date: 0, suggest: nil)
+        Utility.sharedInstance.currentQuestion = question
+        
         self.performSegueWithIdentifier("pushToQuestionViewController", sender: self)
     }
 }

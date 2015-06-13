@@ -6,12 +6,13 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "ArrowSubCategory@2x.png"
     },
     {
       "idiom" : "iphone",
       "scale" : "3x",
-      "filename" : "AnonQuestionButton.png"
+      "filename" : "ArrowSubcategory@3x.png"
     }
   ],
   "info" : {

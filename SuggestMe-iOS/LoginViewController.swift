@@ -46,23 +46,19 @@ class LoginViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in })
     }
     
-    func setActivityIndicator() {
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.view.addSubview(Utility.sharedInstance.setActivityIndicator(self.backgroundView.frame))
-        }
-    }
-    
     
     //MARK: Login method
     
     func login(sender: AnyObject) {
-        setActivityIndicator()
+        var button = sender as! UIButton
+        button.enabled = false
+        self.view.addSubview(Utility.sharedInstance.setActivityIndicator(self.view.frame))
         
-        if sender as! UIButton == loginFacebookButton {
+        if button == loginFacebookButton {
             Utility.sharedInstance.user.anon = false
             //Utility.sharedInstance.getFacebookAccount()
             Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
-        } else if sender as! UIButton == loginTwitterButton {
+        } else if button == loginTwitterButton {
             Utility.sharedInstance.user.anon = false
             //Utility.sharedInstance.getTwitterAccount()
             Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
@@ -72,8 +68,16 @@ class LoginViewController: UIViewController {
             println("Registration Request response: \(response)")
             if response {
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+            } else {
+                button.enabled = true
             }
-            Utility.sharedInstance.activityIndicatorView.removeFromSuperview()
         }
+    }
+    
+    
+    //MARK: Touches methods
+    
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        //get position of touch
     }
 }

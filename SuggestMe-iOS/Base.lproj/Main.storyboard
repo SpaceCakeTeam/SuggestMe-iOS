@@ -244,7 +244,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="vZM-m2-PTI"/>
         <segue reference="iNn-Xj-ZIy"/>
-        <segue reference="q68-QQ-aID"/>
     </inferredMetricsTieBreakers>
 </document>
