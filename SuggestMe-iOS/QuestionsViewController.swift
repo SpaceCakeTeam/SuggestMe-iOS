@@ -10,10 +10,15 @@ import UIKit
 
 class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
+    let screenSize = Int(UIScreen.mainScreen().bounds.size.height)
+
     var loginButton: UIBarButtonItem!
     
     var suggestsTableView: UITableView!
     
+    
+    //MARK: UI methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,7 +28,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
 
         loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
-        var backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground"))
+        var backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground-\(screenSize)h"))
         backgroundView.frame = self.view.frame
         self.view.addSubview(backgroundView)
         
@@ -89,7 +94,8 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //set current question
+        Utility.sharedInstance.currentQuestion = Utility.sharedInstance.questions[indexPath.row]
+        
         self.performSegueWithIdentifier("pushToQuestionViewController", sender: self)
     }
     

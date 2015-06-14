@@ -25,6 +25,54 @@
 		498A39691AFF84D100726542 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39681AFF84D100726542 /* AboutViewController.swift */; };
 		499485BC1B1B2C5A0060AFD5 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499485BB1B1B2C5A0060AFD5 /* QuestionsViewController.swift */; };
 		499EC5BB1B1EC62900DA6B5C /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499EC5BA1B1EC62900DA6B5C /* QuestionCell.swift */; };
+		49B90DDD1B2D9AEB003EB9E3 /* AboutBackground-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DAA1B2D9AEB003EB9E3 /* AboutBackground-480h@2x.png */; };
+		49B90DDE1B2D9AEB003EB9E3 /* GoodsButton-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DAB1B2D9AEB003EB9E3 /* GoodsButton-480h@2x.png */; };
+		49B90DDF1B2D9AEB003EB9E3 /* SocialButton-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DAC1B2D9AEB003EB9E3 /* SocialButton-480h@2x.png */; };
+		49B90DE01B2D9AEB003EB9E3 /* GoodsBackground-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DAD1B2D9AEB003EB9E3 /* GoodsBackground-480h@2x.png */; };
+		49B90DE11B2D9AEB003EB9E3 /* LoginBackground-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DAE1B2D9AEB003EB9E3 /* LoginBackground-480h@2x.png */; };
+		49B90DE21B2D9AEB003EB9E3 /* QuestionsBackground-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DAF1B2D9AEB003EB9E3 /* QuestionsBackground-480h@2x.png */; };
+		49B90DE31B2D9AEB003EB9E3 /* SocialBackground-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DB01B2D9AEB003EB9E3 /* SocialBackground-480h@2x.png */; };
+		49B90DE41B2D9AEB003EB9E3 /* TutorialBackgroundPage1-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DB11B2D9AEB003EB9E3 /* TutorialBackgroundPage1-480h@2x.png */; };
+		49B90DE51B2D9AEB003EB9E3 /* TutorialBackgroundPage2-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DB21B2D9AEB003EB9E3 /* TutorialBackgroundPage2-480h@2x.png */; };
+		49B90DE61B2D9AEB003EB9E3 /* TutorialBackgroundPage3-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DB31B2D9AEB003EB9E3 /* TutorialBackgroundPage3-480h@2x.png */; };
+		49B90DE71B2D9AEB003EB9E3 /* TutorialBackgroundPage4-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DB41B2D9AEB003EB9E3 /* TutorialBackgroundPage4-480h@2x.png */; };
+		49B90DE81B2D9AEB003EB9E3 /* TutorialBackgroundPage5-480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DB51B2D9AEB003EB9E3 /* TutorialBackgroundPage5-480h@2x.png */; };
+		49B90DE91B2D9AEB003EB9E3 /* AboutBackground-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DB71B2D9AEB003EB9E3 /* AboutBackground-568h@2x.png */; };
+		49B90DEA1B2D9AEB003EB9E3 /* GoodsButton-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DB81B2D9AEB003EB9E3 /* GoodsButton-568h@2x.png */; };
+		49B90DEB1B2D9AEB003EB9E3 /* SocialButton-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DB91B2D9AEB003EB9E3 /* SocialButton-568h@2x.png */; };
+		49B90DEC1B2D9AEB003EB9E3 /* GoodsBackground-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DBA1B2D9AEB003EB9E3 /* GoodsBackground-568h@2x.png */; };
+		49B90DED1B2D9AEB003EB9E3 /* LoginBackground-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DBB1B2D9AEB003EB9E3 /* LoginBackground-568h@2x.png */; };
+		49B90DEE1B2D9AEB003EB9E3 /* QuestionsBackground-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DBC1B2D9AEB003EB9E3 /* QuestionsBackground-568h@2x.png */; };
+		49B90DEF1B2D9AEB003EB9E3 /* SocialBackground-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DBD1B2D9AEB003EB9E3 /* SocialBackground-568h@2x.png */; };
+		49B90DF01B2D9AEB003EB9E3 /* TutorialBackgroundPage1-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DBE1B2D9AEB003EB9E3 /* TutorialBackgroundPage1-568h@2x.png */; };
+		49B90DF11B2D9AEB003EB9E3 /* TutorialBackgroundPage2-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DBF1B2D9AEB003EB9E3 /* TutorialBackgroundPage2-568h@2x.png */; };
+		49B90DF21B2D9AEB003EB9E3 /* TutorialBackgroundPage3-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DC01B2D9AEB003EB9E3 /* TutorialBackgroundPage3-568h@2x.png */; };
+		49B90DF31B2D9AEB003EB9E3 /* TutorialBackgroundPage4-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DC11B2D9AEB003EB9E3 /* TutorialBackgroundPage4-568h@2x.png */; };
+		49B90DF41B2D9AEB003EB9E3 /* TutorialBackgroundPage5-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DC21B2D9AEB003EB9E3 /* TutorialBackgroundPage5-568h@2x.png */; };
+		49B90DF51B2D9AEB003EB9E3 /* AboutBackground-667@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DC41B2D9AEB003EB9E3 /* AboutBackground-667@2x.png */; };
+		49B90DF61B2D9AEB003EB9E3 /* GoodsButton-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DC51B2D9AEB003EB9E3 /* GoodsButton-667h@2x.png */; };
+		49B90DF71B2D9AEB003EB9E3 /* SocialButton-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DC61B2D9AEB003EB9E3 /* SocialButton-667h@2x.png */; };
+		49B90DF81B2D9AEB003EB9E3 /* GoodsBackground-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DC71B2D9AEB003EB9E3 /* GoodsBackground-667h@2x.png */; };
+		49B90DF91B2D9AEB003EB9E3 /* LoginBackground-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DC81B2D9AEB003EB9E3 /* LoginBackground-667h@2x.png */; };
+		49B90DFA1B2D9AEB003EB9E3 /* QuestionsBackground-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DC91B2D9AEB003EB9E3 /* QuestionsBackground-667h@2x.png */; };
+		49B90DFB1B2D9AEB003EB9E3 /* SocialBackground-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DCA1B2D9AEB003EB9E3 /* SocialBackground-667h@2x.png */; };
+		49B90DFC1B2D9AEB003EB9E3 /* TutorialBackgroundPage1-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DCB1B2D9AEB003EB9E3 /* TutorialBackgroundPage1-667h@2x.png */; };
+		49B90DFD1B2D9AEB003EB9E3 /* TutorialBackgroundPage2-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DCC1B2D9AEB003EB9E3 /* TutorialBackgroundPage2-667h@2x.png */; };
+		49B90DFE1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DCD1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-667h@2x.png */; };
+		49B90DFF1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DCE1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-667h@2x.png */; };
+		49B90E001B2D9AEB003EB9E3 /* TutorialBackgroundPage5-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DCF1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-667h@2x.png */; };
+		49B90E011B2D9AEB003EB9E3 /* AboutBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD11B2D9AEB003EB9E3 /* AboutBackground-736h@3x.png */; };
+		49B90E021B2D9AEB003EB9E3 /* GoodsButton-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD21B2D9AEB003EB9E3 /* GoodsButton-736h@3x.png */; };
+		49B90E031B2D9AEB003EB9E3 /* SocialButton-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD31B2D9AEB003EB9E3 /* SocialButton-736h@3x.png */; };
+		49B90E041B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD41B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png */; };
+		49B90E051B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD51B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png */; };
+		49B90E061B2D9AEB003EB9E3 /* questionsBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD61B2D9AEB003EB9E3 /* questionsBackground-736h@3x.png */; };
+		49B90E071B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD71B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png */; };
+		49B90E081B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD81B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png */; };
+		49B90E091B2D9AEB003EB9E3 /* TutorialBackgroundPage2-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD91B2D9AEB003EB9E3 /* TutorialBackgroundPage2-736h@3x.png */; };
+		49B90E0A1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DDA1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-736h@3x.png */; };
+		49B90E0B1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DDB1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-736h@3x.png */; };
+		49B90E0C1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DDC1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-736h@3x.png */; };
 		49C92EBB1B08A0F600213623 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C92EBA1B08A0F600213623 /* QuestionData.swift */; };
 		49C92EBD1B08B23E00213623 /* Suggest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C92EBC1B08B23E00213623 /* Suggest.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +98,54 @@
 		498A39681AFF84D100726542 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		499485BB1B1B2C5A0060AFD5 /* QuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
 		499EC5BA1B1EC62900DA6B5C /* QuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
+		49B90DAA1B2D9AEB003EB9E3 /* AboutBackground-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AboutBackground-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DAB1B2D9AEB003EB9E3 /* GoodsButton-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsButton-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DAC1B2D9AEB003EB9E3 /* SocialButton-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialButton-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DAD1B2D9AEB003EB9E3 /* GoodsBackground-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsBackground-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DAE1B2D9AEB003EB9E3 /* LoginBackground-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginBackground-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DAF1B2D9AEB003EB9E3 /* QuestionsBackground-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuestionsBackground-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DB01B2D9AEB003EB9E3 /* SocialBackground-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialBackground-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DB11B2D9AEB003EB9E3 /* TutorialBackgroundPage1-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage1-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DB21B2D9AEB003EB9E3 /* TutorialBackgroundPage2-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage2-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DB31B2D9AEB003EB9E3 /* TutorialBackgroundPage3-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage3-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DB41B2D9AEB003EB9E3 /* TutorialBackgroundPage4-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage4-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DB51B2D9AEB003EB9E3 /* TutorialBackgroundPage5-480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage5-480h@2x.png"; sourceTree = "<group>"; };
+		49B90DB71B2D9AEB003EB9E3 /* AboutBackground-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AboutBackground-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DB81B2D9AEB003EB9E3 /* GoodsButton-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsButton-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DB91B2D9AEB003EB9E3 /* SocialButton-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialButton-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DBA1B2D9AEB003EB9E3 /* GoodsBackground-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsBackground-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DBB1B2D9AEB003EB9E3 /* LoginBackground-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginBackground-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DBC1B2D9AEB003EB9E3 /* QuestionsBackground-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuestionsBackground-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DBD1B2D9AEB003EB9E3 /* SocialBackground-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialBackground-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DBE1B2D9AEB003EB9E3 /* TutorialBackgroundPage1-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage1-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DBF1B2D9AEB003EB9E3 /* TutorialBackgroundPage2-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage2-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DC01B2D9AEB003EB9E3 /* TutorialBackgroundPage3-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage3-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DC11B2D9AEB003EB9E3 /* TutorialBackgroundPage4-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage4-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DC21B2D9AEB003EB9E3 /* TutorialBackgroundPage5-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage5-568h@2x.png"; sourceTree = "<group>"; };
+		49B90DC41B2D9AEB003EB9E3 /* AboutBackground-667@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AboutBackground-667@2x.png"; sourceTree = "<group>"; };
+		49B90DC51B2D9AEB003EB9E3 /* GoodsButton-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsButton-667h@2x.png"; sourceTree = "<group>"; };
+		49B90DC61B2D9AEB003EB9E3 /* SocialButton-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialButton-667h@2x.png"; sourceTree = "<group>"; };
+		49B90DC71B2D9AEB003EB9E3 /* GoodsBackground-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsBackground-667h@2x.png"; sourceTree = "<group>"; };
+		49B90DC81B2D9AEB003EB9E3 /* LoginBackground-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginBackground-667h@2x.png"; sourceTree = "<group>"; };
+		49B90DC91B2D9AEB003EB9E3 /* QuestionsBackground-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuestionsBackground-667h@2x.png"; sourceTree = "<group>"; };
+		49B90DCA1B2D9AEB003EB9E3 /* SocialBackground-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialBackground-667h@2x.png"; sourceTree = "<group>"; };
+		49B90DCB1B2D9AEB003EB9E3 /* TutorialBackgroundPage1-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage1-667h@2x.png"; sourceTree = "<group>"; };
+		49B90DCC1B2D9AEB003EB9E3 /* TutorialBackgroundPage2-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage2-667h@2x.png"; sourceTree = "<group>"; };
+		49B90DCD1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage3-667h@2x.png"; sourceTree = "<group>"; };
+		49B90DCE1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage4-667h@2x.png"; sourceTree = "<group>"; };
+		49B90DCF1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage5-667h@2x.png"; sourceTree = "<group>"; };
+		49B90DD11B2D9AEB003EB9E3 /* AboutBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AboutBackground-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DD21B2D9AEB003EB9E3 /* GoodsButton-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsButton-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DD31B2D9AEB003EB9E3 /* SocialButton-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialButton-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DD41B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsBackground-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DD51B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginBackground-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DD61B2D9AEB003EB9E3 /* questionsBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "questionsBackground-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DD71B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialBackground-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DD81B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage1-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DD91B2D9AEB003EB9E3 /* TutorialBackgroundPage2-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage2-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DDA1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage3-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DDB1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage4-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DDC1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage5-736h@3x.png"; sourceTree = "<group>"; };
 		49C92EBA1B08A0F600213623 /* QuestionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
 		49C92EBC1B08B23E00213623 /* Suggest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +193,7 @@
 				495A24571AFE10E0003731E9 /* Model */,
 				495A243B1AFE0CE4003731E9 /* Main.storyboard */,
 				495A243E1AFE0CE4003731E9 /* Images.xcassets */,
+				49B90DA81B2D9AEB003EB9E3 /* Assets */,
 				495A24331AFE0CE4003731E9 /* Supporting Files */,
 			);
 			path = "SuggestMe-iOS";
@@ -131,6 +228,93 @@
 				498A39661AFE90FD00726542 /* Utility.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		49B90DA81B2D9AEB003EB9E3 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				49B90DA91B2D9AEB003EB9E3 /* iPhone-4s */,
+				49B90DB61B2D9AEB003EB9E3 /* iPhone-5:5s:5c */,
+				49B90DC31B2D9AEB003EB9E3 /* iPhone-6 */,
+				49B90DD01B2D9AEB003EB9E3 /* iPhone-6+ */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		49B90DA91B2D9AEB003EB9E3 /* iPhone-4s */ = {
+			isa = PBXGroup;
+			children = (
+				49B90DAA1B2D9AEB003EB9E3 /* AboutBackground-480h@2x.png */,
+				49B90DAB1B2D9AEB003EB9E3 /* GoodsButton-480h@2x.png */,
+				49B90DAC1B2D9AEB003EB9E3 /* SocialButton-480h@2x.png */,
+				49B90DAD1B2D9AEB003EB9E3 /* GoodsBackground-480h@2x.png */,
+				49B90DAE1B2D9AEB003EB9E3 /* LoginBackground-480h@2x.png */,
+				49B90DAF1B2D9AEB003EB9E3 /* QuestionsBackground-480h@2x.png */,
+				49B90DB01B2D9AEB003EB9E3 /* SocialBackground-480h@2x.png */,
+				49B90DB11B2D9AEB003EB9E3 /* TutorialBackgroundPage1-480h@2x.png */,
+				49B90DB21B2D9AEB003EB9E3 /* TutorialBackgroundPage2-480h@2x.png */,
+				49B90DB31B2D9AEB003EB9E3 /* TutorialBackgroundPage3-480h@2x.png */,
+				49B90DB41B2D9AEB003EB9E3 /* TutorialBackgroundPage4-480h@2x.png */,
+				49B90DB51B2D9AEB003EB9E3 /* TutorialBackgroundPage5-480h@2x.png */,
+			);
+			path = "iPhone-4s";
+			sourceTree = "<group>";
+		};
+		49B90DB61B2D9AEB003EB9E3 /* iPhone-5:5s:5c */ = {
+			isa = PBXGroup;
+			children = (
+				49B90DB71B2D9AEB003EB9E3 /* AboutBackground-568h@2x.png */,
+				49B90DB81B2D9AEB003EB9E3 /* GoodsButton-568h@2x.png */,
+				49B90DB91B2D9AEB003EB9E3 /* SocialButton-568h@2x.png */,
+				49B90DBA1B2D9AEB003EB9E3 /* GoodsBackground-568h@2x.png */,
+				49B90DBB1B2D9AEB003EB9E3 /* LoginBackground-568h@2x.png */,
+				49B90DBC1B2D9AEB003EB9E3 /* QuestionsBackground-568h@2x.png */,
+				49B90DBD1B2D9AEB003EB9E3 /* SocialBackground-568h@2x.png */,
+				49B90DBE1B2D9AEB003EB9E3 /* TutorialBackgroundPage1-568h@2x.png */,
+				49B90DBF1B2D9AEB003EB9E3 /* TutorialBackgroundPage2-568h@2x.png */,
+				49B90DC01B2D9AEB003EB9E3 /* TutorialBackgroundPage3-568h@2x.png */,
+				49B90DC11B2D9AEB003EB9E3 /* TutorialBackgroundPage4-568h@2x.png */,
+				49B90DC21B2D9AEB003EB9E3 /* TutorialBackgroundPage5-568h@2x.png */,
+			);
+			path = "iPhone-5:5s:5c";
+			sourceTree = "<group>";
+		};
+		49B90DC31B2D9AEB003EB9E3 /* iPhone-6 */ = {
+			isa = PBXGroup;
+			children = (
+				49B90DC41B2D9AEB003EB9E3 /* AboutBackground-667@2x.png */,
+				49B90DC51B2D9AEB003EB9E3 /* GoodsButton-667h@2x.png */,
+				49B90DC61B2D9AEB003EB9E3 /* SocialButton-667h@2x.png */,
+				49B90DC71B2D9AEB003EB9E3 /* GoodsBackground-667h@2x.png */,
+				49B90DC81B2D9AEB003EB9E3 /* LoginBackground-667h@2x.png */,
+				49B90DC91B2D9AEB003EB9E3 /* QuestionsBackground-667h@2x.png */,
+				49B90DCA1B2D9AEB003EB9E3 /* SocialBackground-667h@2x.png */,
+				49B90DCB1B2D9AEB003EB9E3 /* TutorialBackgroundPage1-667h@2x.png */,
+				49B90DCC1B2D9AEB003EB9E3 /* TutorialBackgroundPage2-667h@2x.png */,
+				49B90DCD1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-667h@2x.png */,
+				49B90DCE1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-667h@2x.png */,
+				49B90DCF1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-667h@2x.png */,
+			);
+			path = "iPhone-6";
+			sourceTree = "<group>";
+		};
+		49B90DD01B2D9AEB003EB9E3 /* iPhone-6+ */ = {
+			isa = PBXGroup;
+			children = (
+				49B90DD11B2D9AEB003EB9E3 /* AboutBackground-736h@3x.png */,
+				49B90DD21B2D9AEB003EB9E3 /* GoodsButton-736h@3x.png */,
+				49B90DD31B2D9AEB003EB9E3 /* SocialButton-736h@3x.png */,
+				49B90DD41B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png */,
+				49B90DD51B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png */,
+				49B90DD61B2D9AEB003EB9E3 /* questionsBackground-736h@3x.png */,
+				49B90DD71B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png */,
+				49B90DD81B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png */,
+				49B90DD91B2D9AEB003EB9E3 /* TutorialBackgroundPage2-736h@3x.png */,
+				49B90DDA1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-736h@3x.png */,
+				49B90DDB1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-736h@3x.png */,
+				49B90DDC1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-736h@3x.png */,
+			);
+			path = "iPhone-6+";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,8 +374,56 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49B90DFD1B2D9AEB003EB9E3 /* TutorialBackgroundPage2-667h@2x.png in Resources */,
+				49B90DF01B2D9AEB003EB9E3 /* TutorialBackgroundPage1-568h@2x.png in Resources */,
+				49B90DDD1B2D9AEB003EB9E3 /* AboutBackground-480h@2x.png in Resources */,
+				49B90DFC1B2D9AEB003EB9E3 /* TutorialBackgroundPage1-667h@2x.png in Resources */,
+				49B90DFE1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-667h@2x.png in Resources */,
+				49B90DEB1B2D9AEB003EB9E3 /* SocialButton-568h@2x.png in Resources */,
+				49B90E081B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png in Resources */,
+				49B90DE31B2D9AEB003EB9E3 /* SocialBackground-480h@2x.png in Resources */,
+				49B90DF21B2D9AEB003EB9E3 /* TutorialBackgroundPage3-568h@2x.png in Resources */,
+				49B90E091B2D9AEB003EB9E3 /* TutorialBackgroundPage2-736h@3x.png in Resources */,
+				49B90DF51B2D9AEB003EB9E3 /* AboutBackground-667@2x.png in Resources */,
+				49B90E0B1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-736h@3x.png in Resources */,
+				49B90DF71B2D9AEB003EB9E3 /* SocialButton-667h@2x.png in Resources */,
+				49B90DF61B2D9AEB003EB9E3 /* GoodsButton-667h@2x.png in Resources */,
+				49B90DEE1B2D9AEB003EB9E3 /* QuestionsBackground-568h@2x.png in Resources */,
+				49B90E041B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png in Resources */,
+				49B90DE91B2D9AEB003EB9E3 /* AboutBackground-568h@2x.png in Resources */,
+				49B90DE11B2D9AEB003EB9E3 /* LoginBackground-480h@2x.png in Resources */,
+				49B90E0C1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-736h@3x.png in Resources */,
+				49B90DE21B2D9AEB003EB9E3 /* QuestionsBackground-480h@2x.png in Resources */,
+				49B90DF91B2D9AEB003EB9E3 /* LoginBackground-667h@2x.png in Resources */,
+				49B90DF81B2D9AEB003EB9E3 /* GoodsBackground-667h@2x.png in Resources */,
+				49B90DDE1B2D9AEB003EB9E3 /* GoodsButton-480h@2x.png in Resources */,
+				49B90DE41B2D9AEB003EB9E3 /* TutorialBackgroundPage1-480h@2x.png in Resources */,
+				49B90DE51B2D9AEB003EB9E3 /* TutorialBackgroundPage2-480h@2x.png in Resources */,
+				49B90DFF1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-667h@2x.png in Resources */,
+				49B90E071B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png in Resources */,
+				49B90DE61B2D9AEB003EB9E3 /* TutorialBackgroundPage3-480h@2x.png in Resources */,
+				49B90E021B2D9AEB003EB9E3 /* GoodsButton-736h@3x.png in Resources */,
 				495A243D1AFE0CE4003731E9 /* Main.storyboard in Resources */,
+				49B90DF41B2D9AEB003EB9E3 /* TutorialBackgroundPage5-568h@2x.png in Resources */,
+				49B90E001B2D9AEB003EB9E3 /* TutorialBackgroundPage5-667h@2x.png in Resources */,
+				49B90E011B2D9AEB003EB9E3 /* AboutBackground-736h@3x.png in Resources */,
+				49B90E031B2D9AEB003EB9E3 /* SocialButton-736h@3x.png in Resources */,
+				49B90E0A1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-736h@3x.png in Resources */,
+				49B90DF31B2D9AEB003EB9E3 /* TutorialBackgroundPage4-568h@2x.png in Resources */,
+				49B90DEA1B2D9AEB003EB9E3 /* GoodsButton-568h@2x.png in Resources */,
+				49B90E061B2D9AEB003EB9E3 /* questionsBackground-736h@3x.png in Resources */,
+				49B90DF11B2D9AEB003EB9E3 /* TutorialBackgroundPage2-568h@2x.png in Resources */,
+				49B90DEF1B2D9AEB003EB9E3 /* SocialBackground-568h@2x.png in Resources */,
+				49B90DED1B2D9AEB003EB9E3 /* LoginBackground-568h@2x.png in Resources */,
+				49B90DFB1B2D9AEB003EB9E3 /* SocialBackground-667h@2x.png in Resources */,
+				49B90DDF1B2D9AEB003EB9E3 /* SocialButton-480h@2x.png in Resources */,
 				495A243F1AFE0CE4003731E9 /* Images.xcassets in Resources */,
+				49B90DE81B2D9AEB003EB9E3 /* TutorialBackgroundPage5-480h@2x.png in Resources */,
+				49B90DE71B2D9AEB003EB9E3 /* TutorialBackgroundPage4-480h@2x.png in Resources */,
+				49B90DEC1B2D9AEB003EB9E3 /* GoodsBackground-568h@2x.png in Resources */,
+				49B90DE01B2D9AEB003EB9E3 /* GoodsBackground-480h@2x.png in Resources */,
+				49B90E051B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png in Resources */,
+				49B90DFA1B2D9AEB003EB9E3 /* QuestionsBackground-667h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

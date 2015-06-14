@@ -10,6 +10,8 @@ import UIKit
 
 class QuestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let screenSize = Int(UIScreen.mainScreen().bounds.size.height)
+
     var question: Question!
     var category: Category!
     
@@ -24,6 +26,9 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     var subcategoryTableView: UITableView!
     var arrowImageView: UIImageView!
     
+    
+    //MARK: UI methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,10 +43,10 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         var backgroundView: UIImageView!
         switch (question.questiondata.catid) {
             case 0:
-                backgroundView = UIImageView(image: UIImage(named: "SocialBackground"))
+                backgroundView = UIImageView(image: UIImage(named: "SocialBackground-\(screenSize)h"))
                 break
             case 1:
-                backgroundView = UIImageView(image: UIImage(named: "GoodsBackground"))
+                backgroundView = UIImageView(image: UIImage(named: "GoodsBackground-\(screenSize)h"))
                 break
             default:
                 break

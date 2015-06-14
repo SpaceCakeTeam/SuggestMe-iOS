@@ -10,7 +10,12 @@ import UIKit
 
 class AboutViewController: UIViewController {
     
+    let screenSize = Int(UIScreen.mainScreen().bounds.size.height)
+
     var loginButton: UIBarButtonItem!
+
+    
+    //MARK: UI methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +25,9 @@ class AboutViewController: UIViewController {
 
         loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
-        var backgroundView = UIImageView(image: UIImage(named: "AboutBackground"))
-        backgroundView.frame = self.view.frame
-        self.view.addSubview(backgroundView)
+        var backgroundView = UIImageView(image: UIImage(named: "AboutBackground-\(screenSize)h"))
+        //backgroundView.frame = self.view.frame
+        self.view.addSubview(backgroundView)        
     }
     
     override func viewWillAppear(animated: Bool) {

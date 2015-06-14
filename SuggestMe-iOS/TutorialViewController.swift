@@ -10,6 +10,8 @@ import UIKit
 
 class TutorialViewController: UIViewController, UIScrollViewDelegate {
     
+    let screenSize = Int(UIScreen.mainScreen().bounds.size.height)
+    
     var isUserSetted = false
     
     var scrollView: UIScrollView!
@@ -18,12 +20,6 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     var tutorialViews: [UIImageView]!
     var currentFrame: CGRect = CGRectMake(0, 0, 0, 0)
 
-    var firstTutorialView = UIImageView(image: UIImage(named: "TutorialBackgroundPage1"))
-    var secondTutorialView = UIImageView(image: UIImage(named: "TutorialBackgroundPage2"))
-    var thirdTutorialView = UIImageView(image: UIImage(named: "TutorialBackgroundPage3"))
-    var fourthTutorialView = UIImageView(image: UIImage(named: "TutorialBackgroundPage4"))
-    var fiveTutorialView = UIImageView(image: UIImage(named: "TutorialBackgroundPage5"))
-    
     var loginFacebookButton: UIButton!
     var loginTwitterButton: UIButton!
     var loginAnonButton: UIButton!
@@ -33,13 +29,15 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         
         //MARK: Setting user
         
         isUserSetted = Utility.sharedInstance.setUser()
 
         if !isUserSetted {
+            UIApplication.sharedApplication().statusBarStyle = .LightContent
+
             scrollView = UIScrollView(frame: self.view.frame)
             scrollView.delegate = self
             scrollView.pagingEnabled = true
@@ -49,7 +47,8 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
             pageControl.numberOfPages = 5
             pageControl.addTarget(self, action: Selector("changePage:"), forControlEvents: UIControlEvents.ValueChanged)
         
-            tutorialViews = [firstTutorialView, secondTutorialView, thirdTutorialView, fourthTutorialView, fiveTutorialView]
+            tutorialViews = [UIImageView(image: UIImage(named: "TutorialBackgroundPage1-\(screenSize)h")), UIImageView(image: UIImage(named: "TutorialBackgroundPage2-\(screenSize)h")), UIImageView(image: UIImage(named: "TutorialBackgroundPage3-\(screenSize)h")), UIImageView(image: UIImage(named: "TutorialBackgroundPage4-\(screenSize)h")), UIImageView(image: UIImage(named: "TutorialBackgroundPage5-\(screenSize)h"))]
+            
             for index in 0..<tutorialViews.count {
                 currentFrame.origin.x = scrollView.frame.width * CGFloat(index)
                 currentFrame.size = scrollView.frame.size
@@ -59,23 +58,25 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
                 scrollView.addSubview(currentView)
 
                 if index == tutorialViews.count-1 {
-                    var loginFacebookImageView = UIImageView(image: UIImage(named: "LoginFacebookButton"))
-                    loginFacebookButton = UIButton(frame: CGRect(x: currentFrame.origin.x + (self.view.frame.width/2-loginFacebookImageView.frame.width/2), y: self.view.frame.height/2-loginFacebookImageView.frame.height/2-3, width: loginFacebookImageView.frame.width, height: loginFacebookImageView.frame.height))
-                    loginFacebookButton.setImage(UIImage(named: "LoginFacebookButton"), forState: UIControlState.Normal)
+                    var loginFacebookImage = UIImage(named: "LoginFacebookButton")
+                    var loginFacebookImageView = UIImageView(image: loginFacebookImage)
+                    loginFacebookButton = UIButton(frame: CGRect(x: currentFrame.origin.x + (self.view.frame.width/2 - loginFacebookImageView.frame.width/2), y: self.view.frame.height/2 - loginFacebookImageView.frame.height/2-2, width: loginFacebookImageView.frame.width, height: loginFacebookImageView.frame.height))
+                    loginFacebookButton.setImage(loginFacebookImage, forState: UIControlState.Normal)
                     loginFacebookButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
-                    
-                    var loginTwitterImageView = UIImageView(image: UIImage(named: "LoginTwitterButton"))
-                    loginTwitterButton = UIButton(frame: CGRect(x: currentFrame.origin.x + (self.view.frame.width/2-loginTwitterImageView.frame.width/2), y: self.view.frame.height/2-loginTwitterImageView.frame.height/2+3, width: loginTwitterImageView.frame.width, height: loginTwitterImageView.frame.height))
-                    loginTwitterButton.setImage(UIImage(named: "LoginTwitterButton"), forState: UIControlState.Normal)
-                    loginTwitterButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
-                    
-                    var loginNotNowImageView = UIImageView(image: UIImage(named: "LoginNotNowButton"))
-                    loginAnonButton = UIButton(frame: CGRect(x: currentFrame.origin.x + (self.view.frame.width/2-loginNotNowImageView.frame.width/2), y: self.view.frame.height-self.view.frame.height/4-loginNotNowImageView.frame.height/2, width: loginNotNowImageView.frame.width, height: loginNotNowImageView.frame.height))
-                    loginAnonButton.setImage(UIImage(named: "LoginNotNowButton"), forState: UIControlState.Normal)
-                    loginAnonButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
-                
                     scrollView.addSubview(loginFacebookButton)
+                    
+                    var loginTwitterImage = UIImage(named: "LoginTwitterButton")
+                    var loginTwitterImageView = UIImageView(image: loginTwitterImage)
+                    loginTwitterButton = UIButton(frame: CGRect(x: currentFrame.origin.x + (self.view.frame.width/2 - loginTwitterImageView.frame.width/2), y: self.view.frame.height/2 - loginTwitterImageView.frame.height/2+2, width: loginTwitterImageView.frame.width, height: loginTwitterImageView.frame.height))
+                    loginTwitterButton.setImage(loginTwitterImage, forState: UIControlState.Normal)
+                    loginTwitterButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
                     scrollView.addSubview(loginTwitterButton)
+                   
+                    var loginNotNowImage = UIImage(named: "LoginNotNowButton")
+                    var loginNotNowImageView = UIImageView(image: loginNotNowImage)
+                    loginAnonButton = UIButton(frame: CGRect(x: currentFrame.origin.x + (self.view.frame.width/2-loginNotNowImageView.frame.width/2), y: self.view.frame.height-self.view.frame.height/4-loginNotNowImageView.frame.height/2, width: loginNotNowImageView.frame.width, height: loginNotNowImageView.frame.height))
+                    loginAnonButton.setImage(loginNotNowImage, forState: UIControlState.Normal)
+                    loginAnonButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
                     scrollView.addSubview(loginAnonButton)
                 }
             }
@@ -83,8 +84,6 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
             scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * CGFloat(tutorialViews.count), scrollView.frame.size.height)
             self.view.addSubview(scrollView)
             self.view.addSubview(pageControl)
-            
-            UIApplication.sharedApplication().statusBarStyle = .LightContent
         }
     }
     
@@ -95,6 +94,9 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
             self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
         }
     }
+    
+    
+    //MARK: PageControl and UIScrollView methods
     
     func changePage(sender: AnyObject) {
         let x = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
@@ -107,7 +109,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     }
     
     
-    //MARK: Login method
+    //MARK: UIButton Actions
     
     func login(sender: AnyObject) {
         var button = sender as! UIButton
