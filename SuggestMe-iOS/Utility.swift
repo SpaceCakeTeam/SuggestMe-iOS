@@ -20,6 +20,8 @@ class Utility {
     var categories: [Category]!
     var questions = [Question]()
     var currentQuestion: Question?
+    let screenSizeH = Int(UIScreen.mainScreen().bounds.size.height)
+    let screenSizeW = Int(UIScreen.mainScreen().bounds.size.width)
     
     
     //MARK: Shared instance

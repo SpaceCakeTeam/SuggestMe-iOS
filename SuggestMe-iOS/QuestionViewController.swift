@@ -10,8 +10,6 @@ import UIKit
 
 class QuestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let screenSize = Int(UIScreen.mainScreen().bounds.size.height)
-
     var question: Question!
     var category: Category!
     
@@ -43,15 +41,15 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         var backgroundView: UIImageView!
         switch (question.questiondata.catid) {
             case 0:
-                backgroundView = UIImageView(image: UIImage(named: "SocialBackground-\(screenSize)h"))
+                backgroundView = UIImageView(image: UIImage(named: "SocialBackground-\(Utility.sharedInstance.screenSizeH)h"))
                 break
             case 1:
-                backgroundView = UIImageView(image: UIImage(named: "GoodsBackground-\(screenSize)h"))
+                backgroundView = UIImageView(image: UIImage(named: "GoodsBackground-\(Utility.sharedInstance.screenSizeH)h"))
                 break
             default:
                 break
         }
-        backgroundView.frame = self.view.frame
+        backgroundView.frame.size = self.view.frame.size
         self.view.addSubview(backgroundView)
         
         var infoBarView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))

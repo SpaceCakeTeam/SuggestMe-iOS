@@ -10,8 +10,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    let screenSize = Int(UIScreen.mainScreen().bounds.size.height)
-
     var backgroundView: UIImageView!
     
     var loginFacebookButton: UIButton!
@@ -28,20 +26,20 @@ class LoginViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
         
-        backgroundView = UIImageView(image: UIImage(named: "LoginBackground-\(screenSize)h"))
-        backgroundView.frame = self.view.frame
+        backgroundView = UIImageView(image: UIImage(named: "LoginBackground-\(Utility.sharedInstance.screenSizeH)h"))
+        backgroundView.frame.size = self.view.frame.size
         self.view.addSubview(backgroundView)
         
-        var loginFacebookImage = UIImage(named: "LoginFacebookButton")
+        var loginFacebookImage = UIImage(named: "LoginFacebookButton-\(Utility.sharedInstance.screenSizeH)h")
         var loginFacebookImageView = UIImageView(image: loginFacebookImage)
-        loginFacebookButton = UIButton(frame: CGRect(x: self.view.frame.width/2 - loginFacebookImageView.frame.width/2, y: self.view.frame.height/2 - loginFacebookImageView.frame.height/2-2, width: loginFacebookImageView.frame.width, height: loginFacebookImageView.frame.height))
+        loginFacebookButton = UIButton(frame: CGRect(x: backgroundView.frame.width/2 - loginFacebookImageView.frame.width/2, y: backgroundView.frame.height/2 - loginFacebookImageView.frame.height/2-2, width: loginFacebookImageView.frame.width, height: loginFacebookImageView.frame.height))
         loginFacebookButton.setImage(loginFacebookImage, forState: UIControlState.Normal)
         loginFacebookButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(loginFacebookButton)
 
-        var loginTwitterImage = UIImage(named: "LoginTwitterButton")
+        var loginTwitterImage = UIImage(named: "LoginTwitterButton-\(Utility.sharedInstance.screenSizeH)h")
         var loginTwitterImageView = UIImageView(image: loginTwitterImage)
-        loginTwitterButton = UIButton(frame: CGRect(x: self.view.frame.width/2 - loginTwitterImageView.frame.width/2, y: self.view.frame.height/2 - loginTwitterImageView.frame.height/2+2, width: loginTwitterImageView.frame.width, height: loginTwitterImageView.frame.height))
+        loginTwitterButton = UIButton(frame: CGRect(x: backgroundView.frame.width/2 - loginTwitterImageView.frame.width/2, y: backgroundView.frame.height/2 - loginTwitterImageView.frame.height/2+2, width: loginTwitterImageView.frame.width, height: loginTwitterImageView.frame.height))
         loginTwitterButton.setImage(loginTwitterImage, forState: UIControlState.Normal)
         loginTwitterButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(loginTwitterButton)
