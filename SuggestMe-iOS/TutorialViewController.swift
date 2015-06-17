@@ -43,7 +43,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
             scrollView.pagingEnabled = true
             scrollView.showsHorizontalScrollIndicator = false
         
-            pageControl = UIPageControl(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.height-30, width: self.view.frame.width, height: 30))
+            pageControl = UIPageControl(frame: CGRect(x: 0, y: currentFrame.height-30, width: self.view.frame.width, height: 30))
             pageControl.numberOfPages = 5
             pageControl.addTarget(self, action: Selector("changePage:"), forControlEvents: UIControlEvents.ValueChanged)
             
@@ -71,9 +71,9 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
                     loginTwitterButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
                     scrollView.addSubview(loginTwitterButton)
                    
-                    var loginNotNowImage = UIImage(named: "LoginNotNowButton")
+                    var loginNotNowImage = UIImage(named: "LoginNotNowButton-\(Utility.sharedInstance.screenSizeH)h")
                     var loginNotNowImageView = UIImageView(image: loginNotNowImage)
-                    loginAnonButton = UIButton(frame: CGRect(x: currentFrame.origin.x + (self.view.frame.width/2-loginNotNowImageView.frame.width/2), y: self.view.frame.height-self.view.frame.height/4-loginNotNowImageView.frame.height/2, width: loginNotNowImageView.frame.width, height: loginNotNowImageView.frame.height))
+                    loginAnonButton = UIButton(frame: CGRect(x: currentFrame.origin.x + (currentFrame.width/2-loginNotNowImageView.frame.width/2), y: currentFrame.height-currentFrame.height/4-loginNotNowImageView.frame.height/2, width: loginNotNowImageView.frame.width, height: loginNotNowImageView.frame.height))
                     loginAnonButton.setImage(loginNotNowImage, forState: UIControlState.Normal)
                     loginAnonButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
                     scrollView.addSubview(loginAnonButton)

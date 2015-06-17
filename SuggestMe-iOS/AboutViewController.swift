@@ -24,7 +24,6 @@ class AboutViewController: UIViewController {
         loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
         var backgroundView = UIImageView(image: UIImage(named: "AboutBackground-\(Utility.sharedInstance.screenSizeH)h"))
-        backgroundView.frame.size = self.view.frame.size
         self.view.addSubview(backgroundView)
     }
     

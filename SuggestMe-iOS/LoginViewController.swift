@@ -27,7 +27,9 @@ class LoginViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
         
         backgroundView = UIImageView(image: UIImage(named: "LoginBackground-\(Utility.sharedInstance.screenSizeH)h"))
-        backgroundView.frame.size = self.view.frame.size
+        if Utility.sharedInstance.screenSizeH == 736 {
+            backgroundView.frame.size = self.view.frame.size
+        }
         self.view.addSubview(backgroundView)
         
         var loginFacebookImage = UIImage(named: "LoginFacebookButton-\(Utility.sharedInstance.screenSizeH)h")

@@ -49,7 +49,6 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             default:
                 break
         }
-        backgroundView.frame.size = self.view.frame.size
         self.view.addSubview(backgroundView)
         
         var infoBarView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
@@ -57,17 +56,17 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         infoBarView.alpha = 0.6
         self.view.addSubview(infoBarView)
 
-        var hashtagImageView = UIImageView(image: UIImage(named: "Hashtag"))
+        var hashtagImageView = UIImageView(image: UIImage(named: "Hashtag-\(Utility.sharedInstance.screenSizeH)h"))
         hashtagImageView.frame = CGRect(x: 10, y: 5, width: hashtagImageView.frame.width, height: hashtagImageView.frame.height)
         self.view.addSubview(hashtagImageView)
         
-        var anonButtonImage = UIImage(named: "AnonButton")
+        var anonButtonImage = UIImage(named: "AnonButton-\(Utility.sharedInstance.screenSizeH)h")
         var anonButtonImageView = UIImageView(image: anonButtonImage)
         anonButton = UIButton(frame: CGRect(x: self.view.frame.width - 60, y: 5, width: anonButtonImageView.frame.width, height: anonButtonImageView.frame.height))
         anonButton.setImage(anonButtonImage, forState: UIControlState.Normal)
         anonButton.addTarget(self, action: Selector("setVisibilityQuestion:"), forControlEvents: UIControlEvents.TouchUpInside)
 
-        var registeredButtonImage = UIImage(named: "RegisteredButton")
+        var registeredButtonImage = UIImage(named: "RegisteredButton-\(Utility.sharedInstance.screenSizeH)h")
         var registeredButtonImageView = UIImageView(image: registeredButtonImage)
         registeredButton = UIButton(frame: CGRect(x: self.view.frame.width - 60, y: 5, width: registeredButtonImageView.frame.width, height: registeredButtonImageView.frame.height))
         registeredButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
