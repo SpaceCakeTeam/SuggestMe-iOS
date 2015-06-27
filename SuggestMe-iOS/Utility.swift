@@ -22,10 +22,9 @@ class Utility {
     var currentQuestion: Question?
     let screenSizeH = Int(UIScreen.mainScreen().bounds.size.height)
     let screenSizeW = Int(UIScreen.mainScreen().bounds.size.width)
-    
+    let screenSizeHWithoutS = Int(UIScreen.mainScreen().bounds.size.height)-Int(UIApplication.sharedApplication().statusBarFrame.height)
     
     //MARK: Shared instance
-    
     class var sharedInstance: Utility {
         struct Static {
             static var instance: Utility?
@@ -37,9 +36,7 @@ class Utility {
         return Static.instance!
     }
     
-    
     //MARK: Check internet connection
-    
     func isConnectedToNetwork() -> Bool {
         var status = false
         let request = NSMutableURLRequest(URL: NSURL(string: "http://google.com/")!)
@@ -58,9 +55,7 @@ class Utility {
         return status
     }
     
-    
     //MARK: Social methods
-    
     func getFacebookAccount() {
         var accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
         var permissionsDict = ["451805654875339": ACFacebookAppIdKey, "email": ACFacebookPermissionsKey]
@@ -111,17 +106,21 @@ class Utility {
     
     
     //MARK: Activity indicator!
-    
     func setActivityIndicator(frame: CGRect) -> UIView {
-        activityIndicatorView = UIView(frame: CGRect(x: frame.width/2-frame.width/8, y: frame.height/2-frame.width/8, width: frame.width/4, height: frame.width/4))
-        activityIndicatorView.layer.cornerRadius = 15
-        activityIndicatorView.backgroundColor = UIColor.whiteColor()
+        activityIndicatorView = UIView(frame: CGRect(x: 0, y: 0, width: screenSizeW, height: screenSizeH))
+        activityIndicatorView.backgroundColor = UIColor.clearColor()
        
-        var activityIndicator = UIActivityIndicatorView(frame: CGRect(x: activityIndicatorView.frame.width/2-activityIndicatorView.frame.width/4, y: activityIndicatorView.frame.height/2-activityIndicatorView.frame.height/4, width: activityIndicatorView.frame.width/2, height: activityIndicatorView.frame.height/2))
+        var activityIndicatorSubView = UIView(frame: CGRect(x: frame.width/2-frame.width/8, y: frame.height/2-frame.width/8, width: frame.width/4, height: frame.width/4))
+        activityIndicatorSubView.layer.cornerRadius = 15
+        activityIndicatorSubView.backgroundColor = UIColor.whiteColor()
+
+        var activityIndicator = UIActivityIndicatorView(frame: CGRect(x: activityIndicatorSubView.frame.width/2-activityIndicatorSubView.frame.width/4, y: activityIndicatorSubView.frame.height/2-activityIndicatorSubView.frame.height/4, width: activityIndicatorSubView.frame.width/2, height: activityIndicatorSubView.frame.height/2))
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.color = UIColor.blackColor()
         activityIndicator.startAnimating()
-        activityIndicatorView.addSubview(activityIndicator)
+        
+        activityIndicatorSubView.addSubview(activityIndicator)
+        activityIndicatorView.addSubview(activityIndicatorSubView)
 
         return activityIndicatorView
     }

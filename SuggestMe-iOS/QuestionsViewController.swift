@@ -22,6 +22,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
+        self.tabBarController?.tabBar.backgroundColor = UIColor.whiteColor()
         self.tabBarController?.delegate = self
 
         loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))

@@ -15,9 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var storyboard: UIStoryboard!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
         storyboard = UIStoryboard(name: "Main", bundle: nil)
-                
         return true
     }
 }
