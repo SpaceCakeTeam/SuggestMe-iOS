@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class QuestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     var question: Question!
     var category: Category!
@@ -19,10 +19,10 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     var anonButtonImage = UIImage(named: "AnonButton")
     var registeredButtonImage = UIImage(named: "RegisteredButton")
     var subcategoryButton: UIButton!
-    
-    var questionText: UITextField!
-    
     var subcategoryTableView: UITableView!
+
+    var textFieldView: UIView!
+    var questionText: UITextField!
     
     //MARK: UI methods
     override func viewDidLoad() {
@@ -88,29 +88,31 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         subcategoryTableView.hidden = true
         self.view.addSubview(subcategoryTableView)
         
-        var textFieldView = UIView(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50))
+        textFieldView = UIView(frame: CGRect(x: 0, y: backgroundView.frame.height-45, width: backgroundView.frame.width, height: 45))
         textFieldView.backgroundColor = UIColor.whiteColor()
-        textFieldView.clipsToBounds = true
-        var bottomBorder = CALayer()
-        bottomBorder.borderWidth = 0.5
-        bottomBorder.backgroundColor = UIColor.blackColor().CGColor
-        bottomBorder.frame = CGRectMake(0, textFieldView.frame.height - bottomBorder.borderWidth, textFieldView.frame.width, bottomBorder.borderWidth);
-        textFieldView.layer.addSublayer(bottomBorder)
         self.view.addSubview(textFieldView)
+        var textFieldViewBorder = UIView(frame: CGRect(x: textFieldView.frame.origin.x, y: textFieldView.frame.height-1, width: textFieldView.frame.width, height: 1))
+        textFieldViewBorder.backgroundColor = UIColor.lightGrayColor()
+        textFieldView.addSubview(textFieldViewBorder)
         
-        var sendButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: 0, width: 80, height: textFieldView.frame.height))
+        var sendButton = UIButton(frame: CGRect(x: textFieldView.frame.width - 80, y: 0, width: 80, height: textFieldView.frame.height))
         sendButton.setTitle("Invia", forState: UIControlState.Normal)
-        sendButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        sendButton.setTitleColor(UIColor(red: 78.0/255.0, green: 133.0/255.0, blue: 248.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
         sendButton.addTarget(self, action: Selector("askSuggestionRequest:"), forControlEvents: UIControlEvents.TouchUpInside)
         textFieldView.addSubview(sendButton)
 
-        questionText = UITextField(frame: CGRect(x: 10, y: textFieldView.frame.height - 40, width: self.view.frame.width - sendButton.frame.width - 10, height: 30))
-        questionText.layer.borderColor = UIColor.grayColor().CGColor
+        questionText = UITextField(frame: CGRect(x: 5, y: 7.5, width: textFieldView.frame.width-sendButton.frame.width - 5, height: 30))
+        questionText.layer.borderColor = UIColor.lightGrayColor().CGColor
         questionText.layer.borderWidth = 1
         questionText.backgroundColor = UIColor.whiteColor()
-        questionText.text = "  Fai la tua domanda"
-        questionText.layer.cornerRadius = 10
+        questionText.textColor = UIColor.grayColor()
+        questionText.text = "  Chiedi pure..."
+        questionText.layer.cornerRadius = 5
+        questionText.delegate = self
+        //questionText.becomeFirstResponder() //sulla nuova domanda
         textFieldView.addSubview(questionText)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardAppear:"), name: UIKeyboardDidShowNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -188,8 +190,23 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         subcategoryButton.setTitle("\(category.subcategories[indexPath.row].name)  ", forState: UIControlState.Normal)
     }
     
+    //MARK: TextField input
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+    }
+    
     //MARK: Touches methods
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
+    }
+    
+    //MARK: Keyboard Notifications
+    func keyboardAppear(notification: NSNotification) {
+        var userInfo: [NSObject: AnyObject] = notification.userInfo!
+        var duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
+        var keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
+        UIView.animateWithDuration(duration, animations: { () -> Void in
+            self.textFieldView.frame.origin.y = self.textFieldView.frame.origin.y - keyboardSize!.height + self.textFieldView.frame.height
+        })
     }
 }
