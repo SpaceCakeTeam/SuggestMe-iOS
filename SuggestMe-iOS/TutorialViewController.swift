@@ -59,9 +59,8 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
                 scrollView.addSubview(currentView)
 
                 if index == tutorialViews.count-1 {
-                    var loginSocialImage = UIImage(named: "LoginSocialButtons-\(Utility.sharedInstance.screenSizeH)h")
-                    var loginSocialImageView = UIImageView(image: loginSocialImage)
-                    loginSocialImageView.frame = CGRect(x: currentFrame.origin.x + (currentFrame.width/2 - loginSocialImageView.frame.width/2), y: currentFrame.height/2 - loginSocialImageView.frame.height/2, width: loginSocialImageView.frame.width, height: loginSocialImageView.frame.height)
+                    var loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(Utility.sharedInstance.screenSizeH)h"))
+                    loginSocialImageView.frame.origin = CGPointMake(currentFrame.origin.x + (currentFrame.width/2 - loginSocialImageView.frame.width/2), currentFrame.height/2 - loginSocialImageView.frame.height/2)
                     scrollView.addSubview(loginSocialImageView)
                     
                     loginSocialButtons = UIButton(frame: loginSocialImageView.frame)
@@ -70,7 +69,8 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
                    
                     var loginNotNowImage = UIImage(named: "LoginNotNowButton-\(Utility.sharedInstance.screenSizeH)h")
                     var loginNotNowImageView = UIImageView(image: loginNotNowImage)
-                    loginAnonButton = UIButton(frame: CGRect(x: currentFrame.origin.x + (currentFrame.width/2-loginNotNowImageView.frame.width/2), y: currentFrame.height-currentFrame.height/4-loginNotNowImageView.frame.height/2, width: loginNotNowImageView.frame.width, height: loginNotNowImageView.frame.height))
+                    loginAnonButton = UIButton(frame: loginNotNowImageView.frame)
+                    loginAnonButton.frame.origin = CGPointMake(currentFrame.origin.x + (currentFrame.width/2-loginNotNowImageView.frame.width/2), currentFrame.height-currentFrame.height/4-loginNotNowImageView.frame.height/2)
                     loginAnonButton.setImage(loginNotNowImage, forState: UIControlState.Normal)
                     loginAnonButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
                     scrollView.addSubview(loginAnonButton)

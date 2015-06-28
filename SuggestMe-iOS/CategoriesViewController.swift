@@ -25,14 +25,16 @@ class CategoriesViewController: UIViewController {
 
         var socialButtonImage = UIImage(named: "SocialButton-\(Utility.sharedInstance.screenSizeH)h")
         var socialButtonImageView = UIImageView(image: socialButtonImage)
-        socialButton = UIButton(frame: CGRect(x: 0, y: 0, width: socialButtonImageView.frame.width, height: socialButtonImageView.frame.height))
+        socialButton = UIButton(frame: socialButtonImageView.frame)
+        socialButton.frame.origin = CGPointMake(0, 0)
         socialButton.setImage(socialButtonImage, forState: UIControlState.Normal)
         socialButton.addTarget(self, action: Selector("askSuggestion:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(socialButton)
         
         var goodsButtonImage = UIImage(named: "GoodsButton-\(Utility.sharedInstance.screenSizeH)h")
         var goodsButtonImageView = UIImageView(image: goodsButtonImage)
-        goodsButton = UIButton(frame: CGRect(x: 0, y: socialButtonImageView.frame.height + 5, width: goodsButtonImageView.frame.width, height: goodsButtonImageView.frame.height))
+        goodsButton = UIButton(frame: goodsButtonImageView.frame)
+        goodsButton.frame.origin = CGPointMake(0, socialButtonImageView.frame.height + 5)
         goodsButton.setImage(goodsButtonImage, forState: UIControlState.Normal)
         goodsButton.addTarget(self, action: Selector("askSuggestion:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(goodsButton)

@@ -27,9 +27,8 @@ class LoginViewController: UIViewController {
         backgroundView.frame = CGRect(x: 0, y: 0, width: Utility.sharedInstance.screenSizeW, height: Utility.sharedInstance.screenSizeHWithoutS-Int(self.navigationController!.navigationBar.frame.height))
         self.view.addSubview(backgroundView)
       
-        var loginSocialImage = UIImage(named: "LoginSocialButtons-\(Utility.sharedInstance.screenSizeH)h")
-        var loginSocialImageView = UIImageView(image: loginSocialImage)
-        loginSocialImageView.frame = CGRect(x: backgroundView.frame.origin.x + (backgroundView.frame.width/2 - loginSocialImageView.frame.width/2), y: backgroundView.frame.height/2 - loginSocialImageView.frame.height/2, width: loginSocialImageView.frame.width, height: loginSocialImageView.frame.height)
+        var loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(Utility.sharedInstance.screenSizeH)h"))
+        loginSocialImageView.frame.origin = CGPointMake(backgroundView.frame.origin.x + (backgroundView.frame.width/2 - loginSocialImageView.frame.width/2), backgroundView.frame.height/2 - loginSocialImageView.frame.height/2)
         self.view.addSubview(loginSocialImageView)
         
         loginSocialButtons = UIButton(frame: loginSocialImageView.frame)

@@ -14,9 +14,10 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     var category: Category!
     
     var loginButton: UIBarButtonItem!
+    
     var visibilityButton: UIButton!
-    var anonButton: UIButton!
-    var registeredButton: UIButton!
+    var anonButtonImage = UIImage(named: "AnonButton")
+    var registeredButtonImage = UIImage(named: "RegisteredButton")
     var subcategoryButton: UIButton!
     
     var questionText: UITextField!
@@ -49,39 +50,28 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         }
         self.view.addSubview(backgroundView)
         
-        var infoBarView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
+        var infoBarView = UIView(frame: CGRect(x: 0, y: 0, width: backgroundView.frame.width, height: 50))
         infoBarView.backgroundColor = UIColor.whiteColor()
         infoBarView.alpha = 0.6
         self.view.addSubview(infoBarView)
 
-        var hashtagImageView = UIImageView(image: UIImage(named: "Hashtag-\(Utility.sharedInstance.screenSizeH)h"))
-        hashtagImageView.frame = CGRect(x: 10, y: 5, width: hashtagImageView.frame.width, height: hashtagImageView.frame.height)
+        var hashtagImageView = UIImageView(image: UIImage(named: "Hashtag"))
+        hashtagImageView.frame.origin = CGPointMake(5, 5)
         self.view.addSubview(hashtagImageView)
         
-        var anonButtonImage = UIImage(named: "AnonButton-\(Utility.sharedInstance.screenSizeH)h")
         var anonButtonImageView = UIImageView(image: anonButtonImage)
-        anonButton = UIButton(frame: CGRect(x: self.view.frame.width - 60, y: 5, width: anonButtonImageView.frame.width, height: anonButtonImageView.frame.height))
-        anonButton.setImage(anonButtonImage, forState: UIControlState.Normal)
-        anonButton.addTarget(self, action: Selector("setVisibilityQuestion:"), forControlEvents: UIControlEvents.TouchUpInside)
-
-        var registeredButtonImage = UIImage(named: "RegisteredButton-\(Utility.sharedInstance.screenSizeH)h")
         var registeredButtonImageView = UIImageView(image: registeredButtonImage)
-        registeredButton = UIButton(frame: CGRect(x: self.view.frame.width - 60, y: 5, width: registeredButtonImageView.frame.width, height: registeredButtonImageView.frame.height))
-        registeredButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
-        registeredButton.addTarget(self, action: Selector("setVisibilityQuestion:"), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        if Utility.sharedInstance.user.anon == true {
-            visibilityButton = anonButton
-        } else {
-            visibilityButton = registeredButton
-        }
+        visibilityButton = UIButton(frame: anonButtonImageView.frame)
+        visibilityButton.frame.origin = CGPointMake(infoBarView.frame.width-anonButtonImageView.frame.width-5, 5)
+        visibilityButton.addTarget(self, action: Selector("setVisibilityQuestion:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(visibilityButton)
         
         var subcategoryButtonImage = UIImage(named: "SubcategoryButton")
         var subcategoryButtonImageView = UIImageView(image: subcategoryButtonImage)
-        subcategoryButton = UIButton(frame: CGRect(x: hashtagImageView.frame.width + 30, y: 10, width: subcategoryButtonImageView.frame.width, height: subcategoryButtonImageView.frame.height))
+        subcategoryButton = UIButton(frame: subcategoryButtonImageView.frame)
+        subcategoryButton.frame.origin = CGPointMake(infoBarView.frame.width/2-subcategoryButtonImageView.frame.width/2, 0)
         subcategoryButton.setBackgroundImage(subcategoryButtonImage, forState: UIControlState.Normal)
-        subcategoryButton.setTitle("Seleziona la sottocategoria", forState: UIControlState.Normal)
+        subcategoryButton.setTitle("Scegli la sottocategoria", forState: UIControlState.Normal)
         subcategoryButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         subcategoryButton.addTarget(self, action: Selector("showSubcategories:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(subcategoryButton)
@@ -129,15 +119,13 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        visibilityButton.removeFromSuperview()
         if Utility.sharedInstance.user.anon == true {
             self.navigationItem.rightBarButtonItem = loginButton
-            visibilityButton = anonButton
+            visibilityButton.setImage(anonButtonImage, forState: UIControlState.Normal)
         } else {
             self.navigationItem.rightBarButtonItem = nil
-            visibilityButton = registeredButton
+            visibilityButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
         }
-        self.view.addSubview(visibilityButton)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -152,16 +140,13 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setVisibilityQuestion(sender: AnyObject) {
-        visibilityButton.removeFromSuperview()
-        if sender as! UIButton == anonButton && Utility.sharedInstance.user.anon == false {
-            visibilityButton = registeredButton
+        if (Utility.sharedInstance.user.anon == false && question.questiondata.anon == true) {
+            visibilityButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
             question.questiondata.anon = false
-        }
-        if sender as! UIButton == registeredButton {
-            visibilityButton = anonButton
+        } else {
+            visibilityButton.setImage(anonButtonImage, forState: UIControlState.Normal)
             question.questiondata.anon = true
         }
-        self.view.addSubview(visibilityButton)
     }
 
     func showSubcategories(sender: AnyObject) {
