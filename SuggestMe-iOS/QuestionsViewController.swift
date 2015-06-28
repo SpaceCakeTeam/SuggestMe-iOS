@@ -14,9 +14,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     
     var suggestsTableView: UITableView!
     
-    
     //MARK: UI methods
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,16 +26,13 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
         var backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground-\(Utility.sharedInstance.screenSizeH)h"))
-        if Utility.sharedInstance.screenSizeH == 736 {
-            backgroundView.frame.size = self.view.frame.size
-        }
         self.view.addSubview(backgroundView)
         
-        suggestsTableView = UITableView(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height))
+        suggestsTableView = UITableView(frame: backgroundView.frame, style: .Grouped)
         suggestsTableView.delegate = self
         suggestsTableView.dataSource = self
         suggestsTableView.backgroundColor = UIColor.clearColor()
-        suggestsTableView.rowHeight = 60
+        suggestsTableView.rowHeight = 50
         suggestsTableView.sectionFooterHeight = 0
         suggestsTableView.sectionHeaderHeight = 0
         suggestsTableView.registerClass(QuestionCell().classForCoder, forCellReuseIdentifier: "questionCellId")
@@ -58,23 +53,18 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         }
     }
     
-    
     //MARK: UIButton Actions
-    
     func login(sender: AnyObject) {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)
     }
     
-    
     //MARK: UITableView Delegates
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Utility.sharedInstance.questions.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = suggestsTableView.dequeueReusableCellWithIdentifier("subcategoryCellId") as! QuestionCell
-        
         var question = Utility.sharedInstance.questions[indexPath.row]
         
         if question.questiondata.catid == 0 {
@@ -96,13 +86,10 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         Utility.sharedInstance.currentQuestion = Utility.sharedInstance.questions[indexPath.row]
-        
         self.performSegueWithIdentifier("pushToQuestionViewController", sender: self)
     }
     
-    
     //MARK: UITabBarController Delegates
-    
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         var selectedNavigationController = viewController as! UINavigationController
         selectedNavigationController.popToRootViewControllerAnimated(false)

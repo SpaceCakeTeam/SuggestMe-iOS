@@ -24,9 +24,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     var subcategoryTableView: UITableView!
     var arrowImageView: UIImageView!
     
-    
     //MARK: UI methods
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -148,9 +146,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         Utility.sharedInstance.currentQuestion = nil
     }
     
-    
     //MARK: UIButton Actions
-    
     func login(sender: AnyObject) {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)
     }
@@ -186,9 +182,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    
     //MARK: UITableView Delegates
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return category.subcategories.count
     }
@@ -208,9 +202,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         subcategoryButton.setTitle(category.subcategories[indexPath.row].name, forState: UIControlState.Normal)
     }
     
-    
     //MARK: Touches methods
-    
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }

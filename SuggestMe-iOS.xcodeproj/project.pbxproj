@@ -65,7 +65,7 @@
 		49B90E031B2D9AEB003EB9E3 /* SocialButton-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD31B2D9AEB003EB9E3 /* SocialButton-736h@3x.png */; };
 		49B90E041B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD41B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png */; };
 		49B90E051B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD51B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png */; };
-		49B90E061B2D9AEB003EB9E3 /* questionsBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD61B2D9AEB003EB9E3 /* questionsBackground-736h@3x.png */; };
+		49B90E061B2D9AEB003EB9E3 /* QuestionsBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD61B2D9AEB003EB9E3 /* QuestionsBackground-736h@3x.png */; };
 		49B90E071B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD71B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png */; };
 		49B90E081B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD81B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png */; };
 		49B90E091B2D9AEB003EB9E3 /* TutorialBackgroundPage2-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD91B2D9AEB003EB9E3 /* TutorialBackgroundPage2-736h@3x.png */; };
@@ -146,7 +146,7 @@
 		49B90DD31B2D9AEB003EB9E3 /* SocialButton-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialButton-736h@3x.png"; sourceTree = "<group>"; };
 		49B90DD41B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsBackground-736h@3x.png"; sourceTree = "<group>"; };
 		49B90DD51B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginBackground-736h@3x.png"; sourceTree = "<group>"; };
-		49B90DD61B2D9AEB003EB9E3 /* questionsBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "questionsBackground-736h@3x.png"; sourceTree = "<group>"; };
+		49B90DD61B2D9AEB003EB9E3 /* QuestionsBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuestionsBackground-736h@3x.png"; sourceTree = "<group>"; };
 		49B90DD71B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialBackground-736h@3x.png"; sourceTree = "<group>"; };
 		49B90DD81B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage1-736h@3x.png"; sourceTree = "<group>"; };
 		49B90DD91B2D9AEB003EB9E3 /* TutorialBackgroundPage2-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage2-736h@3x.png"; sourceTree = "<group>"; };
@@ -330,7 +330,7 @@
 				49B90DD51B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png */,
 				49B9DF091B3EE6B900139F3D /* LoginSocialButtons-736h@3x.png */,
 				49B9DF071B3EE49600139F3D /* LoginNotNowButton-736h@3x.png */,
-				49B90DD61B2D9AEB003EB9E3 /* questionsBackground-736h@3x.png */,
+				49B90DD61B2D9AEB003EB9E3 /* QuestionsBackground-736h@3x.png */,
 				49B90DD71B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png */,
 				49B90DD81B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png */,
 				49B90DD91B2D9AEB003EB9E3 /* TutorialBackgroundPage2-736h@3x.png */,
@@ -439,7 +439,7 @@
 				49B90E0A1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-736h@3x.png in Resources */,
 				49B90DF31B2D9AEB003EB9E3 /* TutorialBackgroundPage4-568h@2x.png in Resources */,
 				49B90DEA1B2D9AEB003EB9E3 /* GoodsButton-568h@2x.png in Resources */,
-				49B90E061B2D9AEB003EB9E3 /* questionsBackground-736h@3x.png in Resources */,
+				49B90E061B2D9AEB003EB9E3 /* QuestionsBackground-736h@3x.png in Resources */,
 				49B90DF11B2D9AEB003EB9E3 /* TutorialBackgroundPage2-568h@2x.png in Resources */,
 				49B90DEF1B2D9AEB003EB9E3 /* SocialBackground-568h@2x.png in Resources */,
 				49B9DF0A1B3EE6B900139F3D /* LoginSocialButtons-736h@3x.png in Resources */,
@@ -540,6 +540,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DStaging";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -577,6 +578,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-DStaging";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

@@ -14,9 +14,7 @@ class CategoriesViewController: UIViewController {
     var socialButton: UIButton!
     var goodsButton: UIButton!
     
-    
     //MARK: UI methods
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,9 +48,7 @@ class CategoriesViewController: UIViewController {
         }
     }
     
-    
     //MARK: UIButton Actions
-    
     func login(sender: AnyObject) {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)
     }
@@ -60,6 +56,7 @@ class CategoriesViewController: UIViewController {
     func askSuggestion(sender: AnyObject) {
         var catid: Int!
         var question: Question!
+        
         if sender as! UIButton == socialButton {
             catid = 0
         } else if sender as! UIButton == goodsButton {

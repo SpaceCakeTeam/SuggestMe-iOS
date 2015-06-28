@@ -12,9 +12,7 @@ class AboutViewController: UIViewController {
     
     var loginButton: UIBarButtonItem!
 
-    
     //MARK: UI methods
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,9 +35,7 @@ class AboutViewController: UIViewController {
         }
     }
     
-    
     //MARK: UIButton Actions
-
     func login(sender: AnyObject) {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)
     }

@@ -14,9 +14,7 @@ class QuestionCell: UITableViewCell {
     var textSuggest: UILabel!
     var status: UIImageView!
     
-    
     //MARK: UI methods
-
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

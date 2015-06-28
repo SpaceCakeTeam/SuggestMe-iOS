@@ -12,9 +12,7 @@ class SubcategoryCell: UITableViewCell {
     
     var textCell: UILabel!
     
-    
     //MARK: UI methods
-
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

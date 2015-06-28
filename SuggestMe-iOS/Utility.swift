@@ -23,7 +23,7 @@ class Utility {
     let screenSizeH = Int(UIScreen.mainScreen().bounds.size.height)
     let screenSizeW = Int(UIScreen.mainScreen().bounds.size.width)
     let screenSizeHWithoutS = Int(UIScreen.mainScreen().bounds.size.height)-Int(UIApplication.sharedApplication().statusBarFrame.height)
-    
+
     //MARK: Shared instance
     class var sharedInstance: Utility {
         struct Static {
@@ -104,8 +104,7 @@ class Utility {
         })
     }
     
-    
-    //MARK: Activity indicator!
+    //MARK: Activity indicator
     func setActivityIndicator(frame: CGRect) -> UIView {
         activityIndicatorView = UIView(frame: CGRect(x: 0, y: 0, width: screenSizeW, height: screenSizeH))
         activityIndicatorView.backgroundColor = UIColor.clearColor()
@@ -125,9 +124,7 @@ class Utility {
         return activityIndicatorView
     }
     
-    
     //MARK: Setting user
-    
     func setUser() -> Bool {
         var userStored: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("user")
         if userStored != nil {
@@ -143,18 +140,14 @@ class Utility {
         }
     }
     
-    
     //MARK: Setting categories
-    
     func setCategories() {
         Utility.sharedInstance.communicationHandler.getCategoriesRequest() { (response) -> () in
             println("Categories Request response: \(response)")
         }
     }
     
-    
     //MARK: Getting suggests
-    
     func getSuggests() {
         var suggestsRequest = [Int]()
         for question in questions {

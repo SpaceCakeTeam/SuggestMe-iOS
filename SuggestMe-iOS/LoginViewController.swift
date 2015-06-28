@@ -12,59 +12,42 @@ class LoginViewController: UIViewController {
     
     var backgroundView: UIImageView!
     
-    var loginFacebookButton: UIButton!
-    var loginTwitterButton: UIButton!
+    var loginSocialButtons: UIButton!
     
-
     //MARK: UI methods
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Indietro", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
         
         backgroundView = UIImageView(image: UIImage(named: "LoginBackground-\(Utility.sharedInstance.screenSizeH)h"))
-        if Utility.sharedInstance.screenSizeH == 736 {
-            backgroundView.frame.size = self.view.frame.size
-        }
+        backgroundView.frame = CGRect(x: 0, y: 0, width: Utility.sharedInstance.screenSizeW, height: Utility.sharedInstance.screenSizeHWithoutS-Int(self.navigationController!.navigationBar.frame.height))
         self.view.addSubview(backgroundView)
+      
+        var loginSocialImage = UIImage(named: "LoginSocialButtons-\(Utility.sharedInstance.screenSizeH)h")
+        var loginSocialImageView = UIImageView(image: loginSocialImage)
+        loginSocialImageView.frame = CGRect(x: backgroundView.frame.origin.x + (backgroundView.frame.width/2 - loginSocialImageView.frame.width/2), y: backgroundView.frame.height/2 - loginSocialImageView.frame.height/2, width: loginSocialImageView.frame.width, height: loginSocialImageView.frame.height)
+        self.view.addSubview(loginSocialImageView)
         
-        var loginFacebookImage = UIImage(named: "LoginFacebookButton-\(Utility.sharedInstance.screenSizeH)h")
-        var loginFacebookImageView = UIImageView(image: loginFacebookImage)
-        loginFacebookButton = UIButton(frame: CGRect(x: backgroundView.frame.width/2 - loginFacebookImageView.frame.width/2, y: backgroundView.frame.height/2 - loginFacebookImageView.frame.height/2-2, width: loginFacebookImageView.frame.width, height: loginFacebookImageView.frame.height))
-        loginFacebookButton.setImage(loginFacebookImage, forState: UIControlState.Normal)
-        loginFacebookButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(loginFacebookButton)
-
-        var loginTwitterImage = UIImage(named: "LoginTwitterButton-\(Utility.sharedInstance.screenSizeH)h")
-        var loginTwitterImageView = UIImageView(image: loginTwitterImage)
-        loginTwitterButton = UIButton(frame: CGRect(x: backgroundView.frame.width/2 - loginTwitterImageView.frame.width/2, y: backgroundView.frame.height/2 - loginTwitterImageView.frame.height/2+2, width: loginTwitterImageView.frame.width, height: loginTwitterImageView.frame.height))
-        loginTwitterButton.setImage(loginTwitterImage, forState: UIControlState.Normal)
-        loginTwitterButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(loginTwitterButton)
+        loginSocialButtons = UIButton(frame: loginSocialImageView.frame)
+        loginSocialButtons.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(loginSocialButtons)
     }
     
-    
     //MARK: UIButton Actions
-    
     func dismiss(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in })
     }
 
     func login(sender: AnyObject) {
-        var button = sender as! UIButton
-        button.enabled = false
         self.view.addSubview(Utility.sharedInstance.setActivityIndicator(self.view.frame))
         
-        if button == loginFacebookButton {
+        if sender as! UIButton == loginSocialButtons {
             Utility.sharedInstance.user.anon = false
             //Utility.sharedInstance.getFacebookAccount()
-            Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
-        } else if button == loginTwitterButton {
-            Utility.sharedInstance.user.anon = false
             //Utility.sharedInstance.getTwitterAccount()
             Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
         }
@@ -73,15 +56,11 @@ class LoginViewController: UIViewController {
             println("Registration Request response: \(response)")
             if response {
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in })
-            } else {
-                button.enabled = true
             }
         }
     }
     
-    
     //MARK: Touches methods
-    
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         //get position of touch
     }
