@@ -23,7 +23,6 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     var questionText: UITextField!
     
     var subcategoryTableView: UITableView!
-    var arrowImageView: UIImageView!
     
     //MARK: UI methods
     override func viewDidLoad() {
@@ -52,7 +51,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         
         var infoBarView = UIView(frame: CGRect(x: 0, y: 0, width: backgroundView.frame.width, height: 50))
         infoBarView.backgroundColor = UIColor.whiteColor()
-        infoBarView.alpha = 0.6
+        infoBarView.alpha = 0.7
         self.view.addSubview(infoBarView)
 
         var hashtagImageView = UIImageView(image: UIImage(named: "Hashtag"))
@@ -71,25 +70,23 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         subcategoryButton = UIButton(frame: subcategoryButtonImageView.frame)
         subcategoryButton.frame.origin = CGPointMake(infoBarView.frame.width/2-subcategoryButtonImageView.frame.width/2, 0)
         subcategoryButton.setBackgroundImage(subcategoryButtonImage, forState: UIControlState.Normal)
-        subcategoryButton.setTitle("Scegli la sottocategoria", forState: UIControlState.Normal)
+        subcategoryButton.setTitle("Scegli...  ", forState: UIControlState.Normal)
+        subcategoryButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        subcategoryButton.titleLabel?.minimumScaleFactor = 1
         subcategoryButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         subcategoryButton.addTarget(self, action: Selector("showSubcategories:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(subcategoryButton)
         
-        subcategoryTableView = UITableView(frame: CGRect(x: hashtagImageView.frame.width + 30, y: infoBarView.frame.height, width: self.view.frame.width - (hashtagImageView.frame.width + visibilityButton.frame.width + 60), height: 200))
-        subcategoryTableView.layer.cornerRadius = 10
+        subcategoryTableView = UITableView(frame: CGRect(x: subcategoryButton.frame.origin.x, y: subcategoryButton.frame.height, width: subcategoryButton.frame.width, height: subcategoryButton.frame.height*CGFloat(category.subcategories.count)))
         subcategoryTableView.backgroundColor = UIColor.whiteColor()
+        subcategoryTableView.alpha = 0.7
+        subcategoryTableView.separatorColor = UIColor.clearColor()
         subcategoryTableView.delegate = self
         subcategoryTableView.dataSource = self
-        subcategoryTableView.rowHeight = 60
-        subcategoryTableView.sectionFooterHeight = 0
-        subcategoryTableView.sectionHeaderHeight = 0
+        subcategoryTableView.rowHeight = 50
         subcategoryTableView.registerClass(SubcategoryCell().classForCoder, forCellReuseIdentifier: "subcategoryCellId")
-        
-        arrowImageView = UIImageView(image: UIImage(named: "ArrowSubcategory"))
-        arrowImageView.frame = CGRect(x: self.view.frame.width/2 - arrowImageView.frame.width/2, y: infoBarView.frame.height-10, width: arrowImageView.frame.width, height: arrowImageView.frame.height)
-        arrowImageView.hidden = true
-        self.view.addSubview(arrowImageView)
+        subcategoryTableView.hidden = true
+        self.view.addSubview(subcategoryTableView)
         
         var textFieldView = UIView(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50))
         textFieldView.backgroundColor = UIColor.whiteColor()
@@ -121,16 +118,24 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         
         if Utility.sharedInstance.user.anon == true {
             self.navigationItem.rightBarButtonItem = loginButton
-            visibilityButton.setImage(anonButtonImage, forState: UIControlState.Normal)
         } else {
             self.navigationItem.rightBarButtonItem = nil
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if Utility.sharedInstance.user.anon == true {
+            visibilityButton.setImage(anonButtonImage, forState: UIControlState.Normal)
+        } else {
             visibilityButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
         }
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         Utility.sharedInstance.currentQuestion = nil
     }
     
@@ -150,12 +155,10 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func showSubcategories(sender: AnyObject) {
-        if arrowImageView.hidden {
-            arrowImageView.hidden = false
-            self.view.addSubview(subcategoryTableView)
+        if subcategoryTableView.hidden {
+            subcategoryTableView.hidden = false
         } else {
-            subcategoryTableView.removeFromSuperview()
-            arrowImageView.hidden = true
+            subcategoryTableView.hidden = true
         }
     }
     
@@ -174,17 +177,15 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = subcategoryTableView.dequeueReusableCellWithIdentifier("subcategoryCellId") as! SubcategoryCell
-        
-        cell.textCell.text = category.subcategories[indexPath.row].name
-        
+        cell.textCell.text = "\(category.subcategories[indexPath.row].name)  "
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        subcategoryTableView.removeFromSuperview()
-        arrowImageView.hidden = true
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        subcategoryTableView.hidden = true
         question.questiondata.subcatid = category.subcategories[indexPath.row].id
-        subcategoryButton.setTitle(category.subcategories[indexPath.row].name, forState: UIControlState.Normal)
+        subcategoryButton.setTitle("\(category.subcategories[indexPath.row].name)  ", forState: UIControlState.Normal)
     }
     
     //MARK: Touches methods

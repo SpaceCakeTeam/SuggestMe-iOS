@@ -16,8 +16,11 @@ class SubcategoryCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        textCell = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
+        var subcategoryButtonImageView = UIImageView(image: UIImage(named: "SubcategoryButton"))
+        textCell = UILabel(frame: CGRect(x: 5, y: 0, width: subcategoryButtonImageView.frame.width-10, height: subcategoryButtonImageView.frame.height))
         textCell.textAlignment = NSTextAlignment.Center
+        textCell.adjustsFontSizeToFitWidth = true
+        textCell.minimumScaleFactor = 1
         self.addSubview(textCell)
     }
 
