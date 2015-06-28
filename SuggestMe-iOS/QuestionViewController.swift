@@ -8,12 +8,14 @@
 
 import UIKit
 
-class QuestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class QuestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
     var question: Question!
     var category: Category!
     
     var loginButton: UIBarButtonItem!
+    
+    var backgroundView: UIImageView!
     
     var visibilityButton: UIButton!
     var anonButtonImage = UIImage(named: "AnonButton")
@@ -22,7 +24,8 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     var subcategoryTableView: UITableView!
 
     var textFieldView: UIView!
-    var questionText: UITextField!
+    var questionText: UITextView!
+    var keyboardSize: CGSize!
     
     //MARK: UI methods
     override func viewDidLoad() {
@@ -36,7 +39,6 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         question = Utility.sharedInstance.currentQuestion
         category = Utility.sharedInstance.categories[question.questiondata.catid]
 
-        var backgroundView: UIImageView!
         switch (question.questiondata.catid) {
             case 0:
                 backgroundView = UIImageView(image: UIImage(named: "SocialBackground-\(Utility.sharedInstance.screenSizeH)h"))
@@ -62,7 +64,6 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         var registeredButtonImageView = UIImageView(image: registeredButtonImage)
         visibilityButton = UIButton(frame: anonButtonImageView.frame)
         visibilityButton.frame.origin = CGPointMake(infoBarView.frame.width-anonButtonImageView.frame.width-5, 5)
-        visibilityButton.addTarget(self, action: Selector("setVisibilityQuestion:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(visibilityButton)
         
         var subcategoryButtonImage = UIImage(named: "SubcategoryButton")
@@ -70,49 +71,56 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         subcategoryButton = UIButton(frame: subcategoryButtonImageView.frame)
         subcategoryButton.frame.origin = CGPointMake(infoBarView.frame.width/2-subcategoryButtonImageView.frame.width/2, 0)
         subcategoryButton.setBackgroundImage(subcategoryButtonImage, forState: UIControlState.Normal)
-        subcategoryButton.setTitle("Scegli...  ", forState: UIControlState.Normal)
+        subcategoryButton.setTitle(question.questiondata.text, forState: UIControlState.Normal)
         subcategoryButton.titleLabel?.adjustsFontSizeToFitWidth = true
         subcategoryButton.titleLabel?.minimumScaleFactor = 1
         subcategoryButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        subcategoryButton.addTarget(self, action: Selector("showSubcategories:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(subcategoryButton)
         
-        subcategoryTableView = UITableView(frame: CGRect(x: subcategoryButton.frame.origin.x, y: subcategoryButton.frame.height, width: subcategoryButton.frame.width, height: subcategoryButton.frame.height*CGFloat(category.subcategories.count)))
-        subcategoryTableView.backgroundColor = UIColor.whiteColor()
-        subcategoryTableView.alpha = 0.7
-        subcategoryTableView.separatorColor = UIColor.clearColor()
-        subcategoryTableView.delegate = self
-        subcategoryTableView.dataSource = self
-        subcategoryTableView.rowHeight = 50
-        subcategoryTableView.registerClass(SubcategoryCell().classForCoder, forCellReuseIdentifier: "subcategoryCellId")
-        subcategoryTableView.hidden = true
-        self.view.addSubview(subcategoryTableView)
-        
-        textFieldView = UIView(frame: CGRect(x: 0, y: backgroundView.frame.height-45, width: backgroundView.frame.width, height: 45))
-        textFieldView.backgroundColor = UIColor.whiteColor()
-        self.view.addSubview(textFieldView)
-        var textFieldViewBorder = UIView(frame: CGRect(x: textFieldView.frame.origin.x, y: textFieldView.frame.height-1, width: textFieldView.frame.width, height: 1))
-        textFieldViewBorder.backgroundColor = UIColor.lightGrayColor()
-        textFieldView.addSubview(textFieldViewBorder)
-        
-        var sendButton = UIButton(frame: CGRect(x: textFieldView.frame.width - 80, y: 0, width: 80, height: textFieldView.frame.height))
-        sendButton.setTitle("Invia", forState: UIControlState.Normal)
-        sendButton.setTitleColor(UIColor(red: 78.0/255.0, green: 133.0/255.0, blue: 248.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
-        sendButton.addTarget(self, action: Selector("askSuggestionRequest:"), forControlEvents: UIControlEvents.TouchUpInside)
-        textFieldView.addSubview(sendButton)
+        if question.id == -1 {
+            visibilityButton.addTarget(self, action: Selector("setVisibilityQuestion:"), forControlEvents: UIControlEvents.TouchUpInside)
+            
+            subcategoryButton.setTitle("Scegli...  ", forState: UIControlState.Normal)
+            subcategoryButton.addTarget(self, action: Selector("showSubcategories:"), forControlEvents: UIControlEvents.TouchUpInside)
 
-        questionText = UITextField(frame: CGRect(x: 5, y: 7.5, width: textFieldView.frame.width-sendButton.frame.width - 5, height: 30))
-        questionText.layer.borderColor = UIColor.lightGrayColor().CGColor
-        questionText.layer.borderWidth = 1
-        questionText.backgroundColor = UIColor.whiteColor()
-        questionText.textColor = UIColor.grayColor()
-        questionText.text = "  Chiedi pure..."
-        questionText.layer.cornerRadius = 5
-        questionText.delegate = self
-        //questionText.becomeFirstResponder() //sulla nuova domanda
-        textFieldView.addSubview(questionText)
+            subcategoryTableView = UITableView(frame: CGRect(x: subcategoryButton.frame.origin.x, y: subcategoryButton.frame.height, width: subcategoryButton.frame.width, height: subcategoryButton.frame.height*CGFloat(category.subcategories.count)))
+            subcategoryTableView.backgroundColor = UIColor.whiteColor()
+            subcategoryTableView.alpha = 0.7
+            subcategoryTableView.separatorColor = UIColor.clearColor()
+            subcategoryTableView.delegate = self
+            subcategoryTableView.dataSource = self
+            subcategoryTableView.rowHeight = 50
+            subcategoryTableView.registerClass(SubcategoryCell().classForCoder, forCellReuseIdentifier: "subcategoryCellId")
+            subcategoryTableView.hidden = true
+            self.view.addSubview(subcategoryTableView)
+            
+            textFieldView = UIView(frame: CGRect(x: 0, y: backgroundView.frame.height-45, width: backgroundView.frame.width, height: 45))
+            textFieldView.backgroundColor = UIColor.whiteColor()
+            self.view.addSubview(textFieldView)
+            var textFieldViewBorder = UIView(frame: CGRect(x: 0, y: backgroundView.frame.height-1, width: backgroundView.frame.width, height: 1))
+            textFieldViewBorder.backgroundColor = UIColor.lightGrayColor()
+            self.view.addSubview(textFieldViewBorder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardAppear:"), name: UIKeyboardDidShowNotification, object: nil)
+            var sendButton = UIButton(frame: CGRect(x: textFieldView.frame.width - 80, y: 0, width: 80, height: textFieldView.frame.height))
+            sendButton.setTitle("Invia", forState: UIControlState.Normal)
+            sendButton.setTitleColor(UIColor(red: 78.0/255.0, green: 133.0/255.0, blue: 248.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
+            sendButton.addTarget(self, action: Selector("askSuggestionRequest:"), forControlEvents: UIControlEvents.TouchUpInside)
+            textFieldView.addSubview(sendButton)
+
+            questionText = UITextView(frame: CGRect(x: 5, y: 7.5, width: textFieldView.frame.width-sendButton.frame.width - 5, height: 30))
+            questionText.layer.borderColor = UIColor.lightGrayColor().CGColor
+            questionText.layer.borderWidth = 1
+            questionText.backgroundColor = UIColor.whiteColor()
+            questionText.text = "Chiedi pure..."
+            questionText.textColor = UIColor.lightGrayColor()
+            questionText.layer.cornerRadius = 5
+            
+            questionText.delegate = self
+            textFieldView.addSubview(questionText)
+            
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillChangeFrame:"), name: UIKeyboardWillChangeFrameNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardDidChangeFrame:"), name: UIKeyboardDidChangeFrameNotification, object: nil)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -133,12 +141,15 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             visibilityButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
         }
+        
+        if question.id == -1 {
+            questionText.becomeFirstResponder()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-
-        Utility.sharedInstance.currentQuestion = nil
+        questionText.resignFirstResponder()
     }
     
     //MARK: UIButton Actions
@@ -190,23 +201,33 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         subcategoryButton.setTitle("\(category.subcategories[indexPath.row].name)  ", forState: UIControlState.Normal)
     }
     
-    //MARK: TextField input
-    func textFieldDidBeginEditing(textField: UITextField) {
-        
+    //MARK: UITextView Delegates
+    func textViewDidBeginEditing(textView: UITextView) {
+        textView.textColor = UIColor.blackColor()
+        textView.text = ""
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text == "" {
+            textView.textColor = UIColor.lightGrayColor()
+            textView.insertText("Chiedi pure...")
+        }
     }
     
     //MARK: Touches methods
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.view.endEditing(true)
+        questionText.resignFirstResponder()
     }
     
     //MARK: Keyboard Notifications
-    func keyboardAppear(notification: NSNotification) {
+    func keyboardWillChangeFrame(notification: NSNotification) {
         var userInfo: [NSObject: AnyObject] = notification.userInfo!
-        var duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
-        var keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
-        UIView.animateWithDuration(duration, animations: { () -> Void in
-            self.textFieldView.frame.origin.y = self.textFieldView.frame.origin.y - keyboardSize!.height + self.textFieldView.frame.height
+        keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
+    }
+    
+    func keyboardDidChangeFrame(notification: NSNotification) {
+        UIView.animateWithDuration(0, animations: { () -> Void in
+            self.textFieldView.frame.origin.y = self.backgroundView.frame.height - 45 - self.keyboardSize!.height
         })
     }
 }

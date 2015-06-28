@@ -48,6 +48,7 @@ class CategoriesViewController: UIViewController {
         } else {
             self.navigationItem.rightBarButtonItem = nil
         }
+        Utility.sharedInstance.currentQuestion = nil
     }
     
     //MARK: UIButton Actions
