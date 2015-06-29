@@ -148,7 +148,9 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        questionText.resignFirstResponder()
+        if question.id == -1 {
+            questionText.resignFirstResponder()
+        }
     }
     
     //MARK: UIButton Actions
@@ -224,7 +226,9 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     
     //MARK: Touches methods
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        questionText.resignFirstResponder()
+        if question.id == -1 {
+            questionText.resignFirstResponder()
+        }
     }
     
     //MARK: Keyboard Notifications

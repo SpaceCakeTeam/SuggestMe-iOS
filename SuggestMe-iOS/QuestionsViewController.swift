@@ -33,7 +33,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         suggestsTableView.dataSource = self
         suggestsTableView.backgroundColor = UIColor.clearColor()
         suggestsTableView.separatorColor = UIColor.clearColor()
-        suggestsTableView.rowHeight = 50
+        suggestsTableView.rowHeight = 60
         suggestsTableView.registerClass(QuestionCell().classForCoder, forCellReuseIdentifier: "questionCellId")
         self.view.addSubview(suggestsTableView)
 
@@ -71,15 +71,15 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         var question = Utility.sharedInstance.questions[indexPath.row]
         
         if question.questiondata.catid == 1 {
-            cell.category = UIImageView(image: UIImage(named: "QuestionSocialCategory"))
+            cell.category.image = UIImage(named: "QuestionSocialIcon")
         } else if question.questiondata.catid == 2 {
-            cell.category = UIImageView(image: UIImage(named: "QuestionGoodsCategory"))
+            cell.category.image = UIImage(named: "QuestionGoodsIcon")
         }
         
         if question.suggest == nil {
-            cell.status = UIImageView(image: UIImage(named: "QuestionPending"))
+            cell.status.image = UIImage(named: "QuestionPending")
         } else {
-            cell.status = UIImageView(image: UIImage(named: "QuestionChecked"))
+            cell.status.image = UIImage(named: "QuestionChecked")
         }
         
         for category in Utility.sharedInstance.categories {

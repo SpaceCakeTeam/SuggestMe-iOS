@@ -18,15 +18,14 @@ class QuestionCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        category = UIImageView(frame: CGRect(x: 10, y: 10, width: 30, height: 30))
+        category = UIImageView(frame: CGRect(x: 10, y: 10, width: 40, height: 40))
         self.addSubview(category)
         
-        textSuggest = UILabel(frame: CGRect(x: 30, y: 10, width: self.frame.width - 50, height: 30))
+        textSuggest = UILabel(frame: CGRect(x: Int(category.frame.width)+10, y: 0, width: Int(Utility.sharedInstance.screenSizeW) - 120, height: 60))
         textSuggest.textAlignment = NSTextAlignment.Left
-        textSuggest.textColor = UIColor.blackColor()
         self.addSubview(textSuggest)
         
-        status = UIImageView(frame: CGRect(x: self.frame.width - 40, y: 10, width: 30, height: 30))
+        status = UIImageView(frame: CGRect(x: Int(Utility.sharedInstance.screenSizeW) - 50, y: 10, width: 40, height: 40))
         self.addSubview(status)
     }
     
