@@ -131,7 +131,6 @@ class Utility {
             user = NSKeyedUnarchiver.unarchiveObjectWithData(NSUserDefaults.standardUserDefaults().objectForKey("user") as! NSData) as! User
             questions = NSKeyedUnarchiver.unarchiveObjectWithData(NSUserDefaults.standardUserDefaults().objectForKey("questions") as! NSData) as! [Question]
             setCategories()
-            getSuggests()
             return true
         }
         else {
@@ -144,19 +143,6 @@ class Utility {
     func setCategories() {
         Utility.sharedInstance.communicationHandler.getCategoriesRequest() { (response) -> () in
             println("Categories Request response: \(response)")
-        }
-    }
-    
-    //MARK: Getting suggests
-    func getSuggests() {
-        var suggestsRequest = [Int]()
-        for question in questions {
-            if question.suggest == nil {
-                suggestsRequest.append(question.id)
-            }
-        }
-        Utility.sharedInstance.communicationHandler.getSuggestsRequest(suggestsRequest) { (response) -> () in
-            println("Get Suggests Request response: \(response)")
         }
     }
 }

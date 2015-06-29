@@ -61,9 +61,9 @@ class CategoriesViewController: UIViewController {
         var question: Question!
         
         if sender as! UIButton == socialButton {
-            catid = 0
-        } else if sender as! UIButton == goodsButton {
             catid = 1
+        } else if sender as! UIButton == goodsButton {
+            catid = 2
         }
         
         question = Question(id: -1, questiondata: QuestionData(catid: catid, subcatid: -1, text: "", anon: Utility.sharedInstance.user.anon), date: 0, suggest: nil)

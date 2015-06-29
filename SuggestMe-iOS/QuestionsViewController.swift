@@ -28,13 +28,12 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         var backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground-\(Utility.sharedInstance.screenSizeH)h"))
         self.view.addSubview(backgroundView)
         
-        suggestsTableView = UITableView(frame: backgroundView.frame, style: .Grouped)
+        suggestsTableView = UITableView(frame: backgroundView.frame)
         suggestsTableView.delegate = self
         suggestsTableView.dataSource = self
         suggestsTableView.backgroundColor = UIColor.clearColor()
+        suggestsTableView.separatorColor = UIColor.clearColor()
         suggestsTableView.rowHeight = 50
-        suggestsTableView.sectionFooterHeight = 0
-        suggestsTableView.sectionHeaderHeight = 0
         suggestsTableView.registerClass(QuestionCell().classForCoder, forCellReuseIdentifier: "questionCellId")
         self.view.addSubview(suggestsTableView)
 
@@ -53,6 +52,10 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        getSuggests()
+    }
+    
     //MARK: UIButton Actions
     func login(sender: AnyObject) {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)
@@ -64,12 +67,12 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = suggestsTableView.dequeueReusableCellWithIdentifier("subcategoryCellId") as! QuestionCell
+        var cell = suggestsTableView.dequeueReusableCellWithIdentifier("questionCellId") as! QuestionCell
         var question = Utility.sharedInstance.questions[indexPath.row]
         
-        if question.questiondata.catid == 0 {
+        if question.questiondata.catid == 1 {
             cell.category = UIImageView(image: UIImage(named: "QuestionSocialCategory"))
-        } else if question.questiondata.catid == 1 {
+        } else if question.questiondata.catid == 2 {
             cell.category = UIImageView(image: UIImage(named: "QuestionGoodsCategory"))
         }
         
@@ -79,7 +82,16 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
             cell.status = UIImageView(image: UIImage(named: "QuestionChecked"))
         }
         
-        cell.textSuggest.text = Utility.sharedInstance.categories[question.questiondata.catid].subcategories[question.questiondata.subcatid].name
+        for category in Utility.sharedInstance.categories {
+            if category.id == question.questiondata.catid {
+                for subcategory in category.subcategories {
+                    if subcategory.id == question.questiondata.subcatid {
+                        cell.textSuggest.text == subcategory.name
+                        break
+                    }
+                }
+            }
+        }
         
         return cell
     }
@@ -93,6 +105,22 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         var selectedNavigationController = viewController as! UINavigationController
         selectedNavigationController.popToRootViewControllerAnimated(false)
+    }
+    
+    //MARK: Getting suggests
+    func getSuggests() {
+        var suggestsRequest = [Int]()
+        for question in Utility.sharedInstance.questions {
+            if question.suggest == nil {
+                suggestsRequest.append(question.id)
+            }
+        }
+        if suggestsRequest.count > 0 {
+            Utility.sharedInstance.communicationHandler.getSuggestsRequest(suggestsRequest) { (response) -> () in
+                println("Get Suggests Request response: \(response)")
+                self.suggestsTableView.reloadData()
+            }
+        }
     }
 }
 

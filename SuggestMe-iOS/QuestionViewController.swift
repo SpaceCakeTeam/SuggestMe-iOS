@@ -25,7 +25,6 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
 
     var textFieldView: UIView!
     var questionText: UITextView!
-    var keyboardSize: CGSize!
     
     //MARK: UI methods
     override func viewDidLoad() {
@@ -37,13 +36,13 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
         
         question = Utility.sharedInstance.currentQuestion
-        category = Utility.sharedInstance.categories[question.questiondata.catid]
+        category = Utility.sharedInstance.categories[question.questiondata.catid-1]
 
         switch (question.questiondata.catid) {
-            case 0:
+            case 1:
                 backgroundView = UIImageView(image: UIImage(named: "SocialBackground-\(Utility.sharedInstance.screenSizeH)h"))
                 break
-            case 1:
+            case 2:
                 backgroundView = UIImageView(image: UIImage(named: "GoodsBackground-\(Utility.sharedInstance.screenSizeH)h"))
                 break
             default:
@@ -118,8 +117,8 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             questionText.delegate = self
             textFieldView.addSubview(questionText)
             
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillChangeFrame:"), name: UIKeyboardWillChangeFrameNotification, object: nil)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardDidChangeFrame:"), name: UIKeyboardDidChangeFrameNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardChangeFrame:"), name: UIKeyboardWillChangeFrameNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardDisappear:"), name: UIKeyboardWillHideNotification, object: nil)
         }
     }
     
@@ -177,9 +176,16 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     
     func askSuggestionRequest(sender: AnyObject) {
         question.questiondata.text = questionText.text
-        
-        Utility.sharedInstance.communicationHandler.askSuggestionRequest(question.questiondata) { (response) -> () in
-            println("Ask Suggestion Request response: \(response)")
+        if question.questiondata.subcatid != -1 && question.questiondata.text != "" {
+            questionText.resignFirstResponder()
+            self.view.addSubview(Utility.sharedInstance.setActivityIndicator(backgroundView.frame))
+            Utility.sharedInstance.communicationHandler.askSuggestionRequest(question.questiondata) { (response) -> () in
+                if response {
+                    self.navigationController?.popToRootViewControllerAnimated(true)
+                }
+            }
+        } else {
+            UIAlertView(title: "Error", message: "Message for error", delegate: self, cancelButtonTitle: "Close").show()
         }
     }
     
@@ -204,7 +210,9 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: UITextView Delegates
     func textViewDidBeginEditing(textView: UITextView) {
         textView.textColor = UIColor.blackColor()
-        textView.text = ""
+        if textView.text == "Chiedi pure..." {
+            textView.text = ""
+        }
     }
     
     func textViewDidEndEditing(textView: UITextView) {
@@ -220,14 +228,20 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     //MARK: Keyboard Notifications
-    func keyboardWillChangeFrame(notification: NSNotification) {
+    func keyboardChangeFrame(notification: NSNotification) {
         var userInfo: [NSObject: AnyObject] = notification.userInfo!
-        keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
+        var keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size
+        moveTextField(keyboardSize!.height-self.tabBarController!.tabBar.frame.height)
+
     }
     
-    func keyboardDidChangeFrame(notification: NSNotification) {
+    func keyboardDisappear(notification: NSNotification) {
+        moveTextField(0)
+    }
+    
+    func moveTextField(size: CGFloat) {
         UIView.animateWithDuration(0, animations: { () -> Void in
-            self.textFieldView.frame.origin.y = self.backgroundView.frame.height - 45 - self.keyboardSize!.height
+            self.textFieldView.frame.origin.y = self.backgroundView.frame.height - 45 - size
         })
     }
 }
