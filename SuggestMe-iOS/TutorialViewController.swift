@@ -26,6 +26,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
 
         //MARK: Setting user
+		self.view.addSubview(Utility.sharedInstance.setActivityIndicator(CGRect(x: 0, y: 0, width: Utility.sharedInstance.screenSizeW, height: Utility.sharedInstance.screenSizeH)))
         isUserSetted = Utility.sharedInstance.setUser()
 
         if !isUserSetted {
@@ -118,8 +119,10 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
         Utility.sharedInstance.communicationHandler.registrationRequest() { (response) -> () in
             println("Registration Request response: \(response)")
             if response {
-                self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
-            }
+				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+					self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
+				})
+			}
         }
     }
     

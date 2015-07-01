@@ -54,8 +54,10 @@ class LoginViewController: UIViewController {
         Utility.sharedInstance.communicationHandler.registrationRequest() { (response) -> () in
             println("Registration Request response: \(response)")
             if response {
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in })
-            }
+				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+					self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+				})
+			}
         }
     }
     

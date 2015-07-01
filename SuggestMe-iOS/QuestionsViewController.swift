@@ -67,9 +67,9 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = suggestsTableView.dequeueReusableCellWithIdentifier("questionCellId") as! QuestionCell
-        var question = Utility.sharedInstance.questions[indexPath.row]
-        
+		let cell = suggestsTableView.dequeueReusableCellWithIdentifier("questionCellId") as! QuestionCell
+        let question = Utility.sharedInstance.questions[indexPath.row]
+		
         if question.questiondata.catid == 1 {
             cell.category.image = UIImage(named: "QuestionSocialIcon")
         } else if question.questiondata.catid == 2 {
@@ -81,12 +81,12 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         } else {
             cell.status.image = UIImage(named: "QuestionChecked")
         }
-        
+		
         for category in Utility.sharedInstance.categories {
             if category.id == question.questiondata.catid {
                 for subcategory in category.subcategories {
                     if subcategory.id == question.questiondata.subcatid {
-                        cell.textSuggest.text == subcategory.name
+						cell.setSuggestTitle(subcategory.name)
                         break
                     }
                 }
@@ -97,6 +97,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
         Utility.sharedInstance.currentQuestion = Utility.sharedInstance.questions[indexPath.row]
         self.performSegueWithIdentifier("pushToQuestionViewController", sender: self)
     }
@@ -116,9 +117,13 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
             }
         }
         if suggestsRequest.count > 0 {
+			self.view.addSubview(Utility.sharedInstance.setActivityIndicator(self.view.frame))
             Utility.sharedInstance.communicationHandler.getSuggestsRequest(suggestsRequest) { (response) -> () in
                 println("Get Suggests Request response: \(response)")
-                self.suggestsTableView.reloadData()
+				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+					Utility.sharedInstance.activityIndicatorView.removeFromSuperview()
+					self.suggestsTableView.reloadData()
+				})
             }
         }
     }

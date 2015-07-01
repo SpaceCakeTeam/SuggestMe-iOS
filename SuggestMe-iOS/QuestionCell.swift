@@ -20,9 +20,9 @@ class QuestionCell: UITableViewCell {
         
         category = UIImageView(frame: CGRect(x: 10, y: 10, width: 40, height: 40))
         self.addSubview(category)
-        
-        textSuggest = UILabel(frame: CGRect(x: Int(category.frame.width)+10, y: 0, width: Int(Utility.sharedInstance.screenSizeW) - 120, height: 60))
-        textSuggest.textAlignment = NSTextAlignment.Left
+		
+		textSuggest = UILabel(frame: CGRect(x: Int(category.frame.width)+20, y: 0, width: Int(Utility.sharedInstance.screenSizeW) - 140, height: 60))
+		textSuggest.textAlignment = NSTextAlignment.Left
         self.addSubview(textSuggest)
         
         status = UIImageView(frame: CGRect(x: Int(Utility.sharedInstance.screenSizeW) - 50, y: 10, width: 40, height: 40))
@@ -32,4 +32,8 @@ class QuestionCell: UITableViewCell {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+	
+	func setSuggestTitle(text: String!) {
+		textSuggest.text = text
+	}
 }

@@ -70,7 +70,16 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         subcategoryButton = UIButton(frame: subcategoryButtonImageView.frame)
         subcategoryButton.frame.origin = CGPointMake(infoBarView.frame.width/2-subcategoryButtonImageView.frame.width/2, 0)
         subcategoryButton.setBackgroundImage(subcategoryButtonImage, forState: UIControlState.Normal)
-        subcategoryButton.setTitle(question.questiondata.text, forState: UIControlState.Normal)
+		for category in Utility.sharedInstance.categories {
+			if category.id == question.questiondata.catid {
+				for subcategory in category.subcategories {
+					if subcategory.id == question.questiondata.subcatid {
+						subcategoryButton.setTitle(subcategory.name, forState: UIControlState.Normal)
+						break
+					}
+				}
+			}
+		}
         subcategoryButton.titleLabel?.adjustsFontSizeToFitWidth = true
         subcategoryButton.titleLabel?.minimumScaleFactor = 1
         subcategoryButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -183,8 +192,10 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             self.view.addSubview(Utility.sharedInstance.setActivityIndicator(backgroundView.frame))
             Utility.sharedInstance.communicationHandler.askSuggestionRequest(question.questiondata) { (response) -> () in
                 if response {
-                    self.navigationController?.popToRootViewControllerAnimated(true)
-                }
+					dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+						self.navigationController?.popToRootViewControllerAnimated(true)
+					})
+				}
             }
         } else {
             UIAlertView(title: "Error", message: "Message for error", delegate: self, cancelButtonTitle: "Close").show()

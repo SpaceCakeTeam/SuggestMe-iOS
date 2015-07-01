@@ -143,6 +143,9 @@ class Utility {
     func setCategories() {
         Utility.sharedInstance.communicationHandler.getCategoriesRequest() { (response) -> () in
             println("Categories Request response: \(response)")
+			dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+				self.activityIndicatorView.removeFromSuperview()
+			})
         }
     }
 }
