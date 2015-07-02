@@ -24,7 +24,6 @@ class LoginViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Indietro", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
         
         backgroundView = UIImageView(image: UIImage(named: "LoginBackground-\(Utility.sharedInstance.screenSizeH)h"))
-        backgroundView.frame = CGRect(x: 0, y: 0, width: Utility.sharedInstance.screenSizeW, height: Utility.sharedInstance.screenSizeHWithoutS-Int(self.navigationController!.navigationBar.frame.height))
         self.view.addSubview(backgroundView)
       
         var loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(Utility.sharedInstance.screenSizeH)h"))

@@ -129,8 +129,11 @@ class Utility {
         var userStored: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("user")
         if userStored != nil {
             user = NSKeyedUnarchiver.unarchiveObjectWithData(NSUserDefaults.standardUserDefaults().objectForKey("user") as! NSData) as! User
-            questions = NSKeyedUnarchiver.unarchiveObjectWithData(NSUserDefaults.standardUserDefaults().objectForKey("questions") as! NSData) as! [Question]
-            setCategories()
+			var questionsStored: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("questions")
+			if questionsStored != nil {
+				questions = NSKeyedUnarchiver.unarchiveObjectWithData(NSUserDefaults.standardUserDefaults().objectForKey("questions") as! NSData) as! [Question]
+			}
+			setCategories()
             return true
         }
         else {

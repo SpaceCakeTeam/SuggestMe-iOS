@@ -128,7 +128,19 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardChangeFrame:"), name: UIKeyboardWillChangeFrameNotification, object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardDisappear:"), name: UIKeyboardWillHideNotification, object: nil)
-        }
+		} else {
+			var requestText = UIImageView(image: UIImage(named: "RequestSuggestion"))
+			requestText.frame.origin = CGPointMake(10, infoBarView.frame.height+10)
+			backgroundView.addSubview(requestText)
+			//inserire testo
+		
+			if question.suggest != nil {
+				var responseText = UIImageView(image: UIImage(named: "ResponseSuggestion"))
+				responseText.frame.origin = CGPointMake(10, infoBarView.frame.height+10+requestText.frame.height+10)
+				backgroundView.addSubview(responseText)
+				//inserire testo
+			}
+		}
     }
     
     override func viewWillAppear(animated: Bool) {
