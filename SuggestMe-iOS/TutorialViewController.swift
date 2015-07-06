@@ -9,12 +9,12 @@
 import UIKit
 
 class TutorialViewController: UIViewController, UIScrollViewDelegate {
-    
+	
+	var helpers = Helpers.shared
     var isUserSetted = false
     
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
-    
     var tutorialViews: [UIImageView]!
     var currentFrame: CGRect!
 
@@ -25,28 +25,27 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //MARK: Setting user
-		self.view.addSubview(Utility.sharedInstance.setActivityIndicator(CGRect(x: 0, y: 0, width: Utility.sharedInstance.screenSizeW, height: Utility.sharedInstance.screenSizeH)))
-        isUserSetted = Utility.sharedInstance.setUser()
+		helpers.currentView = self.view         //CHECK
+        isUserSetted = helpers.setDataUser()
 
         if !isUserSetted {
             UIApplication.sharedApplication().statusBarStyle = .LightContent
             self.view.backgroundColor = UIColor.blackColor()
 
-            var background1 = UIImageView(image: UIImage(named: "TutorialBackgroundPage1-\(Utility.sharedInstance.screenSizeH)h"))
-            var background2 = UIImageView(image: UIImage(named: "TutorialBackgroundPage2-\(Utility.sharedInstance.screenSizeH)h"))
-            var background3 = UIImageView(image: UIImage(named: "TutorialBackgroundPage3-\(Utility.sharedInstance.screenSizeH)h"))
-            var background4 = UIImageView(image: UIImage(named: "TutorialBackgroundPage4-\(Utility.sharedInstance.screenSizeH)h"))
-            var background5 = UIImageView(image: UIImage(named: "TutorialBackgroundPage5-\(Utility.sharedInstance.screenSizeH)h"))
+            var background1 = UIImageView(image: UIImage(named: "TutorialBackgroundPage1-\(helpers.screenHeight)h"))
+            var background2 = UIImageView(image: UIImage(named: "TutorialBackgroundPage2-\(helpers.screenHeight)h"))
+            var background3 = UIImageView(image: UIImage(named: "TutorialBackgroundPage3-\(helpers.screenHeight)h"))
+            var background4 = UIImageView(image: UIImage(named: "TutorialBackgroundPage4-\(helpers.screenHeight)h"))
+            var background5 = UIImageView(image: UIImage(named: "TutorialBackgroundPage5-\(helpers.screenHeight)h"))
             
-            currentFrame = CGRect(x: 0, y: Utility.sharedInstance.screenSizeHWithoutS/2-Int(background1.frame.height/2), width: Utility.sharedInstance.screenSizeW, height: Int(background1.frame.height))
+            currentFrame = CGRect(x: 0, y: helpers.screenHeightNoStatus/2-Int(background1.frame.height/2), width: helpers.screenWidth, height: Int(background1.frame.height))
             
-            scrollView = UIScrollView(frame: CGRect(x: 0, y: Utility.sharedInstance.screenSizeH-Utility.sharedInstance.screenSizeHWithoutS, width: Utility.sharedInstance.screenSizeW, height: Utility.sharedInstance.screenSizeHWithoutS))
+            scrollView = UIScrollView(frame: CGRect(x: 0, y: helpers.screenHeight-helpers.screenHeightNoStatus, width: helpers.screenWidth, height: helpers.screenHeightNoStatus))
             scrollView.delegate = self
             scrollView.pagingEnabled = true
             scrollView.showsHorizontalScrollIndicator = false
         
-            pageControl = UIPageControl(frame: CGRect(x: 0, y: Int(Utility.sharedInstance.screenSizeHWithoutS), width: Int(self.view.frame.width), height: Int(UIApplication.sharedApplication().statusBarFrame.height)))
+            pageControl = UIPageControl(frame: CGRect(x: 0, y: helpers.screenHeightNoStatus, width: helpers.screenWidth, height: Int(UIApplication.sharedApplication().statusBarFrame.height)))
             pageControl.numberOfPages = 5
             pageControl.addTarget(self, action: Selector("changePage:"), forControlEvents: UIControlEvents.ValueChanged)
             
@@ -60,7 +59,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
                 scrollView.addSubview(currentView)
 
                 if index == tutorialViews.count-1 {
-                    var loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(Utility.sharedInstance.screenSizeH)h"))
+                    var loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(helpers.screenHeight)h"))
                     loginSocialImageView.frame.origin = CGPointMake(currentFrame.origin.x + (currentFrame.width/2 - loginSocialImageView.frame.width/2), currentFrame.height/2 - loginSocialImageView.frame.height/2)
                     scrollView.addSubview(loginSocialImageView)
                     
@@ -68,7 +67,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
                     loginSocialButtons.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
                     scrollView.addSubview(loginSocialButtons)
                    
-                    var loginNotNowImage = UIImage(named: "LoginNotNowButton-\(Utility.sharedInstance.screenSizeH)h")
+                    var loginNotNowImage = UIImage(named: "LoginNotNowButton-\(helpers.screenHeight)h")
                     var loginNotNowImageView = UIImageView(image: loginNotNowImage)
                     loginAnonButton = UIButton(frame: loginNotNowImageView.frame)
                     loginAnonButton.frame.origin = CGPointMake(currentFrame.origin.x + (currentFrame.width/2-loginNotNowImageView.frame.width/2), currentFrame.height-currentFrame.height/4-loginNotNowImageView.frame.height/2)
@@ -88,7 +87,6 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidAppear(animated)
         
         if isUserSetted {
-            println("USER:\(Utility.sharedInstance.user.id)") 
             self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
         }
     }
@@ -106,20 +104,18 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK: UIButton Actions
     func login(sender: AnyObject) {
-        self.view.addSubview(Utility.sharedInstance.setActivityIndicator(self.view.frame))
-        if sender as! UIButton == loginSocialButtons {
-            Utility.sharedInstance.user.anon = false
-            //Utility.sharedInstance.getFacebookAccount()
-            //Utility.sharedInstance.getTwitterAccount()
-            Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
+		if sender as! UIButton == loginSocialButtons {
+            helpers.user.anon = false
+			//helpers.getFacebookAccount() select with frame of touch //TODO
+			//helpers.getTwitterAccount() select with frame of touch //TODO
+			helpers.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com") //TODO
         } else if sender as! UIButton == loginAnonButton {
-            Utility.sharedInstance.user.anon = true
+            helpers.user.anon = true
         }
         
-        Utility.sharedInstance.communicationHandler.registrationRequest() { (response) -> () in
-            println("Registration Request response: \(response)")
+        helpers.communicationHandler.registrationRequest() { (response) -> () in
             if response {
-				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+				dispatch_sync(dispatch_get_main_queue(), { () -> Void in //CHECK
 					self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
 				})
 			}
@@ -128,6 +124,6 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK: Touches methods
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        //get position of touch
+		//get position of touch //TODO
     }
 }

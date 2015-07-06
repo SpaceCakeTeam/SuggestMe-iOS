@@ -9,7 +9,8 @@
 import Foundation
 
 class SubCategory: NSObject, NSCoding {
-    var id: Int!
+	
+	var id: Int!
     var name: String!
     
     init(id: Int!, name: String!) {

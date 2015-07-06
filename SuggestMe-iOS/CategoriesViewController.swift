@@ -10,6 +10,8 @@ import UIKit
 
 class CategoriesViewController: UIViewController {
 
+	var helpers = Helpers.shared
+
     var loginButton: UIBarButtonItem!
     var socialButton: UIButton!
     var goodsButton: UIButton!
@@ -17,13 +19,15 @@ class CategoriesViewController: UIViewController {
     //MARK: UI methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		helpers.currentView = self.view         //CHECK
+
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
                 
         loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
-        var socialButtonImage = UIImage(named: "SocialButton-\(Utility.sharedInstance.screenSizeH)h")
+        var socialButtonImage = UIImage(named: "SocialButton-\(helpers.screenHeight)h")
         var socialButtonImageView = UIImageView(image: socialButtonImage)
         socialButton = UIButton(frame: socialButtonImageView.frame)
         socialButton.frame.origin = CGPointMake(0, 0)
@@ -31,7 +35,7 @@ class CategoriesViewController: UIViewController {
         socialButton.addTarget(self, action: Selector("askSuggestion:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(socialButton)
         
-        var goodsButtonImage = UIImage(named: "GoodsButton-\(Utility.sharedInstance.screenSizeH)h")
+        var goodsButtonImage = UIImage(named: "GoodsButton-\(helpers.screenHeight)h")
         var goodsButtonImageView = UIImageView(image: goodsButtonImage)
         goodsButton = UIButton(frame: goodsButtonImageView.frame)
         goodsButton.frame.origin = CGPointMake(0, socialButtonImageView.frame.height + 5)
@@ -43,12 +47,12 @@ class CategoriesViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if Utility.sharedInstance.user.anon == true {
+        if helpers.user.anon == true {
             self.navigationItem.rightBarButtonItem = loginButton
         } else {
             self.navigationItem.rightBarButtonItem = nil
         }
-        Utility.sharedInstance.currentQuestion = nil
+		helpers.currentQuestion = nil //CHECK
     }
     
     //MARK: UIButton Actions
@@ -66,8 +70,8 @@ class CategoriesViewController: UIViewController {
             catid = 2
         }
         
-        question = Question(id: -1, questiondata: QuestionData(catid: catid, subcatid: -1, text: "", anon: Utility.sharedInstance.user.anon), date: 0, suggest: nil)
-        Utility.sharedInstance.currentQuestion = question
+        question = Question(id: -1, questiondata: QuestionData(catid: catid, subcatid: -1, text: "", anon: helpers.user.anon), date: 0, suggest: nil)
+        helpers.currentQuestion = question
         
         self.performSegueWithIdentifier("pushToQuestionViewController", sender: self)
     }

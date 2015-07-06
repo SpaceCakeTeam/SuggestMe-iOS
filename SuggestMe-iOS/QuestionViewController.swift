@@ -9,7 +9,9 @@
 import UIKit
 
 class QuestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
-    
+	
+	var helpers = Helpers.shared
+
     var question: Question!
     var category: Category!
     
@@ -29,21 +31,23 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: UI methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		helpers.currentView = self.view         //CHECK
+
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
                 
         loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
         
-        question = Utility.sharedInstance.currentQuestion
-        category = Utility.sharedInstance.categories[question.questiondata.catid-1]
+        question = helpers.currentQuestion
+        category = helpers.categories[question.questiondata.catid-1]
 
         switch (question.questiondata.catid) {
             case 1:
-                backgroundView = UIImageView(image: UIImage(named: "SocialBackground-\(Utility.sharedInstance.screenSizeH)h"))
+                backgroundView = UIImageView(image: UIImage(named: "SocialBackground-\(helpers.screenHeight)h"))
                 break
             case 2:
-                backgroundView = UIImageView(image: UIImage(named: "GoodsBackground-\(Utility.sharedInstance.screenSizeH)h"))
+                backgroundView = UIImageView(image: UIImage(named: "GoodsBackground-\(helpers.screenHeight)h"))
                 break
             default:
                 break
@@ -70,7 +74,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         subcategoryButton = UIButton(frame: subcategoryButtonImageView.frame)
         subcategoryButton.frame.origin = CGPointMake(infoBarView.frame.width/2-subcategoryButtonImageView.frame.width/2, 0)
         subcategoryButton.setBackgroundImage(subcategoryButtonImage, forState: UIControlState.Normal)
-		for category in Utility.sharedInstance.categories {
+		for category in helpers.categories {
 			if category.id == question.questiondata.catid {
 				for subcategory in category.subcategories {
 					if subcategory.id == question.questiondata.subcatid {
@@ -132,13 +136,13 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
 			var requestText = UIImageView(image: UIImage(named: "RequestSuggestion"))
 			requestText.frame.origin = CGPointMake(10, infoBarView.frame.height+10)
 			backgroundView.addSubview(requestText)
-			//inserire testo
+			//inserire testo //TODO
 		
 			if question.suggest != nil {
 				var responseText = UIImageView(image: UIImage(named: "ResponseSuggestion"))
 				responseText.frame.origin = CGPointMake(10, infoBarView.frame.height+10+requestText.frame.height+10)
 				backgroundView.addSubview(responseText)
-				//inserire testo
+				//inserire testo //TODO
 			}
 		}
     }
@@ -146,7 +150,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if Utility.sharedInstance.user.anon == true {
+        if helpers.user.anon == true {
             self.navigationItem.rightBarButtonItem = loginButton
         } else {
             self.navigationItem.rightBarButtonItem = nil
@@ -156,7 +160,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if Utility.sharedInstance.user.anon == true {
+        if helpers.user.anon == true {
             visibilityButton.setImage(anonButtonImage, forState: UIControlState.Normal)
         } else {
             visibilityButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
@@ -169,7 +173,8 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        if question.id == -1 {
+		
+		if question.id == -1 {
             questionText.resignFirstResponder()
         }
     }
@@ -180,7 +185,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setVisibilityQuestion(sender: AnyObject) {
-        if (Utility.sharedInstance.user.anon == false && question.questiondata.anon == true) {
+        if (helpers.user.anon == false && question.questiondata.anon == true) {
             visibilityButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
             question.questiondata.anon = false
         } else {
@@ -201,16 +206,13 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         question.questiondata.text = questionText.text
         if question.questiondata.subcatid != -1 && question.questiondata.text != "" {
             questionText.resignFirstResponder()
-            self.view.addSubview(Utility.sharedInstance.setActivityIndicator(backgroundView.frame))
-            Utility.sharedInstance.communicationHandler.askSuggestionRequest(question.questiondata) { (response) -> () in
+            helpers.communicationHandler.askSuggestionRequest(question.questiondata) { (response) -> () in
                 if response {
-					dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+					dispatch_sync(dispatch_get_main_queue(), { () -> Void in //CHECK
 						self.navigationController?.popToRootViewControllerAnimated(true)
 					})
 				}
             }
-        } else {
-            UIAlertView(title: "Error", message: "Message for error", delegate: self, cancelButtonTitle: "Close").show()
         }
     }
     

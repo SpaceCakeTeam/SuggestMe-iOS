@@ -9,15 +9,18 @@
 import UIKit
 
 class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UITableViewDataSource, UITableViewDelegate {
-    
-    var loginButton: UIBarButtonItem!
-    
+	
+	var helpers = Helpers.shared
+
+    var loginButton: UIBarButtonItem!    
     var suggestsTableView: UITableView!
     
     //MARK: UI methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		helpers.currentView = self.view         //CHECK
+
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
         self.tabBarController?.tabBar.backgroundColor = UIColor.whiteColor()
@@ -25,7 +28,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
 
         loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
-        var backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground-\(Utility.sharedInstance.screenSizeH)h"))
+        var backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground-\(helpers.screenHeight)h"))
         self.view.addSubview(backgroundView)
         
         suggestsTableView = UITableView(frame: backgroundView.frame)
@@ -45,7 +48,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if Utility.sharedInstance.user.anon == true {
+        if helpers.user.anon == true {
             self.navigationItem.rightBarButtonItem = loginButton
         } else {
             self.navigationItem.rightBarButtonItem = nil
@@ -53,7 +56,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     }
     
     override func viewDidAppear(animated: Bool) {
-        getSuggests()
+		getSuggests() //CHECK
     }
     
     //MARK: UIButton Actions
@@ -63,12 +66,12 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     
     //MARK: UITableView Delegates
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Utility.sharedInstance.questions.count
+        return helpers.questions.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = suggestsTableView.dequeueReusableCellWithIdentifier("questionCellId") as! QuestionCell
-        let question = Utility.sharedInstance.questions[indexPath.row]
+        let question = helpers.questions[indexPath.row]
 		
         if question.questiondata.catid == 1 {
             cell.category.image = UIImage(named: "QuestionSocialIcon")
@@ -82,7 +85,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
             cell.status.image = UIImage(named: "QuestionChecked")
         }
 		
-        for category in Utility.sharedInstance.categories {
+        for category in helpers.categories {
             if category.id == question.questiondata.catid {
                 for subcategory in category.subcategories {
                     if subcategory.id == question.questiondata.subcatid {
@@ -98,7 +101,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        Utility.sharedInstance.currentQuestion = Utility.sharedInstance.questions[indexPath.row]
+        helpers.currentQuestion = helpers.questions[indexPath.row]
         self.performSegueWithIdentifier("pushToQuestionViewController", sender: self)
     }
     
@@ -111,17 +114,14 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     //MARK: Getting suggests
     func getSuggests() {
         var suggestsRequest = [Int]()
-        for question in Utility.sharedInstance.questions {
+        for question in helpers.questions {
             if question.suggest == nil {
                 suggestsRequest.append(question.id)
             }
         }
         if suggestsRequest.count > 0 {
-			self.view.addSubview(Utility.sharedInstance.setActivityIndicator(self.view.frame))
-            Utility.sharedInstance.communicationHandler.getSuggestsRequest(suggestsRequest) { (response) -> () in
-                println("Get Suggests Request response: \(response)")
-				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-					Utility.sharedInstance.activityIndicatorView.removeFromSuperview()
+            helpers.communicationHandler.getSuggestsRequest(suggestsRequest) { (response) -> () in
+				dispatch_sync(dispatch_get_main_queue(), { () -> Void in //CHECK
 					self.suggestsTableView.reloadData()
 				})
             }

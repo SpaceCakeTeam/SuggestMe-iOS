@@ -9,7 +9,8 @@
 import Foundation
 
 class Question: NSObject, NSCoding {
-    var id: Int!
+	
+	var id: Int!
     var questiondata: QuestionData!
     var date: Int!
     var suggest: Suggest?

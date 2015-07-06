@@ -9,7 +9,8 @@
 import Foundation
 
 class User: NSObject, NSCoding {
-    var id: Int!
+	
+	var id: Int!
     var anon: Bool!
     var userdata: UserData!
 

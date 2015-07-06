@@ -9,24 +9,27 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    
+	
+	var helpers = Helpers.shared
+
     var backgroundView: UIImageView!
-    
     var loginSocialButtons: UIButton!
     
     //MARK: UI methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		helpers.currentView = self.view         //CHECK
+
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Indietro", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
         
-        backgroundView = UIImageView(image: UIImage(named: "LoginBackground-\(Utility.sharedInstance.screenSizeH)h"))
+        backgroundView = UIImageView(image: UIImage(named: "LoginBackground-\(helpers.screenHeight)h"))
         self.view.addSubview(backgroundView)
       
-        var loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(Utility.sharedInstance.screenSizeH)h"))
+        var loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(helpers.screenHeight)h"))
         loginSocialImageView.frame.origin = CGPointMake(backgroundView.frame.origin.x + (backgroundView.frame.width/2 - loginSocialImageView.frame.width/2), backgroundView.frame.height/2 - loginSocialImageView.frame.height/2)
         self.view.addSubview(loginSocialImageView)
         
@@ -40,20 +43,17 @@ class LoginViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in })
     }
 
-    func login(sender: AnyObject) {
-        self.view.addSubview(Utility.sharedInstance.setActivityIndicator(self.view.frame))
-        
+    func login(sender: AnyObject) {		
         if sender as! UIButton == loginSocialButtons {
-            Utility.sharedInstance.user.anon = false
-            //Utility.sharedInstance.getFacebookAccount()
-            //Utility.sharedInstance.getTwitterAccount()
-            Utility.sharedInstance.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com")
+            helpers.user.anon = false
+			//helpers.getFacebookAccount() select with frame of touch //TODO
+			//helpers.getTwitterAccount() select with frame of touch //TODO
+			helpers.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com") //TODO
         }
         
-        Utility.sharedInstance.communicationHandler.registrationRequest() { (response) -> () in
-            println("Registration Request response: \(response)")
+        helpers.communicationHandler.registrationRequest() { (response) -> () in
             if response {
-				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+				dispatch_sync(dispatch_get_main_queue(), { () -> Void in //CHECK
 					self.dismissViewControllerAnimated(true, completion: { () -> Void in })
 				})
 			}
@@ -62,6 +62,6 @@ class LoginViewController: UIViewController {
     
     //MARK: Touches methods
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        //get position of touch
+		//get position of touch //TODO
     }
 }

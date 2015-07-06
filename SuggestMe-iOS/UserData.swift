@@ -9,7 +9,8 @@
 import Foundation
 
 class UserData: NSObject, NSCoding {
-    var name: String!
+	
+	var name: String!
     var surname: String!
     var birthdate: Int!
     var gender: Gender!

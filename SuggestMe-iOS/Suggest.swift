@@ -9,7 +9,8 @@
 import Foundation
 
 class Suggest: NSObject, NSCoding {
-    var id: Int!
+	
+	var id: Int!
     var text: String!
     
     init(id: Int!, text: String!) {

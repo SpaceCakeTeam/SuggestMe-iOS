@@ -9,7 +9,8 @@
 import Foundation
 
 class Category: NSObject, NSCoding {
-    var id: Int!
+	
+	var id: Int!
     var name: String!
     var subcategories: [SubCategory!]!
     

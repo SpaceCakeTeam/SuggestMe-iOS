@@ -9,7 +9,8 @@
 import Foundation
 
 class QuestionData: NSObject, NSCoding {
-    var catid: Int!
+	
+	var catid: Int!
     var subcatid: Int!
     var text: String!
     var anon: Bool!
