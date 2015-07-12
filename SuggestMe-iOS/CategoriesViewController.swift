@@ -11,6 +11,8 @@ import UIKit
 class CategoriesViewController: UIViewController {
 
 	var helpers = Helpers.shared
+	var navigationBarHeight: CGFloat!
+	var tabBarHeight: CGFloat!
 
     var loginButton: UIBarButtonItem!
     var socialButton: UIButton!
@@ -20,14 +22,18 @@ class CategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		helpers.currentView = self.view         //CHECK
-
+		navigationBarHeight = self.navigationController!.navigationBar.frame.height
+		tabBarHeight = self.tabBarController!.tabBar.frame.height
+		self.view.frame.size = CGSizeMake(helpers.screenWidth, helpers.screenHeightNoStatus)
+		helpers.currentView = self.view
+		helpers.currentViewFrame = CGRectMake(0, 0, helpers.screenWidth, helpers.screenHeightNoStatus-navigationBarHeight-tabBarHeight)
+		
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
                 
-        loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+        loginButton = UIBarButtonItem(title: helpers.getTextLocalized("Log In"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
-        var socialButtonImage = UIImage(named: "SocialButton-\(helpers.screenHeight)h")
+        var socialButtonImage = UIImage(named: "SocialButton-\(Int(helpers.screenHeight))h")
         var socialButtonImageView = UIImageView(image: socialButtonImage)
         socialButton = UIButton(frame: socialButtonImageView.frame)
         socialButton.frame.origin = CGPointMake(0, 0)
@@ -35,7 +41,7 @@ class CategoriesViewController: UIViewController {
         socialButton.addTarget(self, action: Selector("askSuggestion:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(socialButton)
         
-        var goodsButtonImage = UIImage(named: "GoodsButton-\(helpers.screenHeight)h")
+        var goodsButtonImage = UIImage(named: "GoodsButton-\(Int(helpers.screenHeight))h")
         var goodsButtonImageView = UIImageView(image: goodsButtonImage)
         goodsButton = UIButton(frame: goodsButtonImageView.frame)
         goodsButton.frame.origin = CGPointMake(0, socialButtonImageView.frame.height + 5)
@@ -46,15 +52,17 @@ class CategoriesViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if helpers.user.anon == true {
-            self.navigationItem.rightBarButtonItem = loginButton
-        } else {
-            self.navigationItem.rightBarButtonItem = nil
-        }
-		helpers.currentQuestion = nil //CHECK
+		helpers.user.anon == true ? self.navigationItem.setRightBarButtonItem(loginButton, animated: false) : self.navigationItem.setRightBarButtonItem(nil, animated: false)
     }
-    
+	
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		if helpers.pushToQuestionsView == true {
+			helpers.pushToQuestionsView = false
+			self.tabBarController!.selectedIndex = 0
+		}
+	}
+	
     //MARK: UIButton Actions
     func login(sender: AnyObject) {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)

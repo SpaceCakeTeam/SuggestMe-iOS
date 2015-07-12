@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490CF9601B52A7C700C2AA13 /* AboutBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 490CF95E1B52A7C700C2AA13 /* AboutBackground-736h@3x.png */; };
+		490CF9611B52A7C700C2AA13 /* LoginBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 490CF95F1B52A7C700C2AA13 /* LoginBackground-736h@3x.png */; };
 		490F6F241B2C303E004A7E41 /* SubcategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F6F231B2C303E004A7E41 /* SubcategoryCell.swift */; };
 		491094CF1B0D19C100B07016 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094CE1B0D19C100B07016 /* LoginViewController.swift */; };
 		491094D11B0D1BA300B07016 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094D01B0D1BA300B07016 /* QuestionViewController.swift */; };
@@ -60,11 +62,9 @@
 		49B90DFE1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DCD1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-667h@2x.png */; };
 		49B90DFF1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DCE1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-667h@2x.png */; };
 		49B90E001B2D9AEB003EB9E3 /* TutorialBackgroundPage5-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DCF1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-667h@2x.png */; };
-		49B90E011B2D9AEB003EB9E3 /* AboutBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD11B2D9AEB003EB9E3 /* AboutBackground-736h@3x.png */; };
 		49B90E021B2D9AEB003EB9E3 /* GoodsButton-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD21B2D9AEB003EB9E3 /* GoodsButton-736h@3x.png */; };
 		49B90E031B2D9AEB003EB9E3 /* SocialButton-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD31B2D9AEB003EB9E3 /* SocialButton-736h@3x.png */; };
 		49B90E041B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD41B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png */; };
-		49B90E051B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD51B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png */; };
 		49B90E061B2D9AEB003EB9E3 /* QuestionsBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD61B2D9AEB003EB9E3 /* QuestionsBackground-736h@3x.png */; };
 		49B90E071B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD71B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png */; };
 		49B90E081B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B90DD81B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png */; };
@@ -86,6 +86,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		490CF95E1B52A7C700C2AA13 /* AboutBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AboutBackground-736h@3x.png"; sourceTree = "<group>"; };
+		490CF95F1B52A7C700C2AA13 /* LoginBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginBackground-736h@3x.png"; sourceTree = "<group>"; };
 		490F6F231B2C303E004A7E41 /* SubcategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcategoryCell.swift; sourceTree = "<group>"; };
 		491094CE1B0D19C100B07016 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		491094D01B0D1BA300B07016 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +98,7 @@
 		495A24351AFE0CE4003731E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		495A24391AFE0CE4003731E9 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		495A243C1AFE0CE4003731E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		495A243E1AFE0CE4003731E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		495A243E1AFE0CE4003731E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		495A24591AFE11FD003731E9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		495A245B1AFE271D003731E9 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		495A245D1AFE3CF6003731E9 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -141,11 +143,9 @@
 		49B90DCD1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage3-667h@2x.png"; sourceTree = "<group>"; };
 		49B90DCE1B2D9AEB003EB9E3 /* TutorialBackgroundPage4-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage4-667h@2x.png"; sourceTree = "<group>"; };
 		49B90DCF1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage5-667h@2x.png"; sourceTree = "<group>"; };
-		49B90DD11B2D9AEB003EB9E3 /* AboutBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AboutBackground-736h@3x.png"; sourceTree = "<group>"; };
 		49B90DD21B2D9AEB003EB9E3 /* GoodsButton-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsButton-736h@3x.png"; sourceTree = "<group>"; };
 		49B90DD31B2D9AEB003EB9E3 /* SocialButton-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialButton-736h@3x.png"; sourceTree = "<group>"; };
 		49B90DD41B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoodsBackground-736h@3x.png"; sourceTree = "<group>"; };
-		49B90DD51B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginBackground-736h@3x.png"; sourceTree = "<group>"; };
 		49B90DD61B2D9AEB003EB9E3 /* QuestionsBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QuestionsBackground-736h@3x.png"; sourceTree = "<group>"; };
 		49B90DD71B2D9AEB003EB9E3 /* SocialBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialBackground-736h@3x.png"; sourceTree = "<group>"; };
 		49B90DD81B2D9AEB003EB9E3 /* TutorialBackgroundPage1-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TutorialBackgroundPage1-736h@3x.png"; sourceTree = "<group>"; };
@@ -207,9 +207,7 @@
 				498A39681AFF84D100726542 /* AboutViewController.swift */,
 				495A24581AFE10E9003731E9 /* Controller */,
 				495A24571AFE10E0003731E9 /* Model */,
-				495A243B1AFE0CE4003731E9 /* Main.storyboard */,
-				495A243E1AFE0CE4003731E9 /* Images.xcassets */,
-				49B90DA81B2D9AEB003EB9E3 /* Assets */,
+				49B90DA81B2D9AEB003EB9E3 /* UI */,
 				495A24331AFE0CE4003731E9 /* Supporting Files */,
 			);
 			path = "SuggestMe-iOS";
@@ -246,14 +244,17 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		49B90DA81B2D9AEB003EB9E3 /* Assets */ = {
+		49B90DA81B2D9AEB003EB9E3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				495A243B1AFE0CE4003731E9 /* Main.storyboard */,
+				495A243E1AFE0CE4003731E9 /* Images.xcassets */,
 				49B90DA91B2D9AEB003EB9E3 /* iPhone-4s */,
 				49B90DB61B2D9AEB003EB9E3 /* iPhone-5:5s:5c */,
 				49B90DC31B2D9AEB003EB9E3 /* iPhone-6 */,
 				49B90DD01B2D9AEB003EB9E3 /* iPhone-6+ */,
 			);
+			name = UI;
 			path = Assets;
 			sourceTree = "<group>";
 		};
@@ -323,11 +324,11 @@
 		49B90DD01B2D9AEB003EB9E3 /* iPhone-6+ */ = {
 			isa = PBXGroup;
 			children = (
-				49B90DD11B2D9AEB003EB9E3 /* AboutBackground-736h@3x.png */,
+				490CF95E1B52A7C700C2AA13 /* AboutBackground-736h@3x.png */,
+				490CF95F1B52A7C700C2AA13 /* LoginBackground-736h@3x.png */,
 				49B90DD21B2D9AEB003EB9E3 /* GoodsButton-736h@3x.png */,
 				49B90DD31B2D9AEB003EB9E3 /* SocialButton-736h@3x.png */,
 				49B90DD41B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png */,
-				49B90DD51B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png */,
 				49B9DF091B3EE6B900139F3D /* LoginSocialButtons-736h@3x.png */,
 				49B9DF071B3EE49600139F3D /* LoginNotNowButton-736h@3x.png */,
 				49B90DD61B2D9AEB003EB9E3 /* QuestionsBackground-736h@3x.png */,
@@ -372,6 +373,7 @@
 				TargetAttributes = {
 					495A242F1AFE0CE4003731E9 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 599U75PK5L;
 					};
 				};
 			};
@@ -417,6 +419,7 @@
 				49B90DEE1B2D9AEB003EB9E3 /* QuestionsBackground-568h@2x.png in Resources */,
 				49B90E041B2D9AEB003EB9E3 /* GoodsBackground-736h@3x.png in Resources */,
 				49B90DE91B2D9AEB003EB9E3 /* AboutBackground-568h@2x.png in Resources */,
+				490CF9611B52A7C700C2AA13 /* LoginBackground-736h@3x.png in Resources */,
 				49B90DE11B2D9AEB003EB9E3 /* LoginBackground-480h@2x.png in Resources */,
 				49B90E0C1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-736h@3x.png in Resources */,
 				49B90DE21B2D9AEB003EB9E3 /* QuestionsBackground-480h@2x.png in Resources */,
@@ -432,8 +435,8 @@
 				495A243D1AFE0CE4003731E9 /* Main.storyboard in Resources */,
 				49B90DF41B2D9AEB003EB9E3 /* TutorialBackgroundPage5-568h@2x.png in Resources */,
 				49B90E001B2D9AEB003EB9E3 /* TutorialBackgroundPage5-667h@2x.png in Resources */,
-				49B90E011B2D9AEB003EB9E3 /* AboutBackground-736h@3x.png in Resources */,
 				49B9DEFB1B3ED76C00139F3D /* LoginNotNowButton-480h@2x.png in Resources */,
+				490CF9601B52A7C700C2AA13 /* AboutBackground-736h@3x.png in Resources */,
 				49B90E031B2D9AEB003EB9E3 /* SocialButton-736h@3x.png in Resources */,
 				49B9DEF61B3ECE3500139F3D /* AboutBackground-667h@2x.png in Resources */,
 				49B90E0A1B2D9AEB003EB9E3 /* TutorialBackgroundPage3-736h@3x.png in Resources */,
@@ -453,7 +456,6 @@
 				49B90DE71B2D9AEB003EB9E3 /* TutorialBackgroundPage4-480h@2x.png in Resources */,
 				49B90DEC1B2D9AEB003EB9E3 /* GoodsBackground-568h@2x.png in Resources */,
 				49B90DE01B2D9AEB003EB9E3 /* GoodsBackground-480h@2x.png in Resources */,
-				49B90E051B2D9AEB003EB9E3 /* LoginBackground-736h@3x.png in Resources */,
 				49B9DF061B3EE3DD00139F3D /* LoginSocialButtons-667h@2x.png in Resources */,
 				49B90DFA1B2D9AEB003EB9E3 /* QuestionsBackground-667h@2x.png in Resources */,
 			);
@@ -496,6 +498,7 @@
 				495A243C1AFE0CE4003731E9 /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -518,7 +521,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Luca Valsecchi (VG6H753434)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Luca Valsecchi (VG6H753434)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -541,6 +545,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DStaging";
+				PROVISIONING_PROFILE = "34be8d1a-1692-4088-b20c-6f2421909bdf";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -563,7 +568,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Luca Valsecchi (VG6H753434)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Luca Valsecchi (VG6H753434)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -579,6 +585,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "-DStaging";
+				PROVISIONING_PROFILE = "34be8d1a-1692-4088-b20c-6f2421909bdf";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

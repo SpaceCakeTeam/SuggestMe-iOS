@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Indietro", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: helpers.getTextLocalized("Indietro"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
         
         backgroundView = UIImageView(image: UIImage(named: "LoginBackground-\(Int(helpers.screenHeight))h"))
         self.view.addSubview(backgroundView)
@@ -57,7 +57,11 @@ class LoginViewController: UIViewController {
         
         helpers.communicationHandler.registrationRequest() { (response) -> () in
             if response {
-				self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+					self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+				})
+			} else {
+				self.helpers.user.anon = true
 			}
         }
     }

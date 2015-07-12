@@ -56,7 +56,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
             tutorialViews = [background1, background2, background3, background4, background5]
             
             for index in 0..<tutorialViews.count {
-                currentFrame.origin.x = scrollView.frame.width * CGFloat(index)
+                currentFrame.origin.x = scrollView.frame.width*CGFloat(index)
                 
                 var currentView = tutorialViews[index]
                 currentView.frame = currentFrame
@@ -89,7 +89,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         if isUserSetted {
             self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
         }
@@ -97,7 +97,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK: PageControl and UIScrollView methods
     func changePage(sender: AnyObject) {
-        let x = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
+        let x = CGFloat(pageControl.currentPage)*scrollView.frame.size.width
         scrollView.setContentOffset(CGPointMake(x, 0), animated: true)
     }
     
@@ -119,7 +119,9 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
         
         helpers.communicationHandler.registrationRequest() { (response) -> () in
             if response {
-				self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
+				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+					self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
+				})
 			}
         }
     }

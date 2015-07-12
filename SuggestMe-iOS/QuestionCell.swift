@@ -25,6 +25,7 @@ class QuestionCell: UITableViewCell {
 		
 		textSuggest = UILabel(frame: CGRect(x: Int(category.frame.width)+20, y: 0, width: Int(helpers.screenWidth) - 140, height: 60))
 		textSuggest.textAlignment = NSTextAlignment.Left
+		textSuggest.font = UIFont(name: helpers.getAppFont(), size: 16)
         self.addSubview(textSuggest)
         
         status = UIImageView(frame: CGRect(x: Int(helpers.screenWidth) - 50, y: 10, width: 40, height: 40))

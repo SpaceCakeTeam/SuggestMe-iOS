@@ -11,6 +11,8 @@ import UIKit
 class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UITableViewDataSource, UITableViewDelegate {
 	
 	var helpers = Helpers.shared
+	var navigationBarHeight: CGFloat!
+	var tabBarHeight: CGFloat!
 
     var loginButton: UIBarButtonItem!    
     var suggestsTableView: UITableView!
@@ -19,16 +21,20 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		helpers.currentView = self.view         //CHECK
-
+		navigationBarHeight = self.navigationController!.navigationBar.frame.height
+		tabBarHeight = self.tabBarController!.tabBar.frame.height
+		self.view.frame.size = CGSizeMake(helpers.screenWidth, helpers.screenHeightNoStatus)
+		helpers.currentView = self.view
+		helpers.currentViewFrame = CGRectMake(0, 0, helpers.screenWidth, helpers.screenHeightNoStatus-navigationBarHeight-tabBarHeight)
+		
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
         self.tabBarController?.tabBar.backgroundColor = UIColor.whiteColor()
         self.tabBarController?.delegate = self
 
-        loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+        loginButton = UIBarButtonItem(title: helpers.getTextLocalized("Log In"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
-        var backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground-\(helpers.screenHeight)h"))
+        var backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground-\(Int(helpers.screenHeight))h"))
         self.view.addSubview(backgroundView)
         
         suggestsTableView = UITableView(frame: backgroundView.frame)
@@ -40,23 +46,16 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         suggestsTableView.registerClass(QuestionCell().classForCoder, forCellReuseIdentifier: "questionCellId")
         self.view.addSubview(suggestsTableView)
 
-        self.tabBarController?.selectedIndex = 2
-        self.tabBarController?.selectedIndex = 0
-        self.tabBarController?.selectedIndex = 1
+        self.tabBarController!.selectedIndex = 2
+        self.tabBarController!.selectedIndex = 0
+        self.tabBarController!.selectedIndex = 1
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if helpers.user.anon == true {
-            self.navigationItem.rightBarButtonItem = loginButton
-        } else {
-            self.navigationItem.rightBarButtonItem = nil
-        }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-		getSuggests() //CHECK
+		helpers.user.anon == true ? self.navigationItem.setRightBarButtonItem(loginButton, animated: false) : self.navigationItem.setRightBarButtonItem(nil, animated: false)
+		suggestsTableView.reloadData()
+		getSuggests()
     }
     
     //MARK: UIButton Actions
@@ -89,13 +88,12 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
             if category.id == question.questiondata.catid {
                 for subcategory in category.subcategories {
                     if subcategory.id == question.questiondata.subcatid {
-						cell.setSuggestTitle(subcategory.name)
+						cell.setSuggestTitle(helpers.getTextLocalized(subcategory.name))
                         break
                     }
                 }
             }
         }
-        
         return cell
     }
     
@@ -121,7 +119,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         }
         if suggestsRequest.count > 0 {
             helpers.communicationHandler.getSuggestsRequest(suggestsRequest) { (response) -> () in
-				dispatch_sync(dispatch_get_main_queue(), { () -> Void in //CHECK
+				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
 					self.suggestsTableView.reloadData()
 				})
             }

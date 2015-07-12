@@ -9,7 +9,9 @@
 import UIKit
 
 class SubcategoryCell: UITableViewCell {
-    
+	
+	var helpers = Helpers.shared
+
     var textCell: UILabel!
     
     //MARK: UI methods
@@ -19,6 +21,7 @@ class SubcategoryCell: UITableViewCell {
         var subcategoryButtonImageView = UIImageView(image: UIImage(named: "SubcategoryButton"))
         textCell = UILabel(frame: CGRect(x: 5, y: 0, width: subcategoryButtonImageView.frame.width-10, height: subcategoryButtonImageView.frame.height))
         textCell.textAlignment = NSTextAlignment.Center
+		textCell.font = UIFont(name: helpers.getAppFont(), size: 16)
         textCell.adjustsFontSizeToFitWidth = true
         textCell.minimumScaleFactor = 1
         self.addSubview(textCell)

@@ -11,6 +11,8 @@ import UIKit
 class AboutViewController: UIViewController {
 	
 	var helpers = Helpers.shared
+	var navigationBarHeight: CGFloat!
+	var tabBarHeight: CGFloat!
 
     var loginButton: UIBarButtonItem!
 
@@ -18,27 +20,26 @@ class AboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		helpers.currentView = self.view         //CHECK
-
+		navigationBarHeight = self.navigationController!.navigationBar.frame.height
+		tabBarHeight = self.tabBarController!.tabBar.frame.height
+		self.view.frame.size = CGSizeMake(helpers.screenWidth, helpers.screenHeightNoStatus)
+		helpers.currentView = self.view
+		helpers.currentViewFrame = CGRectMake(0, 0, helpers.screenWidth, helpers.screenHeightNoStatus-navigationBarHeight-tabBarHeight)
+		
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
 
-        loginButton = UIBarButtonItem(title: "Log In", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+        loginButton = UIBarButtonItem(title: helpers.getTextLocalized("Log In"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
-        var backgroundView = UIImageView(image: UIImage(named: "AboutBackground-\(helpers.screenHeight)h"))
+        var backgroundView = UIImageView(image: UIImage(named: "AboutBackground-\(Int(helpers.screenHeight))h"))
         self.view.addSubview(backgroundView)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if helpers.user.anon == true {
-            self.navigationItem.rightBarButtonItem = loginButton
-        } else {
-            self.navigationItem.rightBarButtonItem = nil
-        }
+		helpers.user.anon == true ? self.navigationItem.setRightBarButtonItem(loginButton, animated: false) : self.navigationItem.setRightBarButtonItem(nil, animated: false)
     }
-    
+	
     //MARK: UIButton Actions
     func login(sender: AnyObject) {
         self.performSegueWithIdentifier("presentLoginViewController", sender: self)
