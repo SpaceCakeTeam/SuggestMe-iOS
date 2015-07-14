@@ -120,14 +120,9 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
         helpers.communicationHandler.registrationRequest() { (response) -> () in
             if response {
 				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-					self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
+					self.performSegueWithIdentifier("presentHomeTabBarController", sender: self) //BUG!
 				})
 			}
         }
-    }
-    
-    //MARK: Touches methods
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-		//get position of touch //TODO
     }
 }

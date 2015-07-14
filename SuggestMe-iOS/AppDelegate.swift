@@ -13,24 +13,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var storyboard: UIStoryboard!
-    
+	
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         storyboard = UIStoryboard(name: "Main", bundle: nil)
 		
 		if UIDevice.currentDevice().systemVersion >= "8.0" {
-			var type = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound;
+			var type = UIUserNotificationType.Badge|UIUserNotificationType.Alert|UIUserNotificationType.Sound;
 			var setting = UIUserNotificationSettings(forTypes: type, categories: nil);
 			UIApplication.sharedApplication().registerUserNotificationSettings(setting);
 			UIApplication.sharedApplication().registerForRemoteNotifications();
 		} else {
-			UIApplication.sharedApplication().registerForRemoteNotificationTypes(UIRemoteNotificationType.Sound | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge)
+			UIApplication.sharedApplication().registerForRemoteNotificationTypes(UIRemoteNotificationType.Sound|UIRemoteNotificationType.Alert|UIRemoteNotificationType.Badge)
 		}
         return true
     }
 	
 	//MARK: Push Notifications!
-	
-	func application(application: UIApplication,didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+	func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 		//send this device token to server
 	}
 	
@@ -38,18 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		println(error)
 	}
 	
-	func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+	func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject: AnyObject]) {
+		println("Received Push Notification: \(userInfo)")
 		//TODO
-		println("Recived: \(userInfo)")
-		//Parsing userinfo:
-		var temp : NSDictionary = userInfo
-		if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
-		{
-			var alertMsg = info["alert"] as! String
-			var alert: UIAlertView!
-			alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
-			alert.show()
-		}
 	}
 }
 
