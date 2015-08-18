@@ -47,7 +47,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
             scrollView.showsHorizontalScrollIndicator = false
         
             pageControl = UIPageControl(frame: CGRectMake(0, helpers.screenHeightNoStatus, helpers.screenWidth, helpers.statusBarHeight))
-			pageControl.frame.origin = CGPointMake(self.view.frame.width/2-pageControl.frame.width/2, pageControl.frame.origin.y)
+			pageControl.frame.origin = CGPointMake(self.view.frame.width/2-pageControl.frame.width/2, pageControl.frame.origin.y-10)
 			pageControl.numberOfPages = 5
             pageControl.addTarget(self, action: Selector("changePage:"), forControlEvents: UIControlEvents.ValueChanged)
             

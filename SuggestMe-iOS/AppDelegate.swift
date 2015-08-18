@@ -11,20 +11,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var storyboard: UIStoryboard!
-	
+	var helpers = Helpers.shared
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         storyboard = UIStoryboard(name: "Main", bundle: nil)
-		
-		if UIDevice.currentDevice().systemVersion >= "8.0" {
-			var type = UIUserNotificationType.Badge|UIUserNotificationType.Alert|UIUserNotificationType.Sound;
-			var setting = UIUserNotificationSettings(forTypes: type, categories: nil);
-			UIApplication.sharedApplication().registerUserNotificationSettings(setting);
-			UIApplication.sharedApplication().registerForRemoteNotifications();
-		} else {
-			UIApplication.sharedApplication().registerForRemoteNotificationTypes(UIRemoteNotificationType.Sound|UIRemoteNotificationType.Alert|UIRemoteNotificationType.Badge)
-		}
         return true
     }
+	
+	func applicationDidBecomeActive(application: UIApplication) {
+		if helpers.isPushRegisteredAtLeastOneTime() {
+			if helpers.pushChanged() {
+				helpers.pushEnabled() ? helpers.updatePushRequest("") : helpers.updatePushRequest(helpers.dataStored("remoteNotificationPushToken") as! String)
+			}
+		} else {
+			helpers.registerPush()
+		}
+	}
 	
 	//MARK: Facebook!
 	func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
@@ -33,10 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	//MARK: Push Notifications!
 	func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-		//TODO
+		helpers.updatePushRequest(String(NSString(data: deviceToken, encoding: NSUTF8StringEncoding)!))
 	}
 	
 	func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+		//Show alert
 		println(error)
 	}
 	
