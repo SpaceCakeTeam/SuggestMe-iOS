@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Mattia. All rights reserved.
 //
 
-import Foundation
-
 class Category: NSObject, NSCoding {
 	
 	var id: Int!

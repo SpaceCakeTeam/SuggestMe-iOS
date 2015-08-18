@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Mattia. All rights reserved.
 //
 
-import UIKit
-
 class TutorialViewController: UIViewController, UIScrollViewDelegate {
 	
 	var helpers = Helpers.shared
@@ -24,7 +22,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     //MARK: UI methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		
 		self.view.frame.size = CGSizeMake(helpers.screenWidth, helpers.screenHeightNoStatus)
 		helpers.currentView = self.view
 		helpers.currentViewFrame = CGRectMake(0, 0, helpers.screenWidth, helpers.screenHeight)
@@ -68,21 +66,21 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
                     scrollView.addSubview(loginSocialImageView)
                     
                     loginSocialButtons = UIButton(frame: loginSocialImageView.frame)
-                    loginSocialButtons.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
-                    scrollView.addSubview(loginSocialButtons)
+					loginSocialButtons.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("socialLogin:")))
+					scrollView.addSubview(loginSocialButtons)
                    
                     var loginNotNowImage = UIImage(named: "LoginNotNowButton-\(Int(helpers.screenHeight))h")
                     var loginNotNowImageView = UIImageView(image: loginNotNowImage)
                     loginAnonButton = UIButton(frame: loginNotNowImageView.frame)
                     loginAnonButton.frame.origin = CGPointMake(currentFrame.origin.x + (currentFrame.width/2-loginNotNowImageView.frame.width/2), currentFrame.height-currentFrame.height/4-loginNotNowImageView.frame.height/2)
                     loginAnonButton.setImage(loginNotNowImage, forState: UIControlState.Normal)
-                    loginAnonButton.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
+                    loginAnonButton.addTarget(self, action: Selector("makeRegistration:"), forControlEvents: UIControlEvents.TouchUpInside)
                     scrollView.addSubview(loginAnonButton)
-                }
+				}
             }
             
             scrollView.contentSize = CGSizeMake(scrollView.frame.width * CGFloat(tutorialViews.count), scrollView.frame.height)
-            self.view.addSubview(scrollView)
+			self.view.addSubview(scrollView)
             self.view.addSubview(pageControl)
         }
 	}
@@ -107,22 +105,27 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
     }
     
     //MARK: UIButton Actions
-    func login(sender: AnyObject) {
-		if sender as! UIButton == loginSocialButtons {
-            helpers.user.anon = false
-			//helpers.getFacebookAccount() select with frame of touch //TODO
-			//helpers.getTwitterAccount() select with frame of touch //TODO
-			helpers.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com") //TODO
-        } else if sender as! UIButton == loginAnonButton {
-            helpers.user.anon = true
-        }
-        
-        helpers.communicationHandler.registrationRequest() { (response) -> () in
-            if response {
-				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-					self.performSegueWithIdentifier("presentHomeTabBarController", sender: self) //BUG!
+	func socialLogin(gestureRecognizer: UITapGestureRecognizer) {
+		if gestureRecognizer.state == UIGestureRecognizerState.Ended {
+			if helpers.isRightShape(gestureRecognizer.locationInView(loginSocialButtons), frame: loginSocialButtons.frame) {
+				helpers.setFacebookUser({ (response) -> () in
+					response ? self.makeRegistration(0) : println("facebook error")
+				})
+			} else {
+				helpers.setTwitterUser({ (response) -> () in
+					response ? self.makeRegistration(0) : println("twitter error")
 				})
 			}
-        }
+		}
+	}
+	
+	func makeRegistration(sender: AnyObject) {
+		helpers.communicationHandler.registrationRequest() { (response) -> () in
+			if response {
+				dispatch_async(dispatch_get_main_queue()) {
+					self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
+				}
+			}
+		}
     }
 }

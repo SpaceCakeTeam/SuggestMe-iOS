@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Mattia. All rights reserved.
 //
 
-import UIKit
-
 class QuestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
 	
 	var helpers = Helpers.shared
@@ -41,8 +39,8 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
 		
-		self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: helpers.getTextLocalized("Indietro"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("back:"))
-        loginButton = UIBarButtonItem(title: helpers.getTextLocalized("Log In"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+		self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Indietro".localized, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("back:"))
+        loginButton = UIBarButtonItem(title: "Log In".localized, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
         
         question = helpers.currentQuestion
         category = helpers.categories[question.questiondata.catid-1]
@@ -83,7 +81,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
 			if category.id == question.questiondata.catid {
 				for subcategory in category.subcategories {
 					if subcategory.id == question.questiondata.subcatid {
-						subcategoryButton.setTitle(helpers.getTextLocalized(subcategory.name), forState: UIControlState.Normal)
+						subcategoryButton.setTitle(subcategory.name.localized, forState: UIControlState.Normal)
 						break
 					}
 				}
@@ -97,7 +95,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         if question.id == -1 {
             visibilityButton.addTarget(self, action: Selector("setVisibilityQuestion:"), forControlEvents: UIControlEvents.TouchUpInside)
 			
-			var titleText = helpers.getTextLocalized("Scegli...")
+			var titleText = "Scegli...".localized
             subcategoryButton.setTitle("\(titleText)  ", forState: UIControlState.Normal)
 			subcategoryButton.titleLabel!.font = UIFont(name: helpers.getAppFont(), size: 18)
             subcategoryButton.addTarget(self, action: Selector("showSubcategories:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -121,18 +119,18 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             self.view.addSubview(textFieldViewBorder)
         
             var sendButton = UIButton(frame: CGRectMake(textFieldView.frame.width-80, 0, 80, textFieldView.frame.height))
-            sendButton.setTitle(helpers.getTextLocalized("Invia"), forState: UIControlState.Normal)
+            sendButton.setTitle("Invia".localized, forState: UIControlState.Normal)
 			sendButton.titleLabel!.font = UIFont(name: helpers.getAppFont(), size: 20)
 
             sendButton.setTitleColor(UIColor(red: 78.0/255.0, green: 133.0/255.0, blue: 248.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
             sendButton.addTarget(self, action: Selector("askSuggestionRequest:"), forControlEvents: UIControlEvents.TouchUpInside)
             textFieldView.addSubview(sendButton)
 
-            questionText = UITextView(frame: CGRectMake(5, 7.5, textFieldView.frame.width-sendButton.frame.width - 5, 30))
+            questionText = UITextView(frame: CGRectMake(5, 7.5, textFieldView.frame.width-sendButton.frame.width-5, 30))
             questionText.layer.borderColor = UIColor.lightGrayColor().CGColor
             questionText.layer.borderWidth = 1
             questionText.backgroundColor = UIColor.whiteColor()
-            questionText.text = helpers.getTextLocalized("Chiedi pure...")
+            questionText.text = "Chiedi pure...".localized
 			questionText.font = UIFont(name: helpers.getAppFont(), size: 13)
             questionText.textColor = UIColor.lightGrayColor()
             questionText.layer.cornerRadius = 5
@@ -143,16 +141,39 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardChangeFrame:"), name: UIKeyboardWillChangeFrameNotification, object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardDisappear:"), name: UIKeyboardWillHideNotification, object: nil)
 		} else {
-			var requestText = UIImageView(image: UIImage(named: "RequestSuggestion"))
-			requestText.frame.origin = CGPointMake(10, infoBarView.frame.height+10)
+			var requestTextArrow = UIImageView(image: UIImage(named: "RequestSuggestion"))
+			requestTextArrow.frame.origin = CGPointMake(helpers.screenWidth-15-requestTextArrow.frame.width, infoBarView.frame.height+20)
+			backgroundView.addSubview(requestTextArrow)
+			
+			var requestText = Label(frame: CGRectMake(10, infoBarView.frame.height+20, helpers.screenWidth-20-requestTextArrow.frame.width, 0))
+			requestText.numberOfLines = 0
+			requestText.text = question.questiondata.text
+			requestText.font = UIFont(name:helpers.getAppFont(), size: 15)
+			requestText.textAlignment = NSTextAlignment.Right
+			requestText.backgroundColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 234.0/255.0, alpha: 1.0)
+			requestText.sizeToFit()
+			requestText.layer.masksToBounds = true
+			requestText.layer.cornerRadius = 5
+			requestText.frame.size = CGSizeMake(helpers.screenWidth-20-requestTextArrow.frame.width, requestText.frame.height+10)
 			backgroundView.addSubview(requestText)
-			//inserire testo //TODO
 		
 			if question.suggest != nil {
-				var responseText = UIImageView(image: UIImage(named: "ResponseSuggestion"))
-				responseText.frame.origin = CGPointMake(10, infoBarView.frame.height+10+requestText.frame.height+10)
+				var responseTextArrow = UIImageView(image: UIImage(named: "ResponseSuggestion"))
+				responseTextArrow.frame.origin = CGPointMake(10, infoBarView.frame.height+20+requestText.frame.height+20)
+				backgroundView.addSubview(responseTextArrow)
+				
+				var responseText = Label(frame: CGRectMake(10+responseTextArrow.frame.width-5, infoBarView.frame.height+20+requestText.frame.height+20, helpers.screenWidth-20-responseTextArrow.frame.width, 0))
+				responseText.numberOfLines = 0
+				responseText.text = question.suggest?.text
+				responseText.font = UIFont(name:helpers.getAppFont(), size: 15)
+				responseText.textAlignment = NSTextAlignment.Left
+				responseText.textColor = UIColor.whiteColor()
+				responseText.backgroundColor = UIColor(red: 59.0/255.0, green: 87.0/255.0, blue: 157.0/255.0, alpha: 1.0)
+				responseText.sizeToFit()
+				responseText.layer.masksToBounds = true
+				responseText.layer.cornerRadius = 5
+				responseText.frame.size = CGSizeMake(helpers.screenWidth-20-requestTextArrow.frame.width, responseText.frame.height+10)
 				backgroundView.addSubview(responseText)
-				//inserire testo //TODO
 			}
 		}
     }
@@ -239,14 +260,14 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         subcategoryTableView.hidden = true
         question.questiondata.subcatid = category.subcategories[indexPath.row].id
-		var titleText = helpers.getTextLocalized(category.subcategories[indexPath.row].name)
+		var titleText = category.subcategories[indexPath.row].name.localized
         subcategoryButton.setTitle("\(titleText)  ", forState: UIControlState.Normal)
     }
     
     //MARK: UITextView Delegates
     func textViewDidBeginEditing(textView: UITextView) {
         textView.textColor = UIColor.blackColor()
-        if textView.text == helpers.getTextLocalized("Chiedi pure...") {
+        if textView.text == "Chiedi pure...".localized {
             textView.text = ""
         }
     }
@@ -254,7 +275,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     func textViewDidEndEditing(textView: UITextView) {
         if textView.text == "" {
             textView.textColor = UIColor.lightGrayColor()
-            textView.insertText(helpers.getTextLocalized("Chiedi pure..."))
+            textView.insertText("Chiedi pure...".localized)
         }
     }
     
@@ -281,4 +302,10 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             self.textFieldView.frame.origin.y = self.backgroundView.frame.height-45-size
         })
     }
+}
+
+class Label: UILabel {
+	override func drawTextInRect(rect: CGRect) {
+		super.drawTextInRect(UIEdgeInsetsInsetRect(rect, UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)))
+	}
 }

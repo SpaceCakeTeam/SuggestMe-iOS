@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Mattia. All rights reserved.
 //
 
-import UIKit
-
 class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UITableViewDataSource, UITableViewDelegate {
 	
 	var helpers = Helpers.shared
@@ -16,6 +14,8 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
 
     var loginButton: UIBarButtonItem!    
     var suggestsTableView: UITableView!
+	
+	var visible = false
     
     //MARK: UI methods
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         self.tabBarController?.tabBar.backgroundColor = UIColor.whiteColor()
         self.tabBarController?.delegate = self
 
-        loginButton = UIBarButtonItem(title: helpers.getTextLocalized("Log In"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+        loginButton = UIBarButtonItem(title: "Log In".localized, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
         var backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground-\(Int(helpers.screenHeight))h"))
         self.view.addSubview(backgroundView)
@@ -55,8 +55,18 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         super.viewWillAppear(animated)
 		helpers.user.anon == true ? self.navigationItem.setRightBarButtonItem(loginButton, animated: false) : self.navigationItem.setRightBarButtonItem(nil, animated: false)
 		suggestsTableView.reloadData()
-		getSuggests()
     }
+	
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		visible = true
+		getSuggests()
+	}
+	
+	override func viewDidDisappear(animated: Bool) {
+		super.viewDidDisappear(animated)
+		visible = false
+	}
     
     //MARK: UIButton Actions
     func login(sender: AnyObject) {
@@ -88,7 +98,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
             if category.id == question.questiondata.catid {
                 for subcategory in category.subcategories {
                     if subcategory.id == question.questiondata.subcatid {
-						cell.setSuggestTitle(helpers.getTextLocalized(subcategory.name))
+						cell.setSuggestTitle(subcategory.name.localized)
                         break
                     }
                 }
@@ -119,9 +129,11 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         }
         if suggestsRequest.count > 0 {
             helpers.communicationHandler.getSuggestsRequest(suggestsRequest) { (response) -> () in
-				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-					self.suggestsTableView.reloadData()
-				})
+				if self.visible {
+					dispatch_async(dispatch_get_main_queue()) {
+						self.suggestsTableView.reloadData()
+					}
+				}
             }
         }
     }

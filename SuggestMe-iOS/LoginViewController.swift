@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Mattia. All rights reserved.
 //
 
-import UIKit
-
 class LoginViewController: UIViewController {
 	
 	var helpers = Helpers.shared
@@ -28,7 +26,7 @@ class LoginViewController: UIViewController {
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: helpers.getTextLocalized("Indietro"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Indietro".localized, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss:"))
         
         backgroundView = UIImageView(image: UIImage(named: "LoginBackground-\(Int(helpers.screenHeight))h"))
         self.view.addSubview(backgroundView)
@@ -38,8 +36,8 @@ class LoginViewController: UIViewController {
         self.view.addSubview(loginSocialImageView)
         
         loginSocialButtons = UIButton(frame: loginSocialImageView.frame)
-        loginSocialButtons.addTarget(self, action: Selector("login:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(loginSocialButtons)
+		loginSocialButtons.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("socialLogin:")))
+		self.view.addSubview(loginSocialButtons)
 	}
     
     //MARK: UIButton Actions
@@ -47,27 +45,27 @@ class LoginViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in })
     }
 
-    func login(sender: AnyObject) {		
-        if sender as! UIButton == loginSocialButtons {
-            helpers.user.anon = false
-			//helpers.getFacebookAccount() select with frame of touch //TODO
-			//helpers.getTwitterAccount() select with frame of touch //TODO
-			helpers.user.userdata = UserData(name: "Zazu", surname: "Culo", birthdate: 16000, gender: Gender.u, email: "zazu.culo@gmail.com") //TODO
-        }
-        
-        helpers.communicationHandler.registrationRequest() { (response) -> () in
-            if response {
-				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-					self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+	func socialLogin(gestureRecognizer: UITapGestureRecognizer) {
+		if gestureRecognizer.state == UIGestureRecognizerState.Ended {
+			if helpers.isRightShape(gestureRecognizer.locationInView(loginSocialButtons), frame: loginSocialButtons.frame) {
+				helpers.setFacebookUser({ (response) -> () in
+					response ? self.makeRegistration(0) : println("facebook error")
 				})
 			} else {
-				self.helpers.user.anon = true
+				helpers.setTwitterUser({ (response) -> () in
+					response ? self.makeRegistration(0) : println("twitter error")
+				})
 			}
-        }
-    }
-    
-    //MARK: Touches methods
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-		//get position of touch //TODO
-    }
+		}
+	}
+	
+	func makeRegistration(sender: AnyObject) {
+		helpers.communicationHandler.registrationRequest() { (response) -> () in
+			if response {
+				dispatch_async(dispatch_get_main_queue()) {
+					self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+				}
+			}
+		}
+	}
 }

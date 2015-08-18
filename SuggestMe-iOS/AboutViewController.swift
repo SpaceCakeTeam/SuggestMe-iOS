@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Mattia. All rights reserved.
 //
 
-import UIKit
-
 class AboutViewController: UIViewController {
 	
 	var helpers = Helpers.shared
@@ -29,10 +27,12 @@ class AboutViewController: UIViewController {
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
 
-        loginButton = UIBarButtonItem(title: helpers.getTextLocalized("Log In"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+        loginButton = UIBarButtonItem(title: "Log In".localized, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
         var backgroundView = UIImageView(image: UIImage(named: "AboutBackground-\(Int(helpers.screenHeight))h"))
         self.view.addSubview(backgroundView)
+		
+		//TODO
     }
     
     override func viewWillAppear(animated: Bool) {

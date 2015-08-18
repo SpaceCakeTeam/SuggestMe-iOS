@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Mattia. All rights reserved.
 //
 
-import UIKit
-
 class CategoriesViewController: UIViewController {
 
 	var helpers = Helpers.shared
@@ -31,7 +29,7 @@ class CategoriesViewController: UIViewController {
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
                 
-        loginButton = UIBarButtonItem(title: helpers.getTextLocalized("Log In"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
+        loginButton = UIBarButtonItem(title: "Log In".localized, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
         var socialButtonImage = UIImage(named: "SocialButton-\(Int(helpers.screenHeight))h")
         var socialButtonImageView = UIImageView(image: socialButtonImage)

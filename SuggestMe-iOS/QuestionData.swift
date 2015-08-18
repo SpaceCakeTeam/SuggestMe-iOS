@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Mattia. All rights reserved.
 //
 
-import Foundation
-
 class QuestionData: NSObject, NSCoding {
 	
 	var catid: Int!

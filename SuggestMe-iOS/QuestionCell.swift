@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Mattia. All rights reserved.
 //
 
-import UIKit
-
 class QuestionCell: UITableViewCell {
 	
 	var helpers = Helpers.shared
