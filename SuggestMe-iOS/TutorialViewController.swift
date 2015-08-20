@@ -89,7 +89,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidAppear(animated)
 
         if isUserSetted {
-            self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
+		    self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
         }
     }
     

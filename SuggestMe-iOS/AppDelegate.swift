@@ -19,12 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 	
 	func applicationDidBecomeActive(application: UIApplication) {
-		if helpers.isPushRegisteredAtLeastOneTime() {
-			if helpers.pushChanged() {
-				helpers.pushEnabled() ? helpers.updatePushRequest("") : helpers.updatePushRequest(helpers.dataStored("remoteNotificationPushToken") as! String)
+		if helpers.isStored("user") {
+			if helpers.isPushRegisteredAtLeastOneTime() {
+				if helpers.pushChanged() {
+					helpers.pushEnabled() ? helpers.updatePushRequest(helpers.dataStored("remoteNotificationPushToken") as! String) : helpers.updatePushRequest("")
+				}
+			} else {
+				helpers.registerPush()
 			}
-		} else {
-			helpers.registerPush()
 		}
 	}
 	
@@ -35,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	//MARK: Push Notifications!
 	func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-		helpers.updatePushRequest(String(NSString(data: deviceToken, encoding: NSUTF8StringEncoding)!))
+		helpers.updatePushRequest(deviceToken.description.stringByReplacingOccurrencesOfString("[ <>]", withString: "", options: .RegularExpressionSearch, range: nil))
 	}
 	
 	func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
