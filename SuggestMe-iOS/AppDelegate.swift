@@ -37,11 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	//MARK: Push Notifications!
 	func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+		println("Registration Push OK!")
 		helpers.updatePushRequest(deviceToken.description.stringByReplacingOccurrencesOfString("[ <>]", withString: "", options: .RegularExpressionSearch, range: nil))
 	}
 	
 	func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
 		//Show alert
+		println("Registration Push KO!")
 		println(error)
 	}
 	

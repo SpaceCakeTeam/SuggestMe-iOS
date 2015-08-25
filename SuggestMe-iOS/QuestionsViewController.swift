@@ -83,8 +83,10 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         let question = helpers.questions[indexPath.row]
 		
         if question.questiondata.catid == 1 {
-            cell.category.image = UIImage(named: "QuestionSocialIcon")
+			cell.category.frame.origin.x = 10
+			cell.category.image = UIImage(named: "QuestionSocialIcon")
         } else if question.questiondata.catid == 2 {
+			cell.category.frame.origin.x = 7
             cell.category.image = UIImage(named: "QuestionGoodsIcon")
         }
         
