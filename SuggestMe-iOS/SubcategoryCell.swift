@@ -16,7 +16,7 @@ class SubcategoryCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        var subcategoryButtonImageView = UIImageView(image: UIImage(named: "SubcategoryButton"))
+        let subcategoryButtonImageView = UIImageView(image: UIImage(named: "SubcategoryButton"))
         textCell = UILabel(frame: CGRect(x: 5, y: 0, width: subcategoryButtonImageView.frame.width-10, height: subcategoryButtonImageView.frame.height))
         textCell.textAlignment = NSTextAlignment.Center
 		textCell.font = UIFont(name: helpers.getAppFont(), size: 16)
@@ -26,6 +26,6 @@ class SubcategoryCell: UITableViewCell {
     }
 
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
 }

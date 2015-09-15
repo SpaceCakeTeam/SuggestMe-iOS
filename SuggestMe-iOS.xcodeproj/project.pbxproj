@@ -13,8 +13,8 @@
 		491094CF1B0D19C100B07016 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094CE1B0D19C100B07016 /* LoginViewController.swift */; };
 		491094D11B0D1BA300B07016 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094D01B0D1BA300B07016 /* QuestionViewController.swift */; };
 		491094D31B0D1DDC00B07016 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491094D21B0D1DDC00B07016 /* TutorialViewController.swift */; };
-		4911B21B1B8219E900C574EA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4911B2191B8219E900C574EA /* FBSDKCoreKit.framework */; };
-		4911B21C1B8219E900C574EA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4911B21A1B8219E900C574EA /* FBSDKLoginKit.framework */; };
+		4953B28E1BA86E6C00773D43 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4953B28C1BA86E6C00773D43 /* FBSDKCoreKit.framework */; };
+		4953B28F1BA86E6C00773D43 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4953B28D1BA86E6C00773D43 /* FBSDKLoginKit.framework */; };
 		495572DA1B05310600EAD377 /* SubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495572D91B05310600EAD377 /* SubCategory.swift */; };
 		495A24361AFE0CE4003731E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24351AFE0CE4003731E9 /* AppDelegate.swift */; };
 		495A243A1AFE0CE4003731E9 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24391AFE0CE4003731E9 /* CategoriesViewController.swift */; };
@@ -94,9 +94,9 @@
 		491094CE1B0D19C100B07016 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		491094D01B0D1BA300B07016 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		491094D21B0D1DDC00B07016 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
-		4911B2191B8219E900C574EA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Resources/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		4911B21A1B8219E900C574EA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Resources/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		4911B21E1B821C4B00C574EA /* SuggestMe-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuggestMe-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		4953B28C1BA86E6C00773D43 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Resources/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		4953B28D1BA86E6C00773D43 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Resources/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		495572D91B05310600EAD377 /* SubCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategory.swift; sourceTree = "<group>"; };
 		495A24301AFE0CE4003731E9 /* SuggestMe-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SuggestMe-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		495A24341AFE0CE4003731E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -176,8 +176,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4911B21B1B8219E900C574EA /* FBSDKCoreKit.framework in Frameworks */,
-				4911B21C1B8219E900C574EA /* FBSDKLoginKit.framework in Frameworks */,
+				4953B28E1BA86E6C00773D43 /* FBSDKCoreKit.framework in Frameworks */,
+				4953B28F1BA86E6C00773D43 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,10 +223,10 @@
 		495A24331AFE0CE4003731E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4911B2191B8219E900C574EA /* FBSDKCoreKit.framework */,
-				4911B21A1B8219E900C574EA /* FBSDKLoginKit.framework */,
 				495A24341AFE0CE4003731E9 /* Info.plist */,
 				4911B21E1B821C4B00C574EA /* SuggestMe-iOS-Bridging-Header.h */,
+				4953B28C1BA86E6C00773D43 /* FBSDKCoreKit.framework */,
+				4953B28D1BA86E6C00773D43 /* FBSDKLoginKit.framework */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -378,7 +378,8 @@
 		495A24281AFE0CE4003731E9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Mattia;
 				TargetAttributes = {
 					495A242F1AFE0CE4003731E9 = {
@@ -531,10 +532,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Maurizio Dragone (KBSSBAR688)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Maurizio Dragone (99YVYKA632)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -554,7 +557,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DStaging";
-				PROVISIONING_PROFILE = "36c9ffc4-c02c-4ab2-9fa9-4574d86b5d4f";
+				PROVISIONING_PROFILE = "9e983cba-9723-40d7-bf34-d658c3fe723b";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -577,9 +580,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Maurizio Dragone (KBSSBAR688)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Maurizio Dragone (99YVYKA632)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -593,7 +597,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "-DProduction";
-				PROVISIONING_PROFILE = "36c9ffc4-c02c-4ab2-9fa9-4574d86b5d4f";
+				PROVISIONING_PROFILE = "9e983cba-9723-40d7-bf34-d658c3fe723b";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -605,6 +609,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SuggestMe-iOS/Resources",
@@ -612,6 +617,7 @@
 				INFOPLIST_FILE = "SuggestMe-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DStaging";
+				PRODUCT_BUNDLE_IDENTIFIER = it.suggestme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuggestMe-iOS/SuggestMe-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -624,6 +630,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SuggestMe-iOS/Resources",
@@ -631,6 +638,7 @@
 				INFOPLIST_FILE = "SuggestMe-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DProduction";
+				PRODUCT_BUNDLE_IDENTIFIER = it.suggestme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuggestMe-iOS/SuggestMe-iOS-Bridging-Header.h";
 			};

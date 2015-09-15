@@ -29,7 +29,7 @@ class AboutViewController: UIViewController {
 
         loginButton = UIBarButtonItem(title: "Log In".localized, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
-        var backgroundView = UIImageView(image: UIImage(named: "AboutBackground-\(Int(helpers.screenHeight))h"))
+        let backgroundView = UIImageView(image: UIImage(named: "AboutBackground-\(Int(helpers.screenHeight))h"))
         self.view.addSubview(backgroundView)
 		
 		//TODO

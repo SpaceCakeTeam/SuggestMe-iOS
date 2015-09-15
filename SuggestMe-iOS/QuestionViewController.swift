@@ -57,23 +57,23 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         }
         self.view.addSubview(backgroundView)
         
-        var infoBarView = UIView(frame: CGRectMake(0, 0, backgroundView.frame.width, 50))
+        let infoBarView = UIView(frame: CGRectMake(0, 0, backgroundView.frame.width, 50))
         infoBarView.backgroundColor = UIColor.whiteColor()
         infoBarView.alpha = 0.7
         self.view.addSubview(infoBarView)
 
-        var hashtagImageView = UIImageView(image: UIImage(named: "Hashtag"))
+        let hashtagImageView = UIImageView(image: UIImage(named: "Hashtag"))
         hashtagImageView.frame.origin = CGPointMake(5, 5)
         self.view.addSubview(hashtagImageView)
         
-        var anonButtonImageView = UIImageView(image: anonButtonImage)
-        var registeredButtonImageView = UIImageView(image: registeredButtonImage)
+        let anonButtonImageView = UIImageView(image: anonButtonImage)
+        _ = UIImageView(image: registeredButtonImage)
         visibilityButton = UIButton(frame: anonButtonImageView.frame)
         visibilityButton.frame.origin = CGPointMake(infoBarView.frame.width-anonButtonImageView.frame.width-5, 5)
         self.view.addSubview(visibilityButton)
         
-        var subcategoryButtonImage = UIImage(named: "SubcategoryButton")
-        var subcategoryButtonImageView = UIImageView(image: subcategoryButtonImage)
+        let subcategoryButtonImage = UIImage(named: "SubcategoryButton")
+        let subcategoryButtonImageView = UIImageView(image: subcategoryButtonImage)
         subcategoryButton = UIButton(frame: subcategoryButtonImageView.frame)
         subcategoryButton.frame.origin = CGPointMake(infoBarView.frame.width/2-subcategoryButtonImageView.frame.width/2, 0)
         subcategoryButton.setBackgroundImage(subcategoryButtonImage, forState: UIControlState.Normal)
@@ -95,7 +95,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         if question.id == -1 {
             visibilityButton.addTarget(self, action: Selector("setVisibilityQuestion:"), forControlEvents: UIControlEvents.TouchUpInside)
 			
-			var titleText = "Scegli...".localized
+			let titleText = "Scegli...".localized
             subcategoryButton.setTitle("\(titleText)  ", forState: UIControlState.Normal)
 			subcategoryButton.titleLabel!.font = UIFont(name: helpers.getAppFont(), size: 18)
             subcategoryButton.addTarget(self, action: Selector("showSubcategories:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -114,11 +114,11 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             textFieldView = UIView(frame: CGRectMake(0, backgroundView.frame.height-45, backgroundView.frame.width, 45))
             textFieldView.backgroundColor = UIColor.whiteColor()
             self.view.addSubview(textFieldView)
-            var textFieldViewBorder = UIView(frame: CGRectMake(0, backgroundView.frame.height-1, backgroundView.frame.width, 1))
+            let textFieldViewBorder = UIView(frame: CGRectMake(0, backgroundView.frame.height-1, backgroundView.frame.width, 1))
             textFieldViewBorder.backgroundColor = UIColor.lightGrayColor()
             self.view.addSubview(textFieldViewBorder)
         
-            var sendButton = UIButton(frame: CGRectMake(textFieldView.frame.width-80, 0, 80, textFieldView.frame.height))
+            let sendButton = UIButton(frame: CGRectMake(textFieldView.frame.width-80, 0, 80, textFieldView.frame.height))
             sendButton.setTitle("Invia".localized, forState: UIControlState.Normal)
 			sendButton.titleLabel!.font = UIFont(name: helpers.getAppFont(), size: 20)
 
@@ -141,11 +141,11 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardChangeFrame:"), name: UIKeyboardWillChangeFrameNotification, object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardDisappear:"), name: UIKeyboardWillHideNotification, object: nil)
 		} else {
-			var requestTextArrow = UIImageView(image: UIImage(named: "RequestSuggestion"))
+			let requestTextArrow = UIImageView(image: UIImage(named: "RequestSuggestion"))
 			requestTextArrow.frame.origin = CGPointMake(helpers.screenWidth-15-requestTextArrow.frame.width, infoBarView.frame.height+20)
 			backgroundView.addSubview(requestTextArrow)
 			
-			var requestText = Label(frame: CGRectMake(10, infoBarView.frame.height+20, helpers.screenWidth-20-requestTextArrow.frame.width, 0))
+			let requestText = Label(frame: CGRectMake(10, infoBarView.frame.height+20, helpers.screenWidth-20-requestTextArrow.frame.width, 0))
 			requestText.numberOfLines = 0
 			requestText.text = question.questiondata.text
 			requestText.font = UIFont(name:helpers.getAppFont(), size: 15)
@@ -158,11 +158,11 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
 			backgroundView.addSubview(requestText)
 		
 			if question.suggest != nil {
-				var responseTextArrow = UIImageView(image: UIImage(named: "ResponseSuggestion"))
+				let responseTextArrow = UIImageView(image: UIImage(named: "ResponseSuggestion"))
 				responseTextArrow.frame.origin = CGPointMake(10, infoBarView.frame.height+20+requestText.frame.height+20)
 				backgroundView.addSubview(responseTextArrow)
 				
-				var responseText = Label(frame: CGRectMake(10+responseTextArrow.frame.width-5, infoBarView.frame.height+20+requestText.frame.height+20, helpers.screenWidth-20-responseTextArrow.frame.width, 0))
+				let responseText = Label(frame: CGRectMake(10+responseTextArrow.frame.width-5, infoBarView.frame.height+20+requestText.frame.height+20, helpers.screenWidth-20-responseTextArrow.frame.width, 0))
 				responseText.numberOfLines = 0
 				responseText.text = question.suggest?.text
 				responseText.font = UIFont(name:helpers.getAppFont(), size: 15)
@@ -251,7 +251,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = subcategoryTableView.dequeueReusableCellWithIdentifier("subcategoryCellId") as! SubcategoryCell
+        let cell = subcategoryTableView.dequeueReusableCellWithIdentifier("subcategoryCellId") as! SubcategoryCell
         cell.textCell.text = "\(category.subcategories[indexPath.row].name)  "
         return cell
     }
@@ -260,7 +260,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         subcategoryTableView.hidden = true
         question.questiondata.subcatid = category.subcategories[indexPath.row].id
-		var titleText = category.subcategories[indexPath.row].name.localized
+		let titleText = category.subcategories[indexPath.row].name.localized
         subcategoryButton.setTitle("\(titleText)  ", forState: UIControlState.Normal)
     }
     
@@ -280,8 +280,8 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     //MARK: Touches methods
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        if question.id == -1 {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if question.id == -1{
             questionText.resignFirstResponder()
         }
     }
@@ -289,7 +289,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: Keyboard Notifications
     func keyboardChangeFrame(notification: NSNotification) {
         var userInfo: [NSObject: AnyObject] = notification.userInfo!
-        var keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size
+        let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size
         moveTextField(keyboardSize!.height-self.tabBarController!.tabBar.frame.height)
     }
     

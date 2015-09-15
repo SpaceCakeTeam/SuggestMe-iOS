@@ -33,11 +33,11 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
             UIApplication.sharedApplication().statusBarStyle = .LightContent
             self.view.backgroundColor = UIColor.blackColor()
 
-            var background1 = UIImageView(image: UIImage(named: "TutorialBackgroundPage1-\(Int(helpers.screenHeight))h"))
-            var background2 = UIImageView(image: UIImage(named: "TutorialBackgroundPage2-\(Int(helpers.screenHeight))h"))
-            var background3 = UIImageView(image: UIImage(named: "TutorialBackgroundPage3-\(Int(helpers.screenHeight))h"))
-            var background4 = UIImageView(image: UIImage(named: "TutorialBackgroundPage4-\(Int(helpers.screenHeight))h"))
-            var background5 = UIImageView(image: UIImage(named: "TutorialBackgroundPage5-\(Int(helpers.screenHeight))h"))
+            let background1 = UIImageView(image: UIImage(named: "TutorialBackgroundPage1-\(Int(helpers.screenHeight))h"))
+            let background2 = UIImageView(image: UIImage(named: "TutorialBackgroundPage2-\(Int(helpers.screenHeight))h"))
+            let background3 = UIImageView(image: UIImage(named: "TutorialBackgroundPage3-\(Int(helpers.screenHeight))h"))
+            let background4 = UIImageView(image: UIImage(named: "TutorialBackgroundPage4-\(Int(helpers.screenHeight))h"))
+            let background5 = UIImageView(image: UIImage(named: "TutorialBackgroundPage5-\(Int(helpers.screenHeight))h"))
             
             currentFrame = CGRectMake(0, helpers.screenHeightNoStatus/2-self.view.frame.height/2, helpers.screenWidth, self.view.frame.height)
             
@@ -56,12 +56,12 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
             for index in 0..<tutorialViews.count {
                 currentFrame.origin.x = scrollView.frame.width*CGFloat(index)
                 
-                var currentView = tutorialViews[index]
+                let currentView = tutorialViews[index]
                 currentView.frame = currentFrame
                 scrollView.addSubview(currentView)
 
                 if index == tutorialViews.count-1 {
-                    var loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(Int(helpers.screenHeight))h"))
+                    let loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(Int(helpers.screenHeight))h"))
                     loginSocialImageView.frame.origin = CGPointMake(currentFrame.origin.x + (currentFrame.width/2 - loginSocialImageView.frame.width/2), currentFrame.height/2 - loginSocialImageView.frame.height/2)
                     scrollView.addSubview(loginSocialImageView)
                     
@@ -69,8 +69,8 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
 					loginSocialButtons.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("socialLogin:")))
 					scrollView.addSubview(loginSocialButtons)
                    
-                    var loginNotNowImage = UIImage(named: "LoginNotNowButton-\(Int(helpers.screenHeight))h")
-                    var loginNotNowImageView = UIImageView(image: loginNotNowImage)
+                    let loginNotNowImage = UIImage(named: "LoginNotNowButton-\(Int(helpers.screenHeight))h")
+                    let loginNotNowImageView = UIImageView(image: loginNotNowImage)
                     loginAnonButton = UIButton(frame: loginNotNowImageView.frame)
                     loginAnonButton.frame.origin = CGPointMake(currentFrame.origin.x + (currentFrame.width/2-loginNotNowImageView.frame.width/2), currentFrame.height-currentFrame.height/4-loginNotNowImageView.frame.height/2)
                     loginAnonButton.setImage(loginNotNowImage, forState: UIControlState.Normal)
@@ -109,11 +109,11 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
 		if gestureRecognizer.state == UIGestureRecognizerState.Ended {
 			if helpers.isRightShape(gestureRecognizer.locationInView(loginSocialButtons), frame: loginSocialButtons.frame) {
 				helpers.setFacebookUser({ (response) -> () in
-					response ? self.makeRegistration(0) : println("facebook error")
+					response ? self.makeRegistration(0) : print("facebook error")
 				})
 			} else {
 				helpers.setTwitterUser({ (response) -> () in
-					response ? self.makeRegistration(0) : println("twitter error")
+					response ? self.makeRegistration(0) : print("twitter error")
 				})
 			}
 		}

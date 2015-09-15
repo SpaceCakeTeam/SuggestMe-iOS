@@ -34,7 +34,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
 
         loginButton = UIBarButtonItem(title: "Log In".localized, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
-        var backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground-\(Int(helpers.screenHeight))h"))
+        let backgroundView = UIImageView(image: UIImage(named: "QuestionsBackground-\(Int(helpers.screenHeight))h"))
         self.view.addSubview(backgroundView)
         
         suggestsTableView = UITableView(frame: backgroundView.frame)
@@ -49,8 +49,11 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
         self.tabBarController!.selectedIndex = 2
         self.tabBarController!.selectedIndex = 0
         self.tabBarController!.selectedIndex = 1
-    }
-    
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationIsActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationIsBackground:", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+	}
+	
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 		helpers.user.anon == true ? self.navigationItem.setRightBarButtonItem(loginButton, animated: false) : self.navigationItem.setRightBarButtonItem(nil, animated: false)
@@ -61,6 +64,17 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
 		super.viewDidAppear(animated)
 		visible = true
 		getSuggests()
+		UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+	}
+	
+	func applicationIsActive(notification: NSNotification) {
+		visible = true
+		getSuggests()
+		UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+	}
+	
+	func applicationIsBackground(notification: NSNotification) {
+		visible = false
 	}
 	
 	override func viewDidDisappear(animated: Bool) {
@@ -117,7 +131,7 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
     
     //MARK: UITabBarController Delegates
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        var selectedNavigationController = viewController as! UINavigationController
+        let selectedNavigationController = viewController as! UINavigationController
         selectedNavigationController.popToRootViewControllerAnimated(false)
     }
     

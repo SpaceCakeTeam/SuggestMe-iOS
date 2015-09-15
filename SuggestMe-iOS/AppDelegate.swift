@@ -31,25 +31,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	
 	//MARK: Facebook!
-	func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+	func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
 		return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
 	}
 	
 	//MARK: Push Notifications!
 	func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-		println("Registration Push OK!")
+		print("Registration Push OK!")
 		helpers.updatePushRequest(deviceToken.description.stringByReplacingOccurrencesOfString("[ <>]", withString: "", options: .RegularExpressionSearch, range: nil))
 	}
 	
 	func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
 		//Show alert
-		println("Registration Push KO!")
-		println(error)
+		print("Registration Push KO!")
+		print(error)
 	}
 	
 	func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject: AnyObject]) {
-		println("Received Push Notification: \(userInfo)")
-		//TODO
+		print("Received Push Notification: \(userInfo)")
 	}
 }
 

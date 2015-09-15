@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
         backgroundView = UIImageView(image: UIImage(named: "LoginBackground-\(Int(helpers.screenHeight))h"))
         self.view.addSubview(backgroundView)
       
-        var loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(Int(helpers.screenHeight))h"))
+        let loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(Int(helpers.screenHeight))h"))
         loginSocialImageView.frame.origin = CGPointMake(backgroundView.frame.origin.x + (backgroundView.frame.width/2 - loginSocialImageView.frame.width/2), backgroundView.frame.height/2 - loginSocialImageView.frame.height/2)
         self.view.addSubview(loginSocialImageView)
         
@@ -49,11 +49,11 @@ class LoginViewController: UIViewController {
 		if gestureRecognizer.state == UIGestureRecognizerState.Ended {
 			if helpers.isRightShape(gestureRecognizer.locationInView(loginSocialButtons), frame: loginSocialButtons.frame) {
 				helpers.setFacebookUser({ (response) -> () in
-					response ? self.makeRegistration(0) : println("facebook error")
+					response ? self.makeRegistration(0) : print("facebook error")
 				})
 			} else {
 				helpers.setTwitterUser({ (response) -> () in
-					response ? self.makeRegistration(0) : println("twitter error")
+					response ? self.makeRegistration(0) : print("twitter error")
 				})
 			}
 		}

@@ -31,16 +31,16 @@ class CategoriesViewController: UIViewController {
                 
         loginButton = UIBarButtonItem(title: "Log In".localized, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("login:"))
 
-        var socialButtonImage = UIImage(named: "SocialButton-\(Int(helpers.screenHeight))h")
-        var socialButtonImageView = UIImageView(image: socialButtonImage)
+        let socialButtonImage = UIImage(named: "SocialButton-\(Int(helpers.screenHeight))h")
+        let socialButtonImageView = UIImageView(image: socialButtonImage)
         socialButton = UIButton(frame: socialButtonImageView.frame)
         socialButton.frame.origin = CGPointMake(0, 0)
         socialButton.setImage(socialButtonImage, forState: UIControlState.Normal)
         socialButton.addTarget(self, action: Selector("askSuggestion:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(socialButton)
         
-        var goodsButtonImage = UIImage(named: "GoodsButton-\(Int(helpers.screenHeight))h")
-        var goodsButtonImageView = UIImageView(image: goodsButtonImage)
+        let goodsButtonImage = UIImage(named: "GoodsButton-\(Int(helpers.screenHeight))h")
+        let goodsButtonImageView = UIImageView(image: goodsButtonImage)
         goodsButton = UIButton(frame: goodsButtonImageView.frame)
         goodsButton.frame.origin = CGPointMake(0, socialButtonImageView.frame.height + 5)
         goodsButton.setImage(goodsButtonImage, forState: UIControlState.Normal)
