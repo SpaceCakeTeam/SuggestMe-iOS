@@ -25,7 +25,9 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     var subcategoryTableView: UITableView!
 
     var textFieldView: UIView!
+    var sendButton: UIButton!
     var questionText: UITextView!
+    var previousRect = CGRectZero
     
     //MARK: UI methods
     override func viewDidLoad() {
@@ -118,7 +120,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             textFieldViewBorder.backgroundColor = UIColor.lightGrayColor()
             self.view.addSubview(textFieldViewBorder)
         
-            let sendButton = UIButton(frame: CGRectMake(textFieldView.frame.width-80, 0, 80, textFieldView.frame.height))
+            sendButton = UIButton(frame: CGRectMake(textFieldView.frame.width-80, textFieldView.frame.height-50, 80, 50))
             sendButton.setTitle("Invia".localized, forState: UIControlState.Normal)
 			sendButton.titleLabel!.font = UIFont(name: helpers.getAppFont(), size: 20)
 
@@ -277,6 +279,17 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             textView.textColor = UIColor.lightGrayColor()
             textView.insertText("Chiedi pure...".localized)
         }
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        let pos = textView.endOfDocument
+        let currentRect = textView.caretRectForPosition(pos)
+        if(currentRect.origin.y > previousRect.origin.y && textView.frame.height < backgroundView.frame.height/2) {
+            textFieldView.frame = CGRectMake(textFieldView.frame.origin.x, textFieldView.frame.origin.y-8, textFieldView.frame.width, textFieldView.frame.height+8)
+            textView.frame.size = CGSizeMake(questionText.frame.width, questionText.frame.height+8)
+            sendButton.frame = CGRectMake(textFieldView.frame.width-80, textFieldView.frame.height-50, 80, 50)
+        }
+        previousRect = currentRect
     }
     
     //MARK: Touches methods

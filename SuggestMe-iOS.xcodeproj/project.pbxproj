@@ -616,7 +616,7 @@
 				);
 				INFOPLIST_FILE = "SuggestMe-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DStaging";
+				OTHER_SWIFT_FLAGS = "-DProduction";
 				PRODUCT_BUNDLE_IDENTIFIER = it.suggestme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuggestMe-iOS/SuggestMe-iOS-Bridging-Header.h";
