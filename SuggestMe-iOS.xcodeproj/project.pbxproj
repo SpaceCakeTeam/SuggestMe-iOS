@@ -25,6 +25,7 @@
 		495A245E1AFE3CF6003731E9 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A245D1AFE3CF6003731E9 /* Question.swift */; };
 		495A24621AFE497A003731E9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24611AFE497A003731E9 /* Category.swift */; };
 		495A24641AFE54D9003731E9 /* CommunicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24631AFE54D9003731E9 /* CommunicationHandler.swift */; };
+		4970D47F1BB693F2001A2635 /* freescript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4970D47E1BB69279001A2635 /* freescript.ttf */; settings = {ASSET_TAGS = (); }; };
 		498A39671AFE90FD00726542 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39661AFE90FD00726542 /* Helpers.swift */; };
 		498A39691AFF84D100726542 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39681AFF84D100726542 /* AboutViewController.swift */; };
 		499485BC1B1B2C5A0060AFD5 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499485BB1B1B2C5A0060AFD5 /* QuestionsViewController.swift */; };
@@ -109,6 +110,7 @@
 		495A245D1AFE3CF6003731E9 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		495A24611AFE497A003731E9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		495A24631AFE54D9003731E9 /* CommunicationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationHandler.swift; sourceTree = "<group>"; };
+		4970D47E1BB69279001A2635 /* freescript.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = freescript.ttf; path = Resources/freescript.ttf; sourceTree = "<group>"; };
 		498A39661AFE90FD00726542 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		498A39681AFF84D100726542 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		499485BB1B1B2C5A0060AFD5 /* QuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		495A24331AFE0CE4003731E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4970D47E1BB69279001A2635 /* freescript.ttf */,
 				495A24341AFE0CE4003731E9 /* Info.plist */,
 				4911B21E1B821C4B00C574EA /* SuggestMe-iOS-Bridging-Header.h */,
 				4953B28C1BA86E6C00773D43 /* FBSDKCoreKit.framework */,
@@ -432,6 +435,7 @@
 				49B90DE91B2D9AEB003EB9E3 /* AboutBackground-568h@2x.png in Resources */,
 				490CF9611B52A7C700C2AA13 /* LoginBackground-736h@3x.png in Resources */,
 				49B90DE11B2D9AEB003EB9E3 /* LoginBackground-480h@2x.png in Resources */,
+				4970D47F1BB693F2001A2635 /* freescript.ttf in Resources */,
 				49B90E0C1B2D9AEB003EB9E3 /* TutorialBackgroundPage5-736h@3x.png in Resources */,
 				49B90DE21B2D9AEB003EB9E3 /* QuestionsBackground-480h@2x.png in Resources */,
 				49B90DF91B2D9AEB003EB9E3 /* LoginBackground-667h@2x.png in Resources */,
