@@ -36,7 +36,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
 		navigationBarHeight = self.navigationController!.navigationBar.frame.height
 		self.view.frame.size = CGSizeMake(helpers.screenWidth, helpers.screenHeightNoStatus)
 		helpers.currentView = self.view
-		helpers.currentViewFrame = CGRectMake(0, 0, helpers.screenWidth, helpers.screenHeightNoStatus-navigationBarHeight)
+		helpers.currentViewFrame = CGRectMake(0, 0, helpers.screenWidth, (helpers.screenHeightNoStatus-navigationBarHeight)/2)
 		
         self.navigationItem.titleView = UIImageView(image: UIImage(named: "TitleNavigationBar"))
         UIApplication.sharedApplication().statusBarStyle = .Default
@@ -49,10 +49,10 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
 
         switch (question.questiondata.catid) {
             case 1:
-                backgroundView = UIImageView(image: UIImage(named: "SocialBackground-\(Int(helpers.screenHeight))h"))
+                backgroundView = UIImageView(image: UIImage(named: "GoodsBackground-\(Int(helpers.screenHeight))h"))
                 break
             case 2:
-                backgroundView = UIImageView(image: UIImage(named: "GoodsBackground-\(Int(helpers.screenHeight))h"))
+                backgroundView = UIImageView(image: UIImage(named: "SocialBackground-\(Int(helpers.screenHeight))h"))
                 break
             default:
                 break
@@ -65,11 +65,10 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         self.view.addSubview(infoBarView)
 
         let hashtagImageView = UIImageView(image: UIImage(named: "Hashtag"))
-        hashtagImageView.frame.origin = CGPointMake(5, 5)
+        hashtagImageView.frame.origin = CGPointMake(7, 5)
         self.view.addSubview(hashtagImageView)
         
         let anonButtonImageView = UIImageView(image: anonButtonImage)
-        _ = UIImageView(image: registeredButtonImage)
         visibilityButton = UIButton(frame: anonButtonImageView.frame)
         visibilityButton.frame.origin = CGPointMake(infoBarView.frame.width-anonButtonImageView.frame.width-5, 5)
         self.view.addSubview(visibilityButton)
@@ -133,7 +132,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             questionText.layer.borderWidth = 1
             questionText.backgroundColor = UIColor.whiteColor()
             questionText.text = "Chiedi pure...".localized
-			questionText.font = UIFont(name: helpers.getAppFont(), size: 13)
+			questionText.font = UIFont(name: helpers.getAppFont(), size: 15)
             questionText.textColor = UIColor.lightGrayColor()
             questionText.layer.cornerRadius = 5
             questionText.delegate = self
@@ -187,8 +186,12 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-		helpers.user.anon == true ? visibilityButton.setImage(anonButtonImage, forState: UIControlState.Normal) : visibilityButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
-		
+        if question.questiondata.text != "" {
+            question.questiondata.anon == true ? visibilityButton.setImage(anonButtonImage, forState: UIControlState.Normal) : visibilityButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
+        } else {
+            helpers.user.anon == true ? visibilityButton.setImage(anonButtonImage, forState: UIControlState.Normal) : visibilityButton.setImage(registeredButtonImage, forState: UIControlState.Normal)
+        }
+        
         if question.id == -1 {
             questionText.becomeFirstResponder()
         }
@@ -197,10 +200,6 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 		helpers.currentQuestion = nil
-
-		if question.id == -1 {
-            questionText.resignFirstResponder()
-        }
     }
     
     //MARK: UIButton Actions
@@ -231,9 +230,8 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func askSuggestionRequest(sender: AnyObject) {
-        question.questiondata.text = questionText.text
-        if question.questiondata.subcatid != -1 && question.questiondata.text != "" && helpers.checkQuestionText(question.questiondata.text) {
-            questionText.resignFirstResponder()
+        if question.questiondata.subcatid != -1 && questionText.text != "" && helpers.checkQuestionText(questionText.text) {
+            question.questiondata.text = questionText.text
             helpers.communicationHandler.askSuggestionRequest(question.questiondata) { (response) -> () in
                 if response {
 					self.helpers.pushToQuestionsView = true
@@ -292,13 +290,6 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         previousRect = currentRect
     }
     
-    //MARK: Touches methods
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if question.id == -1{
-            questionText.resignFirstResponder()
-        }
-    }
-    
     //MARK: Keyboard Notifications
     func keyboardChangeFrame(notification: NSNotification) {
         var userInfo: [NSObject: AnyObject] = notification.userInfo!
@@ -307,7 +298,12 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func keyboardDisappear(notification: NSNotification) {
-        moveTextField(0)
+        if questionText.text == "" || questionText.text == "Chiedi pure..." {
+            textFieldView.frame = CGRectMake(0, backgroundView.frame.height-45, backgroundView.frame.width, 45)
+            questionText.frame = CGRectMake(5, 7.5, textFieldView.frame.width-sendButton.frame.width-5, 30)
+            sendButton.frame = CGRectMake(textFieldView.frame.width-80, textFieldView.frame.height-50, 80, 50)
+            moveTextField(0)
+        }
     }
     
     func moveTextField(size: CGFloat) {
