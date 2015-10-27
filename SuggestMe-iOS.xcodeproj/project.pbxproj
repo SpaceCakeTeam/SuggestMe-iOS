@@ -536,7 +536,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Maurizio Dragone (99YVYKA632)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maurizio Dragone (KBSSBAR688)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -561,7 +561,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DStaging";
-				PROVISIONING_PROFILE = "9e983cba-9723-40d7-bf34-d658c3fe723b";
+				PROVISIONING_PROFILE = "d1a741be-6485-49e6-83e8-fe7e24d288c1";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -600,8 +600,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_SWIFT_FLAGS = "-DStaging";
-				PROVISIONING_PROFILE = "9e983cba-9723-40d7-bf34-d658c3fe723b";
+				OTHER_SWIFT_FLAGS = "-DProduction";
+				PROVISIONING_PROFILE = "d1a741be-6485-49e6-83e8-fe7e24d288c1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -613,7 +613,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Maurizio Dragone (99YVYKA632)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maurizio Dragone (KBSSBAR688)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SuggestMe-iOS/Resources",
@@ -641,7 +641,7 @@
 				);
 				INFOPLIST_FILE = "SuggestMe-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DStaging";
+				OTHER_SWIFT_FLAGS = "-DProduction";
 				PRODUCT_BUNDLE_IDENTIFIER = it.suggestme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuggestMe-iOS/SuggestMe-iOS-Bridging-Header.h";
