@@ -29,6 +29,10 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     var questionText: UITextView!
     var previousRect = CGRectZero
     
+    var scrollBackgroundView: UIScrollView!
+    
+    var diffKFromOriginal = 0;
+    
     //MARK: UI methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,16 +66,13 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         let infoBarView = UIView(frame: CGRectMake(0, 0, backgroundView.frame.width, 50))
         infoBarView.backgroundColor = UIColor.whiteColor()
         infoBarView.alpha = 0.7
-        self.view.addSubview(infoBarView)
 
         let hashtagImageView = UIImageView(image: UIImage(named: "Hashtag"))
         hashtagImageView.frame.origin = CGPointMake(7, 5)
-        self.view.addSubview(hashtagImageView)
         
         let anonButtonImageView = UIImageView(image: anonButtonImage)
         visibilityButton = UIButton(frame: anonButtonImageView.frame)
         visibilityButton.frame.origin = CGPointMake(infoBarView.frame.width-anonButtonImageView.frame.width-5, 5)
-        self.view.addSubview(visibilityButton)
         
         let subcategoryButtonImage = UIImage(named: "SubcategoryButton")
         let subcategoryButtonImageView = UIImageView(image: subcategoryButtonImage)
@@ -91,7 +92,6 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         subcategoryButton.titleLabel?.adjustsFontSizeToFitWidth = true
         subcategoryButton.titleLabel?.minimumScaleFactor = 1
         subcategoryButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        self.view.addSubview(subcategoryButton)
         
         if question.id == -1 {
             visibilityButton.addTarget(self, action: Selector("setVisibilityQuestion:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -122,7 +122,6 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             sendButton = UIButton(frame: CGRectMake(textFieldView.frame.width-80, textFieldView.frame.height-50, 80, 50))
             sendButton.setTitle("Invia".localized, forState: UIControlState.Normal)
 			sendButton.titleLabel!.font = UIFont(name: helpers.getAppFont(), size: 20)
-
             sendButton.setTitleColor(UIColor(red: 78.0/255.0, green: 133.0/255.0, blue: 248.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
             sendButton.addTarget(self, action: Selector("askSuggestionRequest:"), forControlEvents: UIControlEvents.TouchUpInside)
             textFieldView.addSubview(sendButton)
@@ -142,9 +141,13 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardChangeFrame:"), name: UIKeyboardWillChangeFrameNotification, object: nil)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardDisappear:"), name: UIKeyboardWillHideNotification, object: nil)
 		} else {
+            scrollBackgroundView = UIScrollView(frame: CGRectMake(0, 0, helpers.screenWidth, backgroundView.frame.height))
+            scrollBackgroundView.showsVerticalScrollIndicator = false
+            self.view.addSubview(scrollBackgroundView)
+            
 			let requestTextArrow = UIImageView(image: UIImage(named: "RequestSuggestion"))
 			requestTextArrow.frame.origin = CGPointMake(helpers.screenWidth-15-requestTextArrow.frame.width, infoBarView.frame.height+20)
-			backgroundView.addSubview(requestTextArrow)
+			scrollBackgroundView.addSubview(requestTextArrow)
 			
 			let requestText = Label(frame: CGRectMake(10, infoBarView.frame.height+20, helpers.screenWidth-20-requestTextArrow.frame.width, 0))
 			requestText.numberOfLines = 0
@@ -156,12 +159,12 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
 			requestText.layer.masksToBounds = true
 			requestText.layer.cornerRadius = 5
 			requestText.frame.size = CGSizeMake(helpers.screenWidth-20-requestTextArrow.frame.width, requestText.frame.height+10)
-			backgroundView.addSubview(requestText)
+			scrollBackgroundView.addSubview(requestText)
 		
 			if question.suggest != nil {
 				let responseTextArrow = UIImageView(image: UIImage(named: "ResponseSuggestion"))
 				responseTextArrow.frame.origin = CGPointMake(10, infoBarView.frame.height+20+requestText.frame.height+20)
-				backgroundView.addSubview(responseTextArrow)
+				scrollBackgroundView.addSubview(responseTextArrow)
 				
 				let responseText = Label(frame: CGRectMake(10+responseTextArrow.frame.width-5, infoBarView.frame.height+20+requestText.frame.height+20, helpers.screenWidth-20-responseTextArrow.frame.width, 0))
 				responseText.numberOfLines = 0
@@ -174,9 +177,17 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
 				responseText.layer.masksToBounds = true
 				responseText.layer.cornerRadius = 5
 				responseText.frame.size = CGSizeMake(helpers.screenWidth-20-requestTextArrow.frame.width, responseText.frame.height+10)
-				backgroundView.addSubview(responseText)
-			}
+				scrollBackgroundView.addSubview(responseText)
+                scrollBackgroundView.contentSize = CGSizeMake(scrollBackgroundView.frame.width,infoBarView.frame.height+20 + requestText.frame.height + responseText.frame.height+navigationBarHeight)
+            } else {
+                scrollBackgroundView.contentSize = CGSizeMake(scrollBackgroundView.frame.width,infoBarView.frame.height+20 + requestText.frame.height)
+            }
 		}
+        
+        self.view.addSubview(infoBarView)
+        self.view.addSubview(hashtagImageView)
+        self.view.addSubview(visibilityButton)
+        self.view.addSubview(subcategoryButton)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -222,6 +233,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func showSubcategories(sender: AnyObject) {
+        self.view.addSubview(subcategoryTableView)
         if subcategoryTableView.hidden {
             subcategoryTableView.hidden = false
         } else {
@@ -272,22 +284,24 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
-        if textView.text == "" {
-            textView.textColor = UIColor.lightGrayColor()
-            textView.insertText("Chiedi pure...".localized)
-        }
-    }
-    
     func textViewDidChange(textView: UITextView) {
         let pos = textView.endOfDocument
         let currentRect = textView.caretRectForPosition(pos)
-        if(currentRect.origin.y > previousRect.origin.y && textView.frame.height < backgroundView.frame.height/2) {
-            textFieldView.frame = CGRectMake(textFieldView.frame.origin.x, textFieldView.frame.origin.y-8, textFieldView.frame.width, textFieldView.frame.height+8)
-            textView.frame.size = CGSizeMake(questionText.frame.width, questionText.frame.height+8)
-            sendButton.frame = CGRectMake(textFieldView.frame.width-80, textFieldView.frame.height-50, 80, 50)
+        if(currentRect.origin.y > previousRect.origin.y && textFieldView.frame.height < backgroundView.frame.height/4) {
+            textFieldView.frame.origin.y = textFieldView.frame.origin.y-8;
+            textFieldView.frame.size.height = textFieldView.frame.height+8;
+            textView.frame.size.height = textView.frame.height+8;
+            sendButton.frame.origin.y = sendButton.frame.origin.y+8;
+            diffKFromOriginal += 8;
         }
         previousRect = currentRect
+    }
+    
+    //MARK: Touches methods
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if question.id == -1{
+            questionText.resignFirstResponder()
+        }
     }
     
     //MARK: Keyboard Notifications
@@ -298,17 +312,12 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func keyboardDisappear(notification: NSNotification) {
-        if questionText.text == "" || questionText.text == "Chiedi pure..." {
-            textFieldView.frame = CGRectMake(0, backgroundView.frame.height-45, backgroundView.frame.width, 45)
-            questionText.frame = CGRectMake(5, 7.5, textFieldView.frame.width-sendButton.frame.width-5, 30)
-            sendButton.frame = CGRectMake(textFieldView.frame.width-80, textFieldView.frame.height-50, 80, 50)
-            moveTextField(0)
-        }
+        moveTextField(0);
     }
     
     func moveTextField(size: CGFloat) {
         UIView.animateWithDuration(0, animations: { () -> Void in
-            self.textFieldView.frame.origin.y = self.backgroundView.frame.height-45-size
+            self.textFieldView.frame.origin.y = self.backgroundView.frame.height-45-CGFloat(self.diffKFromOriginal)-size
         })
     }
 }

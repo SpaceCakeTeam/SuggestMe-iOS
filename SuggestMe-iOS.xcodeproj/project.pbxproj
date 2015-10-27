@@ -25,7 +25,7 @@
 		495A245E1AFE3CF6003731E9 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A245D1AFE3CF6003731E9 /* Question.swift */; };
 		495A24621AFE497A003731E9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24611AFE497A003731E9 /* Category.swift */; };
 		495A24641AFE54D9003731E9 /* CommunicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A24631AFE54D9003731E9 /* CommunicationHandler.swift */; };
-		4970D47F1BB693F2001A2635 /* freescript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4970D47E1BB69279001A2635 /* freescript.ttf */; settings = {ASSET_TAGS = (); }; };
+		4970D47F1BB693F2001A2635 /* freescript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4970D47E1BB69279001A2635 /* freescript.ttf */; };
 		498A39671AFE90FD00726542 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39661AFE90FD00726542 /* Helpers.swift */; };
 		498A39691AFF84D100726542 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A39681AFF84D100726542 /* AboutViewController.swift */; };
 		499485BC1B1B2C5A0060AFD5 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499485BB1B1B2C5A0060AFD5 /* QuestionsViewController.swift */; };
@@ -620,7 +620,7 @@
 				);
 				INFOPLIST_FILE = "SuggestMe-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DProduction";
+				OTHER_SWIFT_FLAGS = "-DStaging";
 				PRODUCT_BUNDLE_IDENTIFIER = it.suggestme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuggestMe-iOS/SuggestMe-iOS-Bridging-Header.h";
@@ -641,7 +641,7 @@
 				);
 				INFOPLIST_FILE = "SuggestMe-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DProduction";
+				OTHER_SWIFT_FLAGS = "-DStaging";
 				PRODUCT_BUNDLE_IDENTIFIER = it.suggestme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuggestMe-iOS/SuggestMe-iOS-Bridging-Header.h";
