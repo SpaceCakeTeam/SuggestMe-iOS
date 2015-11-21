@@ -236,8 +236,10 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         self.view.addSubview(subcategoryTableView)
         if subcategoryTableView.hidden {
             subcategoryTableView.hidden = false
+            questionText.resignFirstResponder()
         } else {
             subcategoryTableView.hidden = true
+            questionText.becomeFirstResponder()
         }
     }
     
@@ -271,6 +273,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         subcategoryTableView.hidden = true
+        questionText.becomeFirstResponder()
         question.questiondata.subcatid = category.subcategories[indexPath.row].id
 		let titleText = category.subcategories[indexPath.row].name.localized
         subcategoryButton.setTitle("\(titleText)  ", forState: UIControlState.Normal)

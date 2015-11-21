@@ -98,10 +98,10 @@ class QuestionsViewController: UIViewController, UITabBarControllerDelegate, UIT
 		
         if question.questiondata.catid == 1 {
 			cell.category.frame.origin.x = 10
-			cell.category.image = UIImage(named: "QuestionSocialIcon")
+			cell.category.image = UIImage(named: "QuestionGoodsIcon")
         } else if question.questiondata.catid == 2 {
 			cell.category.frame.origin.x = 7
-            cell.category.image = UIImage(named: "QuestionGoodsIcon")
+            cell.category.image = UIImage(named: "QuestionSocialIcon")
         }
         
         if question.suggest == nil {
