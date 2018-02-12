@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  SuggestMe-iOS
-//
-//  Created by Mattia Uggè on 09/05/15.
-//  Copyright (c) 2015 Mattia. All rights reserved.
-//
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         helpers.printFonts()
         return true
     }
-	
+
 	func applicationDidBecomeActive(application: UIApplication) {
 		if helpers.isStored("user") {
 			if helpers.isPushRegisteredAtLeastOneTime() {
@@ -30,26 +22,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			}
 		}
 	}
-	
+
 	//MARK: Facebook!
 	func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
 		return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
 	}
-	
+
 	//MARK: Push Notifications!
 	func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 		print("Registration Push OK!")
 		helpers.updatePushRequest(deviceToken.description.stringByReplacingOccurrencesOfString("[ <>]", withString: "", options: .RegularExpressionSearch, range: nil))
 	}
-	
+
 	func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
 		//Show alert
 		print("Registration Push KO!")
 		print(error)
 	}
-	
+
 	func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject: AnyObject]) {
 		print("Received Push Notification: \(userInfo)")
 	}
 }
-

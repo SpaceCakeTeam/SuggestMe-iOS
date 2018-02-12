@@ -1,16 +1,8 @@
-//
-//  TutorialViewController.swift
-//  SuggestMe-iOS
-//
-//  Created by Mattia Uggè on 20/05/15.
-//  Copyright (c) 2015 Mattia. All rights reserved.
-//
-
 class TutorialViewController: UIViewController, UIScrollViewDelegate {
-	
+
 	var helpers = Helpers.shared
     var isUserSetted = false
-    
+
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
     var tutorialViews: [UIImageView]!
@@ -18,15 +10,15 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
 
     var loginSocialButtons: UIButton!
     var loginAnonButton: UIButton!
-    
+
     //MARK: UI methods
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+
 		self.view.frame.size = CGSizeMake(helpers.screenWidth, helpers.screenHeightNoStatus)
 		helpers.currentView = self.view
 		helpers.currentViewFrame = CGRectMake(0, 0, helpers.screenWidth, helpers.screenHeight)
-		
+
 		isUserSetted = helpers.setDataUser()
 
         if !isUserSetted {
@@ -38,24 +30,24 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
             let background3 = UIImageView(image: UIImage(named: "TutorialBackgroundPage3-\(Int(helpers.screenHeight))h"))
             let background4 = UIImageView(image: UIImage(named: "TutorialBackgroundPage4-\(Int(helpers.screenHeight))h"))
             let background5 = UIImageView(image: UIImage(named: "TutorialBackgroundPage5-\(Int(helpers.screenHeight))h"))
-            
+
             currentFrame = CGRectMake(0, helpers.screenHeightNoStatus/2-self.view.frame.height/2, helpers.screenWidth, self.view.frame.height)
-            
+
             scrollView = UIScrollView(frame: CGRectMake(0, helpers.screenHeight-helpers.screenHeightNoStatus, helpers.screenWidth, helpers.screenHeightNoStatus))
             scrollView.delegate = self
             scrollView.pagingEnabled = true
             scrollView.showsHorizontalScrollIndicator = false
-        
+
             pageControl = UIPageControl(frame: CGRectMake(0, helpers.screenHeightNoStatus, helpers.screenWidth, helpers.statusBarHeight))
 			pageControl.frame.origin = CGPointMake(self.view.frame.width/2-pageControl.frame.width/2, pageControl.frame.origin.y-10)
 			pageControl.numberOfPages = 5
             pageControl.addTarget(self, action: Selector("changePage:"), forControlEvents: UIControlEvents.ValueChanged)
-            
+
             tutorialViews = [background1, background2, background3, background4, background5]
-            
+
             for index in 0..<tutorialViews.count {
                 currentFrame.origin.x = scrollView.frame.width*CGFloat(index)
-                
+
                 let currentView = tutorialViews[index]
                 currentView.frame = currentFrame
                 scrollView.addSubview(currentView)
@@ -64,11 +56,11 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
                     let loginSocialImageView = UIImageView(image: UIImage(named: "LoginSocialButtons-\(Int(helpers.screenHeight))h"))
                     loginSocialImageView.frame.origin = CGPointMake(currentFrame.origin.x + (currentFrame.width/2 - loginSocialImageView.frame.width/2), currentFrame.height/2 - loginSocialImageView.frame.height/2)
                     scrollView.addSubview(loginSocialImageView)
-                    
+
                     loginSocialButtons = UIButton(frame: loginSocialImageView.frame)
 					loginSocialButtons.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("socialLogin:")))
 					scrollView.addSubview(loginSocialButtons)
-                   
+
                     let loginNotNowImage = UIImage(named: "LoginNotNowButton-\(Int(helpers.screenHeight))h")
                     let loginNotNowImageView = UIImageView(image: loginNotNowImage)
                     loginAnonButton = UIButton(frame: loginNotNowImageView.frame)
@@ -78,13 +70,13 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
                     scrollView.addSubview(loginAnonButton)
 				}
             }
-            
+
             scrollView.contentSize = CGSizeMake(scrollView.frame.width * CGFloat(tutorialViews.count), scrollView.frame.height)
 			self.view.addSubview(scrollView)
             self.view.addSubview(pageControl)
         }
 	}
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -92,18 +84,18 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
 		    self.performSegueWithIdentifier("presentHomeTabBarController", sender: self)
         }
     }
-    
+
     //MARK: PageControl and UIScrollView methods
     func changePage(sender: AnyObject) {
         let x = CGFloat(pageControl.currentPage)*scrollView.frame.size.width
         scrollView.setContentOffset(CGPointMake(x, 0), animated: true)
     }
-    
+
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) -> () {
         let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width);
         pageControl.currentPage = Int(pageNumber)
     }
-    
+
     //MARK: UIButton Actions
 	func socialLogin(gestureRecognizer: UITapGestureRecognizer) {
 		if gestureRecognizer.state == UIGestureRecognizerState.Ended {
@@ -118,7 +110,7 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
 			}
 		}
 	}
-	
+
 	func makeRegistration(sender: AnyObject) {
 		helpers.communicationHandler.registrationRequest() { (response) -> () in
 			if response {
